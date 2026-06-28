@@ -2,15 +2,59 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.json">
-<title>HD Ordini</title>
-<style>
-html,body{height:100%;margin:0;background:#1a1a1a;color:#d4a574;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;text-align:center}.box{padding:28px}.logo{font-size:34px;font-weight:900;letter-spacing:2px}.sub{margin-top:10px;color:#fff;font-size:15px;opacity:.8;line-height:1.4}.btn{margin-top:22px;display:inline-block;background:#d4a574;color:#1a1a1a;text-decoration:none;border-radius:14px;padding:14px 20px;font-weight:800}
-</style>
+<link rel="stylesheet" href="style.css">
+<title>HD Ordini Accademia Savona</title>
 </head>
 <body>
-<div class="box"><div class="logo">HD NAILS</div><div class="sub">Nuova versione disponibile con descrizioni prodotto.</div><a class="btn" href="ORDINIACCADEMIA_descrizioni.html">Apri nuova app</a></div>
+<header class="topbar">
+  <div class="brand"><b>HD NAILS</b><span>Accademia Savona</span></div>
+  <button id="cartBtn" class="cartBtn" type="button">Carrello <span id="cc">0</span></button>
+</header>
+<section class="searchbar">
+  <input id="search" type="search" placeholder="Cerca prodotto o categoria">
+  <button id="clear" type="button">×</button>
+</section>
+<nav id="chips" class="chips"></nav>
+<main>
+  <div id="status" class="status">Caricamento catalogo...</div>
+  <section id="grid" class="grid"></section>
+  <button id="more" class="more" type="button">Carica altri</button>
+</main>
+<footer id="bottom" class="bottom">
+  <div><b id="bt">€0,00</b><br><span id="bi">0 articoli</span></div>
+  <button id="bottomOpen" type="button">Vedi ordine</button>
+</footer>
+<div id="overlay" class="overlay"></div>
+<aside id="detail" class="sheet">
+  <div class="head"><h2>Dettaglio prodotto</h2><button id="closeD">×</button></div>
+  <div class="sheetBody">
+    <div id="dImg" class="detailBox"></div>
+    <h2 id="dTitle"></h2>
+    <div id="dCat" class="cat"></div>
+    <div id="dPrice" class="price"></div>
+    <p id="dDesc" class="desc"></p>
+    <button id="addD" class="primary full">Aggiungi al carrello</button>
+  </div>
+</aside>
+<aside id="cart" class="sheet">
+  <div class="head"><h2>Il tuo ordine</h2><button id="closeC">×</button></div>
+  <div id="cartItems" class="sheetBody"></div>
+  <div class="sheetBody">
+    <div id="totals"></div>
+    <input id="cust" class="field" placeholder="Ragione sociale o dati spedizione *">
+    <textarea id="note" class="field" placeholder="Note ordine"></textarea>
+    <button id="wa" class="primary full">Invia WhatsApp</button>
+    <button id="mail" class="primary full">Invia Email</button>
+    <button id="print" class="primary full">Stampa / PDF</button>
+    <button id="clearCart" class="full">Svuota carrello</button>
+  </div>
+</aside>
+<section id="printArea" class="printArea"></section>
+<script src="app.js"></script>
 </body>
 </html>
