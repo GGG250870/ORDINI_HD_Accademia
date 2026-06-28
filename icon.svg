@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#1a1a1a"/>
+  <circle cx="256" cy="256" r="166" fill="#d4a574" opacity=".16"/>
+  <text x="256" y="238" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="900" fill="#d4a574">HD</text>
+  <text x="256" y="302" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#ffffff">ORDINI</text>
+</svg>
