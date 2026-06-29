@@ -1,0 +1,34 @@
+CATALOGO HDNAILS.IT — Scrap completo
+=====================================
+Data estrazione: 28/06/2026
+Fonte: https://www.hdnails.it (sitemap ufficiale + schede prodotto)
+
+CONTENUTO CARTELLA
+------------------
+hdnails_catalogo_excel.csv   -> APRI QUESTO con Excel (separatore ; , UTF-8 con BOM, accenti corretti)
+hdnails_catalogo.csv         -> stesso catalogo, separatore , (per Google Sheets / import generici)
+immagini/                    -> tutte le foto, una sottocartella per prodotto (nome = SKU)
+immagini_manifest.csv        -> elenco foto: sku ; nome ; file locale ; url originale
+categorie_riepilogo.csv      -> numero prodotti per categoria top-level
+hdnails_prodotti_rimossi.csv -> 36 prodotti presenti in sitemap ma con pagina non piu' online (404)
+
+NUMERI
+------
+896  prodotti attivi
+896  con prezzo e disponibilita'
+892  con descrizione prodotto completa
+890  con categoria assegnata
+2.372 immagini scaricate (~1,3 GB)
+
+COLONNE DEL CATALOGO
+--------------------
+sku, nome, prezzo_eur, disponibilita (InStock/OutOfStock),
+categoria_principale, tutte_le_categorie (separate da |),
+brand, descrizione_completa, specifiche,
+url_prodotto, immagini (url separati da |), numero_immagini
+
+NOTE
+----
+- Prezzi e disponibilita' sono quelli pubblicati sul sito alla data di estrazione.
+- Le foto in immagini/<SKU>/ sono numerate 01, 02, ... nell'ordine del sito.
+- I 36 prodotti rimossi hanno solo nome e foto (la pagina non esiste piu').
