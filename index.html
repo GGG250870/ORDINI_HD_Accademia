@@ -8,6 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="app.webmanifest?v=5">
 <link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="v4.css?v=5">
 <title>ORDINI_HD_ACCADEMIA</title>
 </head>
 <body>
@@ -44,57 +45,11 @@
   <button id="bottomOpen" type="button">Vedi ordine</button>
 </footer>
 <div id="overlay" class="overlay"></div>
-<aside id="detail" class="sheet">
-  <div class="head"><h2>Dettaglio prodotto</h2><button id="closeD">×</button></div>
-  <div class="sheetBody">
-    <div id="dImg" class="detailBox"></div>
-    <h2 id="dTitle"></h2>
-    <div id="dCat" class="cat"></div>
-    <div id="dPrice" class="price"></div>
-    <div id="dAvail" class="avail"></div>
-    <button id="favDetail" class="full softBtn" type="button">⭐ Aggiungi ai preferiti</button>
-    <h3>Descrizione</h3>
-    <div id="dDesc" class="desc"></div>
-    <div id="specWrap">
-      <h3>Specifiche</h3>
-      <div id="dSpec" class="desc"></div>
-    </div>
-    <button id="addD" class="primary full">Aggiungi al carrello</button>
-  </div>
-</aside>
-<aside id="cart" class="sheet">
-  <div class="head"><h2>Il tuo ordine</h2><button id="closeC">×</button></div>
-  <div id="cartItems" class="sheetBody"></div>
-  <div class="sheetBody">
-    <div id="totals" class="totals"></div>
-    <input id="cust" class="field" placeholder="Ragione sociale o dati spedizione *">
-    <textarea id="note" class="field" placeholder="Note ordine"></textarea>
-    <button id="wa" class="primary full">Invia WhatsApp</button>
-    <button id="mail" class="primary full">Invia Email</button>
-    <button id="print" class="primary full">Stampa / PDF</button>
-    <button id="clearCart" class="full">Svuota carrello</button>
-  </div>
-</aside>
-<aside id="profile" class="sheet">
-  <div class="head"><h2>Scheda cliente</h2><button id="closeP">×</button></div>
-  <div class="sheetBody">
-    <p class="mutedText">Compilala una volta: l'app userà questi dati per WhatsApp, email e PDF.</p>
-    <input id="cl_nome" class="field" placeholder="Ragione sociale / Nome e Cognome">
-    <input id="cl_piva" class="field" placeholder="Partita IVA / Codice fiscale">
-    <input id="cl_indirizzo" class="field" placeholder="Indirizzo">
-    <input id="cl_cap" class="field" placeholder="CAP">
-    <input id="cl_citta" class="field" placeholder="Città">
-    <input id="cl_prov" class="field" placeholder="Provincia">
-    <input id="cl_tel" class="field" placeholder="Telefono">
-    <input id="cl_email" class="field" placeholder="Email">
-    <button id="saveProfile" class="primary full">Salva dati cliente</button>
-    <button id="clearProfile" class="full">Cancella dati cliente</button>
-  </div>
-</aside>
+<aside id="detail" class="sheet"><div class="head"><h2>Dettaglio prodotto</h2><button id="closeD">×</button></div><div class="sheetBody"><div id="dImg" class="detailBox"></div><h2 id="dTitle"></h2><div id="dCat" class="cat"></div><div id="dPrice" class="price"></div><div id="dAvail" class="avail"></div><button id="favDetail" class="full softBtn" type="button">⭐ Aggiungi ai preferiti</button><h3>Descrizione</h3><div id="dDesc" class="desc"></div><div id="specWrap"><h3>Specifiche</h3><div id="dSpec" class="desc"></div></div><button id="addD" class="primary full">Aggiungi al carrello</button></div></aside>
+<aside id="cart" class="sheet"><div class="head"><h2>Il tuo ordine</h2><button id="closeC">×</button></div><div id="cartItems" class="sheetBody"></div><div class="sheetBody"><div id="totals" class="totals"></div><input id="cust" class="field" placeholder="Ragione sociale o dati spedizione *"><textarea id="note" class="field" placeholder="Note ordine"></textarea><button id="wa" class="primary full">Invia WhatsApp</button><button id="mail" class="primary full">Invia Email</button><button id="print" class="primary full">Stampa / PDF</button><button id="clearCart" class="full">Svuota carrello</button></div></aside>
+<aside id="profile" class="sheet"><div class="head"><h2>Scheda cliente</h2><button id="closeP">×</button></div><div class="sheetBody"><p class="mutedText">Compilala una volta: l'app userà questi dati per WhatsApp, email e PDF.</p><input id="cl_nome" class="field" placeholder="Ragione sociale / Nome e Cognome"><input id="cl_piva" class="field" placeholder="Partita IVA / Codice fiscale"><input id="cl_indirizzo" class="field" placeholder="Indirizzo"><input id="cl_cap" class="field" placeholder="CAP"><input id="cl_citta" class="field" placeholder="Città"><input id="cl_prov" class="field" placeholder="Provincia"><input id="cl_tel" class="field" placeholder="Telefono"><input id="cl_email" class="field" placeholder="Email"><button id="saveProfile" class="primary full">Salva dati cliente</button><button id="clearProfile" class="full">Cancella dati cliente</button></div></aside>
 <section id="printArea" class="printArea"></section>
-<script>
-if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.update()))).catch(()=>{});}
-</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.update()))).catch(()=>{});}</script>
 <script src="app.js?v=5"></script>
 </body>
 </html>
