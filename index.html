@@ -6,15 +6,29 @@
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="app.webmanifest?v=4">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="manifest" href="app.webmanifest?v=5">
+<link rel="stylesheet" href="style.css?v=5">
 <title>ORDINI_HD_ACCADEMIA</title>
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><b>ORDINI_HD_ACCADEMIA</b><span>Accademia Savona</span></div>
+  <div class="brand"><b>ORDINI_HD_ACCADEMIA</b><span id="hello">Accademia Savona</span></div>
+  <button id="profileBtn" class="cartBtn secondaryMini" type="button">Cliente</button>
   <button id="cartBtn" class="cartBtn" type="button">Carrello <span id="cc">0</span></button>
 </header>
+<section class="hero" id="hero">
+  <div>
+    <div class="eyebrow">Catalogo ordini</div>
+    <h1 id="welcome">Benvenuta nell'Accademia di Savona</h1>
+    <p>Ordina prodotti HDNails con foto, descrizioni complete e carrello interno dell'Accademia.</p>
+  </div>
+  <div class="quickGrid">
+    <button id="newOrder" type="button">🛍️<b>Nuovo ordine</b><span>Apri catalogo</span></button>
+    <button id="reorder" type="button">🔁<b>Riordina ultimo</b><span>Carica ultimo carrello</span></button>
+    <button id="favBtn" type="button">⭐<b>Preferiti</b><span>I prodotti salvati</span></button>
+    <button id="newsBtn" type="button">🆕<b>Novità</b><span>Ultimi prodotti</span></button>
+  </div>
+</section>
 <section class="searchbar">
   <input id="search" type="search" placeholder="Cerca prodotto o categoria">
   <button id="clear" type="button">×</button>
@@ -38,6 +52,7 @@
     <div id="dCat" class="cat"></div>
     <div id="dPrice" class="price"></div>
     <div id="dAvail" class="avail"></div>
+    <button id="favDetail" class="full softBtn" type="button">⭐ Aggiungi ai preferiti</button>
     <h3>Descrizione</h3>
     <div id="dDesc" class="desc"></div>
     <div id="specWrap">
@@ -60,12 +75,26 @@
     <button id="clearCart" class="full">Svuota carrello</button>
   </div>
 </aside>
+<aside id="profile" class="sheet">
+  <div class="head"><h2>Scheda cliente</h2><button id="closeP">×</button></div>
+  <div class="sheetBody">
+    <p class="mutedText">Compilala una volta: l'app userà questi dati per WhatsApp, email e PDF.</p>
+    <input id="cl_nome" class="field" placeholder="Ragione sociale / Nome e Cognome">
+    <input id="cl_piva" class="field" placeholder="Partita IVA / Codice fiscale">
+    <input id="cl_indirizzo" class="field" placeholder="Indirizzo">
+    <input id="cl_cap" class="field" placeholder="CAP">
+    <input id="cl_citta" class="field" placeholder="Città">
+    <input id="cl_prov" class="field" placeholder="Provincia">
+    <input id="cl_tel" class="field" placeholder="Telefono">
+    <input id="cl_email" class="field" placeholder="Email">
+    <button id="saveProfile" class="primary full">Salva dati cliente</button>
+    <button id="clearProfile" class="full">Cancella dati cliente</button>
+  </div>
+</aside>
 <section id="printArea" class="printArea"></section>
 <script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.update()))).catch(()=>{});
-}
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.update()))).catch(()=>{});}
 </script>
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>
