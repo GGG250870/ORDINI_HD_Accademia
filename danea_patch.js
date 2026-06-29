@@ -23,25 +23,30 @@ function patchDaneaCsv(){
     setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);
   }catch(e){console.warn('CSV Danea non generato',e)}
 }
+function openGmailOrder(){
+  let subj='Ordine ORDINI_HD_ACCADEMIA - '+(S.client?.nome||document.querySelector('#cust')?.value.trim()||'Cliente');
+  let body=text();
+  let url='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(PATCH_ORDER_EMAIL)+'&su='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.open(url,'_blank');
+}
 function patchMail(){
   if(!req())return;
   saveOrder();
   patchDaneaCsv();
-  let subj='Ordine ORDINI_HD_ACCADEMIA - '+(S.client?.nome||document.querySelector('#cust')?.value.trim()||'Cliente');
-  setTimeout(()=>{location.href='mailto:'+PATCH_ORDER_EMAIL+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(text())},250);
+  setTimeout(openGmailOrder,300);
 }
 function patchWa(){
   if(!req())return;
   saveOrder();
   patchDaneaCsv();
-  setTimeout(()=>{location.href='https://wa.me/'+PATCH_ORDER_WA+'?text='+encodeURIComponent(text())},250);
+  setTimeout(()=>{location.href='https://wa.me/'+PATCH_ORDER_WA+'?text='+encodeURIComponent(text())},300);
 }
 function patchPrintOrder(){
   if(!req())return;
   saveOrder();
   patchDaneaCsv();
   document.querySelector('#printArea').innerHTML='<h1>ORDINI_HD_ACCADEMIA</h1><pre>'+esc(text())+'</pre>';
-  setTimeout(()=>window.print(),250);
+  setTimeout(()=>window.print(),300);
 }
 setTimeout(()=>{
   if(document.querySelector('#mail'))document.querySelector('#mail').onclick=patchMail;
