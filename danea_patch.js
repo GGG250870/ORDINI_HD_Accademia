@@ -1,4 +1,4 @@
-const PATCH_ORDER_EMAIL='accademiasavona@gmail.com';
+const PATCH_ORDER_EMAIL='ordiniaccademiasavona@gmail.com';
 const PATCH_ORDER_WA='393924983127';
 function patchCsvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"'}
 function patchDaneaCsv(){
