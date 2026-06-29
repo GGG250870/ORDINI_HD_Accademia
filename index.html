@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="app.webmanifest">
-<link rel="stylesheet" href="style.css">
-<title>HD Ordini Accademia Savona</title>
+<link rel="manifest" href="app.webmanifest?v=4">
+<link rel="stylesheet" href="style.css?v=4">
+<title>ORDINI_HD_ACCADEMIA</title>
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><b>HD NAILS</b><span>Accademia Savona</span></div>
+  <div class="brand"><b>ORDINI_HD_ACCADEMIA</b><span>Accademia Savona</span></div>
   <button id="cartBtn" class="cartBtn" type="button">Carrello <span id="cc">0</span></button>
 </header>
 <section class="searchbar">
@@ -61,6 +61,11 @@
   </div>
 </aside>
 <section id="printArea" class="printArea"></section>
-<script src="app.js"></script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.update()))).catch(()=>{});
+}
+</script>
+<script src="app.js?v=4"></script>
 </body>
 </html>
