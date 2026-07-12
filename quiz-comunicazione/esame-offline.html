@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esame di Comunicazione — Generatore Offline</title>
+<style>
+:root {
+  --magenta: #b0206f;
+  --magenta-dark: #8a1758;
+  --magenta-light: #f6e4ef;
+  --ink: #232323;
+  --gray: #6b6b6b;
+  --gray-light: #ececed;
+  --bg: #faf8f9;
+  --card-bg: #ffffff;
+  --ok: #1f9254;
+  --ok-bg: #e7f6ee;
+  --bad: #c0392b;
+  --bad-bg: #fbeae8;
+  --warn: #b7791f;
+  --warn-bg: #fdf3e3;
+  --radius: 14px;
+  --shadow: 0 2px 10px rgba(30, 20, 30, 0.08);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; min-height: 100vh;
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 28px 18px 60px; }
+header.top { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.logo-ring { width: 46px; height: 46px; border-radius: 50%; border: 4px solid var(--magenta); flex: 0 0 auto; position: relative; }
+.logo-ring::after { content: ""; position: absolute; inset: 8px; border-radius: 50%; border: 2px solid var(--magenta); opacity: .55; }
+header.top .titles { line-height: 1.25; }
+header.top h1 { font-size: 1.05rem; margin: 0; color: var(--magenta-dark); letter-spacing: .3px; }
+header.top p { margin: 2px 0 0; font-size: .82rem; color: var(--gray); }
+.card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 26px 26px 22px; margin-bottom: 18px; }
+h2 { font-size: 1.25rem; margin-top: 0; }
+h3 { font-size: 1.02rem; color: var(--magenta-dark); margin-bottom: 6px; }
+p.lead { color: var(--gray); line-height: 1.55; }
+.badge { display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--magenta-dark); background: var(--magenta-light); padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; margin-right: 6px; }
+label.field-label { display: block; font-size: .85rem; font-weight: 600; margin: 16px 0 8px; }
+input[type="text"] { width: 100%; padding: 11px 13px; font-size: 1rem; border: 1.5px solid #ddd; border-radius: 10px; font-family: inherit; background: #fff; color: var(--ink); }
+input[type="text"]:focus { outline: none; border-color: var(--magenta); }
+input[type="range"] { width: 100%; accent-color: var(--magenta); }
+textarea {
+  width: 100%; min-height: 130px; padding: 12px 14px; font-size: .97rem; line-height: 1.5;
+  border: 1.5px solid #ddd; border-radius: 10px; font-family: inherit; resize: vertical; color: var(--ink);
+}
+textarea:focus { outline: none; border-color: var(--magenta); }
+.choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 4px; }
+.choice-card {
+  border: 1.5px solid #e2e0e2; border-radius: 12px; padding: 14px 12px; cursor: pointer; text-align: center;
+  transition: border-color .12s ease, background .12s ease; font-size: .92rem; font-weight: 600;
+}
+.choice-card small { display: block; font-weight: 400; color: var(--gray); margin-top: 4px; font-size: .78rem; }
+.choice-card:hover { border-color: var(--magenta); background: var(--magenta-light); }
+.choice-card.selected { border-color: var(--magenta); background: var(--magenta-light); color: var(--magenta-dark); }
+.count-hint { font-size: .8rem; color: var(--gray); margin-top: 8px; }
+ul.rules { padding-left: 20px; color: var(--gray); line-height: 1.6; font-size: .93rem; }
+.btn {
+  appearance: none; border: none; cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: 600;
+  padding: 13px 22px; border-radius: 10px; background: var(--magenta); color: #fff;
+  transition: background .15s ease, transform .05s ease;
+}
+.btn:hover { background: var(--magenta-dark); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { background: #d8b9cc; cursor: not-allowed; }
+.btn.secondary { background: transparent; color: var(--magenta-dark); border: 1.5px solid var(--magenta); }
+.btn.secondary:hover { background: var(--magenta-light); }
+.btn.ghost { background: transparent; color: var(--gray); border: 1.5px solid var(--gray-light); }
+.btn.ghost:hover { background: var(--gray-light); }
+.btn.block { width: 100%; }
+.actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.progress-wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; font-size: .82rem; color: var(--gray); }
+.progress-bar { flex: 1; height: 7px; background: var(--gray-light); border-radius: 999px; overflow: hidden; }
+.progress-bar > div { height: 100%; background: var(--magenta); border-radius: 999px; transition: width .25s ease; }
+.tags-row { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.tag-pill { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 3px 9px; border-radius: 999px; }
+.tag-pill.section { color: var(--magenta-dark); background: var(--magenta-light); }
+.tag-pill.diff-facile { color: #1f7a3f; background: #e3f5ea; }
+.tag-pill.diff-medio { color: #9a6b0d; background: #fdf1da; }
+.tag-pill.diff-difficile { color: #b8481f; background: #fdeae0; }
+.tag-pill.diff-pro { color: #6a1f9e; background: #f1e3fa; }
+.tag-pill.type-open { color: #1c5f8c; background: #e2f1fb; }
+.tag-pill.type-closed { color: #555; background: var(--gray-light); }
+.question-text { font-size: 1.12rem; line-height: 1.5; margin: 4px 0 20px; font-weight: 600; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option { display: flex; align-items: flex-start; gap: 12px; padding: 13px 15px; border: 1.5px solid #e2e0e2; border-radius: 10px; cursor: pointer; transition: border-color .12s ease, background .12s ease; font-size: .97rem; line-height: 1.45; }
+.option:hover { border-color: var(--magenta); background: var(--magenta-light); }
+.option input { margin-top: 3px; accent-color: var(--magenta); flex: 0 0 auto; }
+.option.selected { border-color: var(--magenta); background: var(--magenta-light); }
+.option.correct { border-color: var(--ok); background: var(--ok-bg); }
+.option.incorrect { border-color: var(--bad); background: var(--bad-bg); }
+.option.disabled { cursor: default; }
+.feedback-box { margin-top: 16px; padding: 13px 15px; border-radius: 10px; font-size: .9rem; line-height: 1.5; }
+.feedback-box.ok { background: var(--ok-bg); color: #145a34; border: 1px solid #bfe6cf; }
+.feedback-box.bad { background: var(--bad-bg); color: #7a241b; border: 1px solid #f0c2bc; }
+.feedback-box.info { background: var(--magenta-light); color: var(--magenta-dark); border: 1px solid #eac3dd; }
+.feedback-box .quote { display: block; margin-top: 6px; font-style: italic; opacity: .9; }
+.self-rate-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.self-rate-btn { flex: 1; min-width: 130px; padding: 11px 10px; border-radius: 10px; border: 1.5px solid #ddd; background: #fff; cursor: pointer; font-weight: 600; font-size: .85rem; color: var(--ink); }
+.self-rate-btn:hover { border-color: var(--magenta); }
+.self-rate-btn.chosen-full { border-color: var(--ok); background: var(--ok-bg); color: #145a34; }
+.self-rate-btn.chosen-half { border-color: var(--warn); background: var(--warn-bg); color: #7a5210; }
+.self-rate-btn.chosen-zero { border-color: var(--bad); background: var(--bad-bg); color: #7a241b; }
+.score-hero { text-align: center; padding: 10px 0 6px; }
+.score-circle { width: 132px; height: 132px; border-radius: 50%; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 8px solid var(--magenta-light); }
+.score-circle .pct { font-size: 1.7rem; font-weight: 800; color: var(--magenta-dark); }
+.score-circle .frac { font-size: .78rem; color: var(--gray); }
+.score-circle.pass { border-color: var(--ok-bg); }
+.score-circle.pass .pct { color: var(--ok); }
+.score-circle.fail { border-color: var(--bad-bg); }
+.score-circle.fail .pct { color: var(--bad); }
+.result-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 4px; }
+.result-title.pass { color: var(--ok); }
+.result-title.fail { color: var(--bad); }
+.result-sub { color: var(--gray); margin-bottom: 4px; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
+.stat { background: var(--gray-light); border-radius: 10px; padding: 12px 8px; text-align: center; }
+.stat .num { font-size: 1.2rem; font-weight: 800; }
+.stat .lab { font-size: .68rem; color: var(--gray); text-transform: uppercase; letter-spacing: .03em; }
+.section-breakdown { margin-top: 10px; }
+.sb-row { display: flex; align-items: center; gap: 10px; font-size: .85rem; padding: 7px 0; border-bottom: 1px solid var(--gray-light); }
+.sb-row .name { flex: 1; }
+.sb-row .val { font-weight: 700; color: var(--gray); min-width: 46px; text-align: right; }
+.sb-bar { flex: 1.4; height: 6px; background: var(--gray-light); border-radius: 999px; overflow: hidden; }
+.sb-bar > div { height: 100%; background: var(--magenta); }
+.review-item { border: 1px solid var(--gray-light); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+.review-item .rq { font-weight: 600; margin-bottom: 6px; }
+.review-item .ra { font-size: .88rem; margin: 3px 0; }
+.review-item .ra.correct-answer { color: var(--ok); }
+.review-item .ra.wrong-answer { color: var(--bad); text-decoration: line-through; }
+.review-item .ra.user-open-answer { color: var(--ink); background: var(--gray-light); padding: 8px 10px; border-radius: 8px; margin: 6px 0; white-space: pre-wrap; }
+.review-item .rexp { font-size: .85rem; color: var(--gray); margin-top: 6px; font-style: italic; }
+footer.credit { text-align: center; color: var(--gray); font-size: .76rem; margin-top: 28px; }
+#certificate { display: none; }
+@media print {
+  header.top, .no-print { display: none !important; }
+  #certificate { display: block !important; }
+  body { background: #fff; }
+  .wrap { max-width: 100%; }
+}
+.hidden { display: none !important; }
+@media (max-width: 480px) {
+  .wrap { padding: 18px 12px 40px; }
+  .card { padding: 20px 16px 18px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top no-print">
+    <div class="logo-ring"></div>
+    <div class="titles">
+      <h1>Esame di Comunicazione — Offline</h1>
+      <p>Generatore di domande ed esame, a scelta tra livelli facile / medio / difficile / pro</p>
+    </div>
+  </header>
+
+  <!-- SCREEN: START -->
+  <section id="screen-start" class="card">
+    <span class="badge">Funziona offline · nessuna connessione richiesta</span>
+    <h2>Configura il tuo esame</h2>
+    <p class="lead">
+      Le domande sono tratte fedelmente dal Manuale Operativo del Supervisore di Sala Pratica e dal
+      relativo aggiornamento "Principi del Comando". Scegli il livello di difficoltà, il tipo di
+      domande e quante proporne: il generatore assemblerà l'esame in ordine casuale.
+    </p>
+
+    <form id="start-form">
+      <label class="field-label">Nome e cognome del candidato</label>
+      <input type="text" id="student-name" placeholder="Es. Mario Rossi" autocomplete="name">
+
+      <label class="field-label">Livello di difficoltà</label>
+      <div class="choice-grid" id="difficulty-grid" data-select="difficulty">
+        <div class="choice-card" data-value="facile">Facile<small>Definizioni e richiami diretti</small></div>
+        <div class="choice-card" data-value="medio">Medio<small>Procedure ed esercizi</small></div>
+        <div class="choice-card" data-value="difficile">Difficile<small>Applicazione e casi</small></div>
+        <div class="choice-card" data-value="pro">Pro<small>Sintesi e nuances avanzate</small></div>
+        <div class="choice-card selected" data-value="misto">Misto<small>Tutti i livelli</small></div>
+      </div>
+
+      <label class="field-label">Tipo di domande</label>
+      <div class="choice-grid" id="type-grid" data-select="type">
+        <div class="choice-card" data-value="closed">Solo chiuse<small>Risposta multipla, corrette in automatico</small></div>
+        <div class="choice-card" data-value="open">Solo aperte<small>Risposta libera, autovalutazione</small></div>
+        <div class="choice-card selected" data-value="mixed">Miste<small>Chiuse + aperte</small></div>
+      </div>
+
+      <label class="field-label">Numero di domande: <span id="qcount-label">15</span></label>
+      <input type="range" id="qcount" min="5" max="15" step="1" value="15">
+      <div class="count-hint" id="available-hint">Domande disponibili per questo filtro: —</div>
+
+      <div class="actions">
+        <button type="submit" class="btn block">Genera ed inizia l'esame</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- SCREEN: QUIZ -->
+  <section id="screen-quiz" class="card hidden">
+    <div class="progress-wrap">
+      <span id="progress-label">Domanda 1 di 0</span>
+      <div class="progress-bar"><div id="progress-bar" style="width:0%"></div></div>
+    </div>
+    <div class="tags-row">
+      <span class="tag-pill section" id="section-tag">Sezione</span>
+      <span class="tag-pill" id="difficulty-tag">Livello</span>
+      <span class="tag-pill" id="type-tag">Tipo</span>
+    </div>
+    <div id="question-text" class="question-text">Domanda</div>
+
+    <div id="closed-area">
+      <div id="options-box" class="options"></div>
+    </div>
+
+    <div id="open-area" class="hidden">
+      <textarea id="open-answer" placeholder="Scrivi qui la tua risposta con parole tue..."></textarea>
+      <div class="actions">
+        <button id="reveal-btn" class="btn secondary">Mostra risposta modello e autovaluta</button>
+      </div>
+      <div id="model-answer-box" class="feedback-box info hidden"></div>
+      <div id="self-rate-row" class="self-rate-row hidden">
+        <button class="self-rate-btn" data-score="1">✔ L'ho azzeccata</button>
+        <button class="self-rate-btn" data-score="0.5">≈ Parzialmente</button>
+        <button class="self-rate-btn" data-score="0">✘ Da rivedere</button>
+      </div>
+    </div>
+
+    <div id="feedback-box" class="feedback-box hidden"></div>
+
+    <div class="actions">
+      <button id="next-btn" class="btn" disabled>Domanda successiva</button>
+      <button id="quit-btn" class="btn secondary no-print">Interrompi esame</button>
+    </div>
+  </section>
+
+  <!-- SCREEN: RESULTS -->
+  <section id="screen-results" class="card hidden">
+    <div id="results-body"></div>
+    <div class="actions no-print">
+      <button id="restart-btn" class="btn secondary">Configura un nuovo esame</button>
+      <button id="print-btn" class="btn hidden">Stampa attestato</button>
+    </div>
+  </section>
+
+  <footer class="credit no-print">
+    File autonomo, funziona offline: nessuna connessione a internet o server necessaria.
+    Contenuti tratti fedelmente dal Manuale Operativo del Supervisore di Sala Pratica (OSM) e dal relativo aggiornamento "Principi del Comando".
+  </footer>
+
+  <div id="certificate">
+    <div style="text-align:center; padding-top:60px; font-family: Arial, sans-serif;">
+      <div style="font-size:.85rem; letter-spacing:.15em; text-transform:uppercase; color:#888;">Attestato di Superamento</div>
+      <h1 style="font-size:1.9rem; margin:14px 0 4px;">Esame di Comunicazione</h1>
+      <div style="font-size:1rem; color:#555; margin-bottom:10px;" id="cert-config">—</div>
+      <div style="font-size:1.4rem; font-weight:700; margin:30px 0 6px;" id="cert-name">—</div>
+      <div style="font-size:1rem; color:#555; margin-bottom:30px;">ha superato l'esame con un punteggio del <strong id="cert-score">—</strong></div>
+      <div style="font-size:.9rem; color:#777;" id="cert-date">—</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const SECTIONS = ["Ruoli e Definizioni","Il Codice del Supervisore","Glossario della Comunicazione","Procedura di Gestione della Sala Pratica","Come Allenare e Guidare lo Studente","Percorso “Comunicare da Leader”","Scala delle Emozioni","Che Cosa Fai / Far Desiderare","Ostacoli al Confronto","Principi del Comando: Controllo e Intenzione"];
+const CLOSED_QUESTIONS = [{"section":0,"question":"Chi è il Supervisore di Sala Pratica secondo il manuale?","options":["Un Manager esperto, garante del corretto funzionamento della Sala Pratica","Un consulente esperto nell'esecuzione degli esercizi che allena","Il Responsabile MBS (DT)","Uno studente che ha superato tutti gli esercizi"],"correct":0,"explanation":"«È un Manager esperto, il garante del corretto funzionamento della Sala Pratica (e non solo)».","difficulty":"facile","type":"closed"},{"section":0,"question":"Chi è l'Allenatore?","options":["Il garante del corretto funzionamento della sala pratica","Un consulente esperto nell'esecuzione degli esercizi che si appresta ad allenare","Il responsabile organizzativo della MBS","Colui che sostituisce sempre il Supervisore"],"correct":1,"explanation":"«È un consulente esperto nell'esecuzione degli esercizi che si appresta ad allenare. È una persona che sta vincendo nella sua attività».","difficulty":"facile","type":"closed"},{"section":0,"question":"Il Supervisore allena direttamente gli studenti in sala pratica.","options":["Vero","Falso"],"correct":1,"explanation":"«Il Supervisore non allena, ottiene risultati tramite gli allenatori e fa tutte le opportune correzioni al fine di ottenere il risultato; anche sostituire un allenatore».","difficulty":"facile","type":"closed"},{"section":0,"question":"A chi fa capo il ruolo del Supervisore secondo l'organigramma?","options":["Al Responsabile MBS/Academy (DT)","Al Direttore Generale dell'azienda cliente","All'Allenatore più anziano","Al cliente stesso"],"correct":0,"explanation":"«ORGANIGRAMMA: questo ruolo fa capo al Responsabile MBS/Academy (DT) che cura la gestione dei clienti iscritti alla classe».","difficulty":"medio","type":"closed"},{"section":0,"question":"Quali sono i tre attributi del dirigente richiamati nel manuale?","options":["Saper fare il lavoro dei collaboratori meglio di loro, avere eccellenti relazioni aiutandoli a comprendere i doveri, ottenere qualcosa tramite un'altra persona","Essere autoritario, imporre le regole, controllare gli orari","Saper vendere, saper comunicare, saper motivare","Pianificare, organizzare, delegare"],"correct":0,"explanation":"Il manuale cita i «tre punti del dirigente»: eseguire il lavoro dei collaboratori meglio di loro, avere eccellenti relazioni aiutandoli a comprendere doveri e ruoli, e la capacità (la più importante) di ottenere qualcosa fatto tramite un'altra persona.","difficulty":"difficile","type":"closed"},{"section":0,"question":"Qual è lo SCOPO dichiarato nella Premessa del manuale?","options":["Insegnare tecniche di vendita avanzate","Portare la persona che si allena a diventare migliore nella comunicazione in uscita e più efficace nelle comunicazioni in genere, senza esserne influenzata eccessivamente","Formare nuovi supervisori aziendali per altre aree","Ridurre il turnover del personale"],"correct":1,"explanation":"«SCOPO: portare la persona che viene ad allenarsi in questa classe a diventare migliore nella comunicazione in uscita e più efficace nelle comunicazioni in genere senza che queste lo influenzino eccessivamente».","difficulty":"medio","type":"closed"},{"section":1,"question":"Quante regole compongono il Codice del Supervisore?","options":["15","18","23","30"],"correct":2,"explanation":"Il Codice del Supervisore elenca 23 regole, seguite dalla firma di condivisione e impegno.","difficulty":"facile","type":"closed"},{"section":1,"question":"Secondo la regola n.2, come va stigmatizzato l'errore di uno studente?","options":["Mai, per non scoraggiarlo","In maniera brutale (chiara, diretta), mantenendo comunque una buona sintonia","Solo in privato, mai davanti ad altri","Tramite un rapporto scritto al DT"],"correct":1,"explanation":"«Il Supervisore e l'Allenatore deve stigmatizzare l'errore di uno studente in maniera brutale (chiaro, diretto) e nel farlo mantenere una buona sintonia (Punti di contatto/Accordo, Feeling, Comunicazione)».","difficulty":"medio","type":"closed"},{"section":1,"question":"Secondo la regola n.5, l'Allenatore...","options":["Deve diventare amico intimo dello studente","Può discutere liberamente di problemi personali con lo studente","Non istruisce un “caso” nella sua relazione con lo studente, né discute o parla di problemi personali","Deve condividere le proprie difficoltà personali con lo studente"],"correct":2,"explanation":"«L'Allenatore non istruisce un “caso” nella sua relazione con il suo studente, né discute o parla con lui di problemi personali».","difficulty":"medio","type":"closed"},{"section":1,"question":"Cosa devono fare Supervisore e Allenatore se non sanno rispondere a una domanda dello studente (regola n.8)?","options":["Inventare una risposta plausibile per non perdere autorevolezza","Ignorare la domanda e proseguire","Ammetterlo sempre e trovare la risposta nel materiale, indicando allo studente dove trovarla","Rimandare sempre la domanda al DT"],"correct":2,"explanation":"«Se il Supervisore o un Allenatore non sapessero rispondere ad una determinata domanda, dovrebbero sempre ammetterlo e trovare la risposta nel materiale, così da poter dire allo studente dove trovarla».","difficulty":"medio","type":"closed"},{"section":1,"question":"La regola n.13 del Codice riguarda:","options":["Il divieto di coinvolgimento emozionale con gli studenti, soprattutto a livello affettivo/sessuale","L'obbligo di indossare la divisa aziendale","Il divieto di usare il telefono in sala pratica","L'obbligo di dare un regalo finale allo studente"],"correct":0,"explanation":"«Il Supervisore e l'Allenatore non devono coinvolgersi emozionalmente con gli studenti, soprattutto a livello affettivo/sessuale (mentre sono in formazione con lui)».","difficulty":"facile","type":"closed"},{"section":1,"question":"Cosa deve fare il Supervisore/Allenatore quando commette un errore (regola n.14)?","options":["Continuare come se nulla fosse, per non perdere autorevolezza","Farsi sostituire immediatamente","Informare lo studente dell'errore e correggersi subito, senza mai nasconderlo","Rimandare la correzione a fine giornata"],"correct":2,"explanation":"«Quando il Supervisore o l'Allenatore commette un errore, egli deve informare lo studente che lo ha fatto, e correggersi immediatamente […]. Non devono mai nascondere il fatto che hanno commesso un errore».","difficulty":"medio","type":"closed"},{"section":1,"question":"Cosa significa la regola n.23, “Causatività genera causatività”?","options":["Ogni causa produce sempre un effetto negativo","Solo il DT può essere causativo","Se il Supervisore e l'Allenatore sono causativi, anche il cliente lo diventa","Il cliente è sempre causa dei propri problemi"],"correct":2,"explanation":"«Il Supervisore e l'Allenatore sono causativi! Se lo sono, anche il cliente lo è. Causatività genera causatività».","difficulty":"difficile","type":"closed"},{"section":1,"question":"Secondo la regola n.17, dopo aver lasciato il controllo allo studente per un'esercitazione, cosa devono fare Supervisore e Allenatore?","options":["Lasciare che lo studente mantenga il controllo per il resto della sessione","Riprendere sempre il controllo dello studente","Chiamare subito il DT","Interrompere definitivamente l'esercizio"],"correct":1,"explanation":"«Dopo aver lasciato allo studente il controllo, […] devono sempre riprendere il controllo dello studente».","difficulty":"difficile","type":"closed"},{"section":2,"question":"Che cos'è un “Bottone” secondo il glossario?","options":["Un errore ripetuto durante l'esercizio","Un qualcosa (parola, frase, soggetto o area) che suscita una reazione nell'individuo","Il comando per iniziare l'esercizio","Un premio dato allo studente"],"correct":1,"explanation":"«BOTTONE: un qualcosa, una parola, una frase, un soggetto oppure un'area che suscita una reazione nell'individuo».","difficulty":"facile","type":"closed"},{"section":2,"question":"Come viene definita la “Comunicazione” nel glossario?","options":["Un discorso tenuto da una sola persona","Uno scambio di idee (e oggetti) fra due o più persone attraverso lo spazio","Il trasferimento di documenti tra uffici","L'atto di dare ordini"],"correct":1,"explanation":"«COMUNICAZIONE: uno scambio di idee e oggetti fra due persone o più persone attraverso lo spazio».","difficulty":"facile","type":"closed"},{"section":2,"question":"Il “Riconoscimento” è definito come:","options":["Un premio economico per lo studente","Una critica costruttiva","Il segnale di inizio esercizio","Qualcosa detto o fatto per informare che si è notato, compreso e ricevuto ciò che è stato detto o fatto"],"correct":3,"explanation":"«RICONOSCIMENTO: qualcosa detto o fatto al fine d'informare qualcun altro che si è notato, compreso e ricevuto ciò che costui ha detto oppure ha fatto».","difficulty":"facile","type":"closed"},{"section":2,"question":"Cosa si intende per “Sintonia”?","options":["La velocità con cui si comunica","Il volume della voce durante la comunicazione","Il grado relativo di accordo, intesa e concordia presente tra due o più persone","La distanza fisica tra le persone"],"correct":2,"explanation":"«SINTONIA: è il grado relativo di accordo presente tra due o più persone […] Sintonia significa il grado di accordo, intesa e concordia che esiste con l'altra persona».","difficulty":"facile","type":"closed"},{"section":2,"question":"“Stare di Fronte” significa:","options":["Guardare fisso senza mai sbattere le palpebre","Mantenere il silenzio durante la conversazione","Fronteggiare senza scansare o ritrarsi, essendo a proprio agio e percependo","Stare fisicamente a un metro esatto di distanza"],"correct":2,"explanation":"«STARE DI FRONTE: fronteggiare senza scansare o ritrarsi. L'abilità di stare di fronte consiste nella capacità di essere lì a proprio agio e di percepire».","difficulty":"medio","type":"closed"},{"section":2,"question":"Cos'è il “Ritardo di Comunicazione”?","options":["Il tempo che l'allenatore impiega per dare il “Via”","La pausa tra un esercizio e l'altro","Il tempo necessario per completare il corso","Il lasso di tempo che intercorre fra il porre la domanda e la risposta a quella esatta domanda"],"correct":3,"explanation":"«RITARDO DI COMUNICAZIONE: il lasso di tempo che intercorre fra il porre la domanda e la risposta a quell'esatta domanda, data alla persona da cui era stata posta».","difficulty":"medio","type":"closed"},{"section":2,"question":"Cosa significa “Provocato”?","options":["Un esercizio riservato solo al Supervisore","Una tecnica di rilassamento","La ricerca di azioni, parole o frasi che durante l'esercizio inducono lo studente a distrarsi o reagire","Un tipo particolare di riconoscimento"],"correct":2,"explanation":"«PROVOCATO: […] la ricerca di quelle azioni, parole, frasi, manierismi o argomenti che durante l'esercizio inducono lo studente a distrarsi, reagendo nei confronti dell'allenatore».","difficulty":"medio","type":"closed"},{"section":2,"question":"Quando l'abilità appresa in un esercizio rimane stabile, come viene definita la vittoria ottenuta?","options":["Pass definitivo","Certificazione MBS","Grande vittoria stabile","Chiusura del ciclo"],"correct":2,"explanation":"«Quando lo studente ha raggiunto il punto in cui può eseguire l'esercizio e la sua abilità nel farlo rimane stabile, si ha quella che viene definita grande vittoria stabile: vittoria significativa e durevole».","difficulty":"medio","type":"closed"},{"section":2,"question":"Cosa si intende per “Unità di Tempo” riferita a una comunicazione?","options":["Una comunicazione nuova, fresca, come se fosse la prima volta che viene detta","Il tempo minimo che deve durare un esercizio","Una comunicazione ripetuta identica più volte","L'unità di misura degli errori"],"correct":0,"explanation":"«UNITA' DI TEMPO: è una comunicazione che non viene ripetuta in base all'ultima volta che è stata ripetuta. Deve essere nuova, fresca, comunicata nel presente. Come se fosse la prima volta che viene detta».","difficulty":"difficile","type":"closed"},{"section":3,"question":"Chi deve arrivare per primo in sala pratica?","options":["Il primo studente iscritto","Il DT della MBS","Il Supervisore","L'allenatore più anziano"],"correct":2,"explanation":"«Il supervisore DEVE essere il primo ad arrivare in sala pratica».","difficulty":"facile","type":"closed"},{"section":3,"question":"Chi decide quale allenatore utilizzare per un esercizio in Sala Pratica?","options":["Lo studente stesso","Solo il Supervisore, chiedendo la disponibilità esclusivamente al DT","L'allenatore della sala studio in autonomia","Il cliente tramite il proprio consulente"],"correct":1,"explanation":"«Sarà solo il supervisore a decidere di quale allenatore si deve avvalere […] chiedendo la disponibilità di quell'allenatore esclusivamente al DT».","difficulty":"medio","type":"closed"},{"section":3,"question":"Cosa NON deve mai dire un allenatore quando ritiene che uno studente abbia terminato un esercizio, in assenza del Supervisore?","options":["“Chiamo il Supervisore per la verifica”","“Secondo me va bene”, “l'allenamento è concluso” oppure “vediamo cosa dice il Supervisore”","“Ripetiamo ancora una volta”","“Bravo, continua così”"],"correct":1,"explanation":"«L'allenatore non dirà MAI allo studente “secondo me va bene”, “l'allenamento è concluso” oppure “Per me è ok, vediamo cosa dice il Supervisore della Sala Pratica”».","difficulty":"medio","type":"closed"},{"section":3,"question":"Quali comandi si usano per dirigere lo studente durante gli esercizi?","options":["START, STOP, PAUSA","VIA, ERRORE, FINE","INIZIO, CORREGGI, TERMINA","OK, NO, BASTA"],"correct":1,"explanation":"«Per dirigere lo studente durante gli esercizi utilizza i comandi VIA, ERRORE, FINE».","difficulty":"facile","type":"closed"},{"section":3,"question":"Cosa deve fare il Supervisore per ogni percorso di Comunicazione terminato?","options":["Compilare un report annuale per l'azienda","Pubblicare i risultati in bacheca","Inviare alla Responsabile dell'organizzazione MBS una comunicazione WhatsApp e poi firmare l'attestato dopo la stampa","Inviare una email al cliente con i voti ottenuti"],"correct":2,"explanation":"«È il Supervisore ad inviare alla Responsabile dell'organizzazione della MBS una comunicazione whatsapp indicando il completamento del corso […]. Dopo la stampa, sarà il supervisore a firmare l'attestato».","difficulty":"medio","type":"closed"},{"section":3,"question":"Gli argomenti personali trattati con il cliente durante la pratica (specialmente nel “Comunicare da Leader provocato”):","options":["Vanno condivisi ogni sera con il DT","Possono essere condivisi con gli altri studenti per aiutarli","Non devono uscire dalla sala pratica","Vanno scritti in un report per l'azienda del cliente"],"correct":2,"explanation":"«Gli argomenti PERSONALI trattati con il cliente durante la pratica NON DEVONO uscire dalla sala pratica (soprattutto Comunicare da leader “provocato”)».","difficulty":"facile","type":"closed"},{"section":3,"question":"Quale tra questi elementi NON è richiesto tra le dotazioni obbligatorie della sala pratica?","options":["Almeno un dizionario","Una connessione WiFi ad alta velocità","Sedie senza braccioli, distanti almeno 50 cm dal muro","Illuminazione e climatizzazione funzionanti"],"correct":1,"explanation":"Il manuale richiede dizionario, copia del Manuale di Comunicazione, copie di Pinocchio, illuminazione e climatizzazione funzionanti, sedie senza braccioli distanti almeno 50 cm dal muro. Il WiFi non è menzionato tra i requisiti.","difficulty":"medio","type":"closed"},{"section":3,"question":"Se manca uno studente o un allenatore dopo la pausa, cosa fa il Supervisore?","options":["Abbandona la sala per andarlo a cercare personalmente","Manda qualcuno a chiamarlo, senza lasciare la sala pratica","Annulla la sessione","Aspetta senza intervenire"],"correct":1,"explanation":"«Se manca qualcuno il Supervisore della Sala lo manda a chiamare immediatamente […] non puoi lasciare la sala pratica ma mandi qualcuno a chiamarlo».","difficulty":"medio","type":"closed"},{"section":4,"question":"Cosa si intende per “allenare con realtà”?","options":["Usare sempre frasi preconfezionate identiche per tutti","Simulare situazioni il più possibile attinenti alla realtà normalmente vissuta dallo studente","Allenare solo in situazioni immaginarie","Far leggere un copione fisso"],"correct":1,"explanation":"«Siate realisti nel vostro allenamento […] assicuratevi di utilizzare delle condizioni che siano adatte alla realtà normalmente vissuta dallo studente che state allenando».","difficulty":"facile","type":"closed"},{"section":4,"question":"È corretto lasciare che uno studente si “auto-corregga” durante un esercizio?","options":["Sì, è incoraggiato per sviluppare autonomia","No, va bocciato in modo deciso perché porta la persona a introvertirsi","Sì, ma solo dopo il terzo errore","Dipende dall'umore dello studente"],"correct":1,"explanation":"«Bocciate in modo deciso qualsiasi forma di auto allenamento / auto correzione […] la persona tenderà a introvertirsi».","difficulty":"medio","type":"closed"},{"section":4,"question":"Quando ci sono correzioni che richiedono una spiegazione, cosa deve fare l'allenatore?","options":["Spiegare sempre a parole proprie, senza consultare il manuale","Prendere il testo dell'esercizio e far leggere allo studente direttamente la parte che spiega il dato corretto","Rimandare la spiegazione alla fine del corso","Chiedere allo studente di cercare la risposta da solo su internet"],"correct":1,"explanation":"«Dovete SEMPRE prendere il testo dell'esercizio […] e FATE LEGGERE DIRETTAMENTE LA PARTE DEL TESTO CHE SPIEGA IL CORRETTO DATO. Non fate i professori».","difficulty":"medio","type":"closed"},{"section":4,"question":"Indicativamente, quanto tempo può metterci uno studente per passare un esercizio prima che si valuti un cambio di approccio (dato non ferreo)?","options":["Circa 10 minuti","Circa 2-3 ore","Un'intera giornata","Circa 45 secondi"],"correct":1,"explanation":"«Se la persona dovesse metterci troppo tempo per passare un esercizio (mediamente potrebbe essere circa 2-3 ore ma non è un dato ferreo)».","difficulty":"medio","type":"closed"},{"section":4,"question":"Se una persona ha un malore durante gli esercizi, cosa NON si deve fare, salvo che stia davvero male?","options":["Comprendere il turbamento e darle riconoscimento","Riportarla sul suo ciclo di comunicazione","Farle prendere medicinali","Continuare l'allenamento con calma"],"correct":2,"explanation":"«In nessun caso fai prendere alla persona medicinali […] Chiaro che se la persona dovesse proprio star male, falle prendere quello che deve e chiudi l'incontro d'allenamento».","difficulty":"difficile","type":"closed"},{"section":4,"question":"Come si gestiscono i “casi da autodisciplina bassa” secondo il manuale?","options":["Vengono esonerati dagli esercizi di comunicazione","Vengono allenati in modo duro, ripetendo più volte i primi 2 esercizi","Vengono affidati solo ad allenatrici donne","Il tempo di allenamento si riduce a 5 minuti totali"],"correct":1,"explanation":"«Qui la persona deve essere allenata in modo duro […] e farle fare ripetutamente i primi 2 esercizi che sono quelli che le riusciranno più difficili. Stalle addosso».","difficulty":"difficile","type":"closed"},{"section":4,"question":"Se un allenatore chiede di continuare un esercizio fuori dalla sala pratica perché il cliente è distratto, cosa fa il Supervisore?","options":["Accorda sempre il permesso richiesto","Sospende l'esercizio fino al giorno dopo","Si assicura che l'esercizio continui in sala pratica, spiegando che il mondo è pieno di distrazioni","Sostituisce subito l'allenatore"],"correct":2,"explanation":"«Ti assicuri che l'esercizio continui in sala pratica. Spieghi allo studente che il mondo è pieno di distrazioni […] Le distrazioni non possono tangere la nostra attenzione».","difficulty":"difficile","type":"closed"},{"section":5,"question":"Qual è lo scopo dell'Esercizio 1 - FOCUS?","options":["Imparare tecniche di respirazione e meditazione","Imparare a controllare la propria attenzione, allenando il Qui ed Ora","Migliorare la memoria a lungo termine","Allenare la proiezione della voce"],"correct":1,"explanation":"«Lo scopo di questo esercizio: è imparare a controllare la propria attenzione […] Stiamo allenando il QUI ED ORA».","difficulty":"facile","type":"closed"},{"section":5,"question":"Nell'esercizio FOCUS, è fatto divieto di stoppare il cliente con quale parola?","options":["“Via”","“Fine”","“Errore”","“Ripeti”"],"correct":2,"explanation":"«In questo esercizio è fatto divieto di stoppare il cliente con la parola “Errore”».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nell'Esercizio 2 - GUARDARE, quando si considera superato (“Pass”) l'esercizio?","options":["Dopo esattamente 10 minuti di sguardo fisso","Quando lo studente non sbatte mai le palpebre","Solo quando la persona non manifesta più rigidità o forza ed è a proprio agio","Quando lo studente inizia a ridere"],"correct":2,"explanation":"«È Pass solo quando la persona non manifesta più rigidità o forza; quindi, solo quando è lì a proprio agio».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nell'esercizio “Guardare Provocato”, quali sono le uniche due cose che l'allenatore non può fare?","options":["Fare battute comiche o parlare di cose che lo preoccupano","Toccare lo studente o alzarsi dalla sedia per andarsene","Passare attraverso diversi toni emotivi","Ripetere la stessa frase più volte"],"correct":1,"explanation":"«L'allenatore può dire o fare qualunque cosa tranne toccare l'allenatore o alzarsi dalla sedia per andarsene».","difficulty":"medio","type":"closed"},{"section":5,"question":"Quale frase va ripetuta spesso quando lo studente fatica a superare un “bottone” nell'esercizio Guardare Provocato?","options":["“Non ti preoccupare”","“Concentrati di più”","“Sono solo parole”","“Andrà tutto bene”"],"correct":2,"explanation":"«Ripeti spesso la frase “Sono solo parole” quando lo studente fatica a superare un bottone».","difficulty":"facile","type":"closed"},{"section":5,"question":"Nell'Esercizio 4 - Comunicare con un'emozione positiva, arrivati a quale livello emotivo si chiama il Supervisore per la verifica?","options":["Noia","Forte Interesse","Allegria","Entusiasmo"],"correct":3,"explanation":"«Arrivati all'emozione di Entusiasmo l'allenatore chiama il supervisore che verifica lo studente».","difficulty":"facile","type":"closed"},{"section":5,"question":"Nell'Esercizio 5 - Comunicare a distanza, a quanti metri si posizionano studente e allenatore?","options":["1 metro","5 metri","15 metri","30 metri"],"correct":2,"explanation":"«In questo esercizio studente e allenatore sono in piedi a circa 15 metri di distanza l'uno dall'altro».","difficulty":"facile","type":"closed"},{"section":5,"question":"Nell'Esercizio 6 - Comunicare in modo efficace, qual è il tono emotivo minimo richiesto?","options":["Ansia - Tristezza","Noia - Logicità","Forte Interesse - Allegria","Collera - Ostilità"],"correct":2,"explanation":"«in un tono emotivo alto (minimo Forte Interesse – Allegria)».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nell'Esercizio 7, quale delle seguenti è un esempio CORRETTO di Riconoscimento secondo il manuale?","options":["“In che senso?”","“Perfetto!”","“Perché dici questo?”","“Continua pure”"],"correct":1,"explanation":"Esempio corretto dal manuale: Allenatore «Questo libro è davvero interessante», Studente «Perfetto!» (buon Riconoscimento, ferma la comunicazione).","difficulty":"facile","type":"closed"},{"section":5,"question":"Nell'Esercizio 7, l'allenatore può porre domande allo studente?","options":["Sì, sempre","No, solo frasi affermative","Solo domande retoriche","Solo alla fine dell'esercizio"],"correct":1,"explanation":"«L'allenatore non può fare domande. Solo frasi affermative».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nell'Esercizio 8, quante volte di fila su spartiti diversi lo studente deve riuscire per ottenere il pass?","options":["Una","Tre","Cinque","Dieci"],"correct":1,"explanation":"«Quando lo studente lo ha fatto per tre volte di fila su tre spartiti diversi riceve il pass».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nell'Esercizio 9 (Parte 2), quante monetine riceve lo studente e in quante ore deve spostarle tutte?","options":["3 monetine in 1 ora","5 monetine in 6 ore","10 monetine in 24 ore","5 monetine in 1 giornata intera"],"correct":1,"explanation":"«il Supervisore fornisce allo studente cinque monetine […] Deve riuscire a muovere le cinque monetine entro sei ore».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nell'Esercizio 10, se l'allenatore si alza e tenta di andarsene, cosa deve fare lo studente?","options":["Lasciarlo andare e attendere il suo ritorno","Chiamare subito il Supervisore","Fermarlo fisicamente con dolcezza, farlo sedere e ripetere la domanda","Alzare il tono di voce per farlo tornare"],"correct":2,"explanation":"«In quel caso lo studente deve fermarlo fisicamente (con dolcezza), tornare a farlo sedere e porgli di nuovo la domanda».","difficulty":"difficile","type":"closed"},{"section":5,"question":"Nell'Esercizio 11, quali sono i quattro modi in cui l'interlocutore può reagire a una domanda?","options":["Ridere, piangere, arrabbiarsi, tacere","Rispondere, non rispondere, cercare di sviare, esprimere un disagio/condizione personale","Accettare, rifiutare, rimandare, ignorare","Ripetere, correggere, confermare, negare"],"correct":1,"explanation":"Il manuale elenca quattro reazioni possibili: rispondere alla domanda; non rispondere; fare affermazioni che sviano; esprimere un disagio o una condizione personale.","difficulty":"difficile","type":"closed"},{"section":5,"question":"Qual è la sequenza corretta di gestione di una condizione personale nell'Esercizio 11?","options":["Ignorare, minimizzare, cambiare argomento","Correggere, spiegare, ripetere, concludere","Comprendere, dare riconoscimento, gestire, riportare sulla domanda","Ascoltare, giudicare, consigliare, chiudere"],"correct":2,"explanation":"«Di fronte a un turbamento […] lo studente deve: Comprendere, Dare riconoscimento, Gestire, Riportare sulla domanda».","difficulty":"difficile","type":"closed"},{"section":5,"question":"Nell'Esercizio 12 (“fare il sandwich”), quali sono le quattro parti della procedura?","options":["Critica, minaccia, punizione, perdono","Saluto, problema, soluzione, congedo","Elogio, elogio, elogio, correzione finale","Un lato positivo, il lato da migliorare, l'accordo, un altro lato positivo finale"],"correct":3,"explanation":"«Nel sandwich abbiamo: un lato positivo; il lato che vorremmo che la persona migliorasse; accordo; un altro lato positivo per concludere».","difficulty":"medio","type":"closed"},{"section":5,"question":"Nel “Sandwich”, quali due parole non si devono mai usare?","options":["“Bravo” e “Grazie”","“Ma” o “Però”","“Ora” e “Adesso”","“Sempre” e “Mai”"],"correct":1,"explanation":"«Approccia la persona in modo positivo […] Non dire «Ma» o «Però»».","difficulty":"facile","type":"closed"},{"section":5,"question":"Qual è la durata prevista per il percorso “Comunicare da Leader” in MBS dall'inizio degli esercizi?","options":["1 sessione","4 sessioni","10 sessioni","2 settimane"],"correct":1,"explanation":"«Il percorso di COMUNICARE DA LEADER in MBS ha la durata di 4 sessioni dall'inizio degli esercizi».","difficulty":"facile","type":"closed"},{"section":6,"question":"Nella Scala delle Emozioni, quale livello si trova subito sopra “Collera”?","options":["Risentimento","Ostilità","Noia","Logicità"],"correct":1,"explanation":"L'ordine della scala è: […] Risentimento, Collera, Ostilità, Noia, Logicità […]. Subito sopra Collera si trova Ostilità.","difficulty":"difficile","type":"closed"},{"section":6,"question":"Qual è il livello più basso della Scala delle Emozioni citato nel manuale?","options":["Tristezza","Apatia-Fallimento","Ansia","Noia"],"correct":1,"explanation":"«APATIA-FALLIMENTO = un completo ritirarsi dalla gente […] Vicino alla morte, imita la morte»: è il livello più basso elencato.","difficulty":"facile","type":"closed"},{"section":6,"question":"Come viene definita “Ostilità nascosta-Dissimulare”?","options":["Un'ira improvvisa che si manifesta con atti e parole","L'odio censurato socialmente: la persona cova disaccordi ma preferisce non esprimerli, spesso elogiando in modo finto","Uno stato di completo distacco dalla realtà","Un forte entusiasmo represso"],"correct":1,"explanation":"«OSTILITA' NASCOSTA-DISSIMULARE = l'odio dell'individuo è censurato socialmente […] Cova disaccordi e dissapori […] ma spesso preferisce non esprimerli. Falso. Spesso elogia in modo finto».","difficulty":"medio","type":"closed"},{"section":6,"question":"Qual è il livello più alto della Scala delle Emozioni elencato nel manuale?","options":["Allegria","Forte Interesse","Entusiasmo","Logicità"],"correct":2,"explanation":"L'ultimo livello elencato è «ENTUSIASMO = incontenibile spinta ad agire e operare dando tutto sé stesso».","difficulty":"facile","type":"closed"},{"section":7,"question":"Nell'esercizio “Che cosa fai”, se la risposta dello studente non è esaustiva, cosa fa l'allenatore?","options":["Passa comunque alla domanda successiva","Fa un lungo coaching esplicativo","Fa leggere la risposta corretta al cliente e ripete la domanda","Interrompe definitivamente l'esercizio"],"correct":2,"explanation":"«Se la risposta non è esaustiva, l'allenatore fa leggere la risposta al cliente. L'allenatore a quel punto ripete la domanda per ottenere la risposta corretta».","difficulty":"medio","type":"closed"},{"section":7,"question":"Nell'esercizio “Far Desiderare”, dopo aver compreso il desiderio del collaboratore tramite domande (indagine), cosa fa il cliente?","options":["Ignora il desiderio e assegna un compito diverso","Promette una ricompensa economica","Riprende il desiderio (stimolazione) ed elenca le azioni operative per ottenere il risultato, cercando l'accordo","Chiede al collaboratore di scrivere da solo un piano"],"correct":2,"explanation":"«Il cliente riprende il desiderio del suo collaboratore (stimolazione) e gli elenca le azioni operative che deve compiere per ottenere il risultato. Ottiene l'accordo e si passa all'azione».","difficulty":"difficile","type":"closed"},{"section":7,"question":"Nella gestione dell'esercizio “Che cosa fai”, cosa NON si deve fare?","options":["Riportare lo studente ai dati dell'esercizio","Fare coaching durante l'esercizio o tirare su un caso per spiegarlo","Dare un riconoscimento quando la risposta è corretta","Passare alla domanda successiva dopo una risposta corretta"],"correct":1,"explanation":"«Non si fanno coaching durante l'esercizio. Non si tira su un caso per spiegare l'esercizio».","difficulty":"medio","type":"closed"},{"section":8,"question":"Quali sono i due modi di reagire di un individuo di fronte a un problema che non è disposto ad affrontare?","options":["Arrabbiarsi o piangere","Preoccuparsi e introvertirsi, oppure decidere che “la cosa non è poi così importante” e ritirarsi","Parlarne subito con tutti o tacere per sempre","Cambiare lavoro o cambiare città"],"correct":1,"explanation":"«Di fronte a una tale situazione l'individuo ha due modi di reagire: a) Preoccuparsi ed introvertirsi […] b) Decidere che “la cosa […] non è poi così importante” e quindi ritirarsi da essa».","difficulty":"medio","type":"closed"},{"section":8,"question":"Quali sono gli ostacoli al confronto elencati nel manuale?","options":["Paura, Rabbia, Tristezza, Ansia","Segreti, Motivatori, Scarsa autodisciplina, Timidezza personale","Pigrizia, Distrazione, Stanchezza, Fame","Orgoglio, Invidia, Gelosia, Rancore"],"correct":1,"explanation":"Il manuale elenca quattro ostacoli: 1) Segreti; 2) Motivatori; 3) Scarsa autodisciplina; 4) Timidezza a livello personale.","difficulty":"medio","type":"closed"},{"section":8,"question":"Cosa sono i “Motivatori” come ostacolo al confronto?","options":["Incentivi economici per lo studente","Frasi motivazionali da ripetere ogni mattina","Obiettivi di vendita mensili","Azioni compensative che l'individuo si aspetta dall'altra persona per compensare qualcosa di male fatto nei suoi confronti"],"correct":3,"explanation":"«Motivatori: cioè azioni “compensative” che l'individuo si aspetta di ricevere dall'altra persona per compensare qualcosa di male che lui ha fatto nei confronti della stessa».","difficulty":"difficile","type":"closed"},{"section":8,"question":"Nella “Relazione ed analisi delle proprie azioni non efficienti”, perché è importante scrivere episodi SPECIFICI e non generici?","options":["Perché è più veloce da scrivere","Perché il consulente lo richiede per procedura","Perché scrivere episodi generici equivale a emettere giudizi generali su se stessi, il che non aiuta","Perché altrimenti l'esercizio dura di più"],"correct":2,"explanation":"«Se scrivi degli episodi generici è come se tu stessi emettendo dei giudizi generali su te stesso, cosa che non ti aiuterà».","difficulty":"difficile","type":"closed"},{"section":8,"question":"Cosa suggerisce il manuale una volta individuate le cause della riluttanza ad affrontare?","options":["Evitare del tutto le situazioni difficili","Affrontare gradualmente cominciando da cose piccole, con un effetto valanga verso situazioni più grandi","Affrontare subito la situazione più grande possibile","Aspettare che il problema si risolva da solo"],"correct":1,"explanation":"«A volta basta anche solo far sì che l'individuo un po' alla volta, cominciando da cose piccole, cominci di nuovo a sbloccarsi ed affrontare le cose […] Una sorta di effetto valanga».","difficulty":"medio","type":"closed"},{"section":9,"question":"Secondo il manuale “Principi del Comando”, cos'è il Controllo?","options":["La capacità di imporsi con la forza","Il rispetto rigido degli orari","L'abilità di avviare, cambiare e fermare persone o attività","La gestione amministrativa dell'azienda"],"correct":2,"explanation":"«Per controllo si intende l'abilità di avviare, cambiare e fermare persone o attività, ossia la capacità di far accadere le cose secondo la propria intenzione».","difficulty":"medio","type":"closed"},{"section":9,"question":"Cosa si intende per “Intenzione Pura”?","options":["Un ordine impartito ad alta voce","Un desiderio totale, privo di alternative e dubbi: solo un “piano A”, senza “piano B”","Una regola scritta nel contratto di lavoro","Un'emozione di rabbia tenuta sotto controllo"],"correct":1,"explanation":"«Quando il desiderio è totale, privo di alternative e di dubbi, si manifesta una forma di intenzione pura. Se nella mente non esiste un “piano B”, ma solo un “piano A” […]».","difficulty":"difficile","type":"closed"},{"section":9,"question":"Il percorso “Principi del Comando” può essere affrontato efficacemente senza aver completato prima “Comunicare da Leader”?","options":["Sì, sono due percorsi indipendenti","Sì, ma solo per i manager senior","No, non può essere affrontato efficacemente senza aver prima completato con successo Comunicare da Leader","Dipende esclusivamente dal DT"],"correct":2,"explanation":"«Il presente manuale non può essere affrontato efficacemente senza aver prima completato con successo il percorso pratico in aula di Comunicare da Leader».","difficulty":"facile","type":"closed"},{"section":9,"question":"Nell'Esercizio 6 (Controllo fisico), nella prima metà della seduta come deve dirigere l'allenatore lo studente?","options":["Solo con comandi verbali a voce alta","In silenzio, senza comandi verbali, tramite contatto fisico","Tramite messaggi scritti","Lasciandolo libero di muoversi senza alcuna direzione"],"correct":1,"explanation":"«Nella prima metà della seduta di addestramento non ci sono comandi verbali […] lo studente, in silenzio, dirige il corpo dell'allenatore in giro per la stanza».","difficulty":"pro","type":"closed"},{"section":9,"question":"Nell'Esercizio 7 - Controllo fisico eccellente, quali sono le uniche tre cose dette dall'allenatore a cui lo studente deve dare ascolto?","options":["“Bravo”, “Continua”, “Basta”","“Attenzione”, “Pronti”, “Via”","“Via”, “Errore”, “Fine”","“Sì”, “No”, “Forse”"],"correct":2,"explanation":"«Tra ciò che dice l'allenatore ci sono solo tre cose a cui lo studente deve dare ascolto: “Via” […], “Errore” […] e “Fine”».","difficulty":"medio","type":"closed"},{"section":9,"question":"Nell'Esercizio 8 - Intenzione pura su un oggetto, quale oggetto viene tipicamente usato?","options":["Un libro di Pinocchio","Una sedia vuota","Un portacenere, preferibilmente pesante e di vetro colorato","Un dizionario"],"correct":2,"explanation":"«Gli oggetti da usare sono portacenere, preferibilmente pesanti, di vetro colorato».","difficulty":"facile","type":"closed"},{"section":9,"question":"Nell'Esercizio 9 - Intenzione pura su una persona, cosa costituisce sempre un “Errore”?","options":["Solo l'uso della voce troppo alta","Solo il fatto di sorridere","Qualsiasi cosa che non sia pura intenzione: sia un lieve sorriso, sia troppa forza, sia troppo poca forza","Solo la lentezza nei movimenti"],"correct":2,"explanation":"«Persino un lieve sorriso da parte dello studente può essere un “Errore”. Troppa forza può essere un “Errore”. Troppo poca forza è decisamente un “Errore”. Qualsiasi cosa che non sia pura intenzione è un “Errore”».","difficulty":"pro","type":"closed"},{"section":9,"question":"Secondo la “Nota Importante” del manuale Principi del Comando, qual è il gradiente di allenamento previsto?","options":["Basso, per non scoraggiare i principianti","Flessibile e adattabile caso per caso, senza rigidità","Solo teorico, senza esercitazioni pratiche","Al massimo livello: ogni minima esitazione o dubbio va segnalata come errore"],"correct":3,"explanation":"«Il gradiente di allenamento previsto in questo manuale è al massimo livello […] non deve essere accettata alcuna sfumatura di errore».","difficulty":"pro","type":"closed"}];
+const OPEN_QUESTIONS = [{"difficulty":"facile","type":"open","section":0,"question":"Qual è lo SCOPO dichiarato nella Premessa del manuale riguardo al percorso di comunicazione?","model":"Portare la persona che si allena a diventare migliore nella comunicazione in uscita e più efficace nelle comunicazioni in genere, senza che queste la influenzino eccessivamente."},{"difficulty":"facile","type":"open","section":0,"question":"Spiega con parole tue la differenza tra il ruolo del Supervisore e quello dell'Allenatore.","model":"Il Supervisore è un manager esperto, garante del corretto funzionamento della Sala Pratica: non allena direttamente, ma ottiene risultati tramite gli allenatori e può anche sostituirne uno. L'Allenatore è un consulente esperto nell'esecuzione degli esercizi che allena materialmente lo studente ed è responsabile di farlo vincere sull'esercizio specifico."},{"difficulty":"facile","type":"open","section":3,"question":"Elenca i tre comandi usati per dirigere lo studente durante gli esercizi e spiega a cosa serve ciascuno.","model":"VIA: dà inizio all'esercizio o lo riprende dopo una correzione. ERRORE: segnala allo studente uno sbaglio, interrompendo momentaneamente l'esercizio prima di ripartire con un nuovo Via. FINE: termina o mette in pausa la seduta di allenamento."},{"difficulty":"facile","type":"open","section":2,"question":"Cosa significa \"Riconoscimento\" e perché deve fermare la comunicazione invece di farla continuare?","model":"Il Riconoscimento è qualcosa detto o fatto per far capire a chi sta parlando che abbiamo notato, compreso e ricevuto ciò che ha detto o fatto. Deve fermare la comunicazione (es. \"Ok\", \"Capisco\") e non invitarla a proseguire (es. \"In che senso?\" sarebbe un errore), altrimenti l'interlocutore resta con l'attenzione bloccata sul dubbio di non essere stato compreso."},{"difficulty":"facile","type":"open","section":2,"question":"Spiega con parole tue cosa si intende per \"Bottone\" nella comunicazione.","model":"Un Bottone è una parola, una frase, un soggetto o un'area che suscita una reazione emotiva automatica nell'individuo, facendogli perdere il controllo o la compostezza."},{"difficulty":"facile","type":"open","section":3,"question":"Quali elementi deve garantire il Supervisore nella dotazione della sala pratica?","model":"Almeno un dizionario, almeno una copia del Manuale di Comunicazione con il foglio verifica, un numero adeguato di copie di Pinocchio, illuminazione e climatizzazione funzionanti, sedie senza braccioli non attaccate al muro e distanti almeno 50 cm da esso."},{"difficulty":"facile","type":"open","section":5,"question":"Con quale tono emotivo minimo deve essere inviata la comunicazione nell'esercizio \"Comunicare in modo efficace\"?","model":"Un tono emotivo alto, minimo tra Forte Interesse e Allegria, mantenendo il corpo fermo e senza muovere le sopracciglia, così che la comunicazione arrivi grazie alla sola intenzione."},{"difficulty":"medio","type":"open","section":5,"question":"Spiega la procedura del \"Sandwich\" per correggere un collaboratore, indicando le quattro fasi.","model":"1) Un lato positivo: si approccia la persona elogiandola per qualcosa di specifico e vero, senza dire \"ma\" o \"però\". 2) Il lato da migliorare: si dice con chiarezza, intenzione e autorità cosa la persona deve cambiare. 3) Accordo: si ottiene un accordo vero sul cambiamento richiesto, insistendo se necessario. 4) Un altro lato positivo finale: si chiude esprimendo fiducia piena e vera che la persona non ripeterà l'errore."},{"difficulty":"medio","type":"open","section":5,"question":"Descrivi come si svolge l'esercizio \"Ripetere la domanda\" e i comportamenti possibili dell'allenatore.","model":"Lo studente pone una domanda tipo \"I venditori vendono?\". L'allenatore può: a) rispondere (lo studente dà riconoscimento e inizia un nuovo ciclo); b) non rispondere (lo studente ripete la domanda); c) provare a sviare con commenti o provocazioni (lo studente ascolta senza dare riconoscimento e ripete la domanda appena l'allenatore fa una pausa); d) alzarsi per andarsene (lo studente lo ferma fisicamente con dolcezza, lo fa risedere e ripete la domanda). Ogni ripetizione va trattata come un nuovo ciclo, fresco, senza alterare il tono emotivo."},{"difficulty":"medio","type":"open","section":5,"question":"Qual è la differenza tra un \"Commento\" e una \"Condizione Personale\" secondo il glossario e l'Esercizio 11?","model":"Il Commento è un'affermazione o considerazione diretta solo all'allenatore o alla stanza, che non riguarda le idee, reazioni o difficoltà di chi la esprime: non va gestito, basta dare riconoscimento e ripetere la domanda. La Condizione Personale invece esprime un disagio o uno stato reale dell'interlocutore (es. \"mi è venuto un forte mal di testa\") e va gestita: ascoltata, compresa, riconosciuta e risolta prima di tornare alla domanda originale."},{"difficulty":"medio","type":"open","section":1,"question":"Spiega la regola n.2 del Codice del Supervisore e come si concilia il rigore con la sintonia richiesta.","model":"La regola prevede che l'errore dello studente vada stigmatizzato in maniera brutale, cioè chiara e diretta, ma mantenendo comunque una buona sintonia fatta di punti di contatto/accordo, feeling e comunicazione: la franchezza nella correzione non deve mai rompere il rapporto di fiducia con lo studente."},{"difficulty":"medio","type":"open","section":5,"question":"Descrivi la sequenza corretta di gestione di una condizione personale emersa durante l'Esercizio 11.","model":"Comprendere la condizione (chiarificandola se necessario), dare un riconoscimento, gestire il turbamento o la situazione, e infine riportare dolcemente l'attenzione dell'interlocutore sulla domanda originale, ripetendola come un nuovo ciclo."},{"difficulty":"medio","type":"open","section":8,"question":"Quali sono gli ostacoli al confronto elencati nel manuale? Descrivine almeno due.","model":"Segreti (cose che si preferirebbe l'altra persona non sapesse, che riducono la comunicazione), Motivatori (aspettarsi/interpretare azioni negative altrui come compensazione per qualcosa di male fatto), Scarsa autodisciplina (poco controllo di sé) e Timidezza personale (non essere disposti a essere al centro dell'attenzione)."},{"difficulty":"medio","type":"open","section":9,"question":"Perché, secondo il manuale dei Principi del Comando, \"controllo e confusione sono due opposti della stessa dinamica\"?","model":"Perché il controllo si esprime nella capacità di iniziare, sviluppare e concludere un'azione con continuità: se le attività non vengono portate a termine prima di introdurne di nuove, si genera disordine e caos nel gruppo, l'esatto opposto della stabilità che il controllo dovrebbe garantire."},{"difficulty":"difficile","type":"open","section":8,"question":"Spiega perché, secondo il manuale, chi ha commesso un'azione non efficiente verso qualcuno tende poi a diventare \"intrattabile\" verso quella persona.","model":"Per la teoria della dissonanza cognitiva, chi commette un'azione non ottimale verso qualcuno si aspetta (inconsciamente) che l'altro metta in atto azioni negative di \"compensazione\" nei suoi confronti; quando ciò non avviene, tende comunque a interpretare le azioni altrui come negative, per giustificare/compensare quanto ha fatto. Questo lo rende reattivo e scattante anche senza un motivo reale."},{"difficulty":"difficile","type":"open","section":4,"question":"Come dovrebbe comportarsi il Supervisore con uno studente che, dopo aver studiato \"Difficoltà nell'affrontare\", resta comunque \"di marmo\" e non reagisce al provocato?","model":"Deve fargli fare tutti gli esercizi fino all'Esercizio 11 \"Risolvere e Gestire le Condizioni Personali\", comunicando e gestendo su un buon livello emotivo, e lì deve far vedere allo studente i sistemi che sta usando per stare di fronte, così che comprenda di doversi alzare sulla scala emotiva per comunicare meglio; solo dopo gli fa riprendere gli esercizi precedenti."},{"difficulty":"difficile","type":"open","section":9,"question":"Spiega la differenza tra intenzione ordinaria e intenzione pura, facendo riferimento al concetto di \"piano A senza piano B\".","model":"L'intenzione è il desiderio che qualcosa avvenga, l'onda portante che conduce con sé l'espressione verbale. L'intenzione pura è la forma più totale di questo desiderio: quando nella mente non esiste un \"piano B\" ma solo un \"piano A\", perseguito senza esitazioni, dubbi o idee-virus, la probabilità che l'obiettivo si realizzi aumenta drasticamente. Non è legata alla logica, alle parole o al movimento, ma è un atteggiamento mentale profondo e focalizzato."},{"difficulty":"difficile","type":"open","section":4,"question":"Come va gestito un cliente che si arrabbia o ha un malore durante gli esercizi? Cosa non si deve mai fare?","model":"Si applica la stessa logica dell'Esercizio 11: comprendere il turbamento, dare riconoscimento e riportare la persona sul suo ciclo di comunicazione. Non si devono mai far prendere medicinali alla persona, perché spesso i fenomeni fisici generati dagli esercizi si risolvono con qualche altro minuto di allenamento; solo se la persona sta davvero male le si fa prendere ciò che serve e si chiude l'incontro fissandone uno nuovo."},{"difficulty":"difficile","type":"open","section":5,"question":"Perché nell'esercizio \"Comunicare con un'emozione positiva\" è importante che lo studente rintracci i toni dentro di sé prima di saperli riconoscere negli altri?","model":"Perché tutti viviamo lungo la scala delle emozioni, anche se ne abbiamo uno \"di residenza\": se lo studente non riesce a identificare un tono su di sé, non potrà riconoscerlo davvero in un'altra persona. Per questo il manuale invita a battere proprio sui toni in cui lo studente fa più fatica, perché è lì che avviene lo \"switch\"."},{"difficulty":"difficile","type":"open","section":8,"question":"Descrivi la procedura di \"Relazione ed analisi delle proprie azioni non efficienti\", spiegando perché è importante distinguere azioni commesse da azioni omesse.","model":"Si distinguono due tipi: azioni del primo tipo (cose fatte che non si sarebbero dovute fare) e del secondo tipo (cose omesse che si sarebbero dovute fare). Per ciascuna si scrive un titolo specifico e un resoconto dettagliato con episodi puntuali (non generici): quando, dove, le circostanze, cosa si è fatto/omesso di sbagliato e le conseguenze negative. Distinguere i due tipi aiuta a mappare con precisione sia gli errori attivi sia le mancanze, entrambi fonte di dissonanza cognitiva e di ridefinizione negativa di sé."},{"difficulty":"difficile","type":"open","section":5,"question":"Nell'Esercizio 11, quali sono i quattro modi in cui l'interlocutore può reagire a una domanda e come vanno gestiti?","model":"1) Risponde: si dà riconoscimento e si chiude il ciclo. 2) Non risponde: si ripete la domanda. 3) Fa affermazioni che sviano (battute, critiche, commenti sull'ambiente): si ascolta, si dà riconoscimento e si ripete la domanda. 4) Esprime un disagio o una condizione personale: si comprende, si dà riconoscimento, si gestisce la condizione e poi si riporta dolcemente l'attenzione sulla domanda, ripetendola."},{"difficulty":"pro","type":"open","section":9,"question":"Metti a confronto l'esercizio \"Guardare Provocato\" (Comunicare da Leader) e \"Intenzione pura su una persona\" (Principi del Comando): quali capacità allenano rispettivamente e come si integrano nel percorso del manager?","model":"\"Guardare Provocato\" allena la capacità di ascoltare senza farsi sviare, turbare o andare sulla difensiva di fronte a provocazioni, restando \"effetto\" solo se lo si decide: costruisce la base della resistenza emotiva. \"Intenzione pura su una persona\" porta questa base oltre, allenando il manager a ottenere obbedienza non tramite la forza fisica o verbale ma tramite un'intenzione limpida e costante, anche sotto pressione o sorpresa. Il primo esercizio toglie la reattività, il secondo costruisce la capacità attiva di dirigere: insieme formano la progressione da \"non farsi condizionare\" a \"condizionare positivamente\" gli altri con la sola intenzione."},{"difficulty":"pro","type":"open","section":9,"question":"Perché il gradiente di allenamento dei \"Principi del Comando\" è definito \"al massimo livello\" e quali conseguenze pratiche ha per il Supervisore durante la correzione?","model":"Perché il manuale specifica che ogni minima esitazione, dubbio o sfumatura di errore da parte dello studente deve essere considerata e segnalata come errore, senza alcuna approssimazione: l'obiettivo non è un miglioramento qualsiasi ma la massima espressione del potenziale del manager. In pratica il Supervisore deve mantenere uno standard elevato e costante nella correzione, senza mai lasciar passare piccole imprecisioni che in altri contesti sarebbero tollerate."},{"difficulty":"pro","type":"open","section":9,"question":"Descrivi le fasi progressive dell'Esercizio 8 \"Intenzione pura su un oggetto\" (Principi del Comando) e lo scopo pedagogico di ciascuna.","model":"1) Localizzare lo spazio che include studente, portacenere e sedia: crea consapevolezza dell'ambiente. 2) Localizzare l'oggetto in quello spazio: focalizza l'attenzione. 3) Dare il comando a voce più alta possibile (\"urlare\"): fa emergere l'intenzione grezza. 4) Tono normale di voce, verificando che l'intenzione arrivi comunque: separa intenzione da volume. 5) Usare comandi sbagliati apposta: dimostra che l'intenzione non dipende dalle parole corrette. 6) Farlo in silenzio, mettendo l'intenzione senza pensare alle parole: isola l'intenzione pura. 7) Fase finale col \"Via\", in cui solo Errore e Fine hanno valore, con tentativi di distrazione dell'allenatore: verifica la tenuta dell'intenzione sotto pressione."},{"difficulty":"pro","type":"open","section":4,"question":"Un cliente non ha mai completato il percorso \"Comunicare da Leader\": è corretto farlo procedere sui \"Principi del Comando\"? Argomenta citando il manuale.","model":"No. Il manuale è esplicito: \"il presente manuale non può essere affrontato efficacemente senza aver prima completato con successo il percorso pratico in aula di Comunicare da Leader\", poiché i Principi del Comando sono la naturale prosecuzione di quel percorso e ne presuppongono le abilità di base (stare di fronte, gestire condizioni personali, comunicare con intenzione)."},{"difficulty":"pro","type":"open","section":1,"question":"Come si collega il concetto di \"causatività\" (regola 23 del Codice) a quello di \"Controllo\" descritto nei Principi del Comando?","model":"La regola 23 afferma che Supervisore e Allenatore sono causativi e che \"causatività genera causatività\": se loro per primi si comportano da causa (agendo con intenzione e responsabilità) anche il cliente lo diventa. Il Controllo, definito come capacità di avviare, cambiare e fermare persone o attività in modo prevedibile, è lo strumento pratico con cui questa causatività si esprime concretamente: un Supervisore causativo esercita controllo reale sulla sala, e un manager causativo esercita controllo reale sulla propria azienda, trasmettendo lo stesso atteggiamento ai propri collaboratori."},{"difficulty":"pro","type":"open","section":4,"question":"Uno studente con autodisciplina bassa fatica anche sull'esercizio \"Guardare Provocato\" nello stesso pomeriggio: quali procedure del manuale si intreccerebbero e in che ordine le applicheresti?","model":"Prima si applica la gestione generale per l'autodisciplina bassa: allenamento duro, ripetendo i primi esercizi finché non li padroneggia (punto m del \"Come guidare lo studente\"). Se durante \"Guardare Provocato\" continua a reagire ai bottoni, si segue la progressione prevista per l'esercizio: si dà riconoscimento e si rimette sull'esercizio; se non basta, si fa studiare l'articolo su \"Difficoltà nell'affrontare\"; se resta di marmo o troppo reattivo, si passa avanti fino all'Esercizio 11 per farlo \"alzare\" di tono, per poi tornare indietro a riprendere gli esercizi saltati, sempre mantenendo Punti di contatto/Accordo, Feeling e Comunicazione."},{"difficulty":"pro","type":"open","section":4,"question":"Perché \"non fare i professori\" è un principio cardine nella correzione, e come si applica quando emerge un dubbio dello studente?","model":"Il manuale prescrive che, quando serve una spiegazione, l'allenatore prenda sempre il testo dell'esercizio o l'articolo pertinente e faccia leggere direttamente allo studente la parte che spiega il dato corretto, invece di spiegare a parole proprie: questo perché non esistono interpretazioni personali degli esercizi, e la sorgente dei dati deve restare sempre il manuale stesso, non l'opinione dell'allenatore. Lo stesso principio vale per il Supervisore secondo la regola 8 del Codice: se non si sa una risposta, la si cerca nel materiale e si indica allo studente dove trovarla."}];
+(function () {
+  "use strict";
+
+  const PASS_THRESHOLD = 0.75;
+  const DIFF_LABELS = { facile: "Facile", medio: "Medio", difficile: "Difficile", pro: "Pro" };
+  const TYPE_LABELS = { closed: "Domanda chiusa", open: "Domanda aperta" };
+
+  const els = {
+    start: document.getElementById("screen-start"),
+    quiz: document.getElementById("screen-quiz"),
+    results: document.getElementById("screen-results"),
+    startForm: document.getElementById("start-form"),
+    studentName: document.getElementById("student-name"),
+    difficultyGrid: document.getElementById("difficulty-grid"),
+    typeGrid: document.getElementById("type-grid"),
+    qcount: document.getElementById("qcount"),
+    qcountLabel: document.getElementById("qcount-label"),
+    availableHint: document.getElementById("available-hint"),
+    progressBar: document.getElementById("progress-bar"),
+    progressLabel: document.getElementById("progress-label"),
+    sectionTag: document.getElementById("section-tag"),
+    difficultyTag: document.getElementById("difficulty-tag"),
+    typeTag: document.getElementById("type-tag"),
+    questionText: document.getElementById("question-text"),
+    closedArea: document.getElementById("closed-area"),
+    optionsBox: document.getElementById("options-box"),
+    openArea: document.getElementById("open-area"),
+    openAnswer: document.getElementById("open-answer"),
+    revealBtn: document.getElementById("reveal-btn"),
+    modelAnswerBox: document.getElementById("model-answer-box"),
+    selfRateRow: document.getElementById("self-rate-row"),
+    feedbackBox: document.getElementById("feedback-box"),
+    nextBtn: document.getElementById("next-btn"),
+    quitBtn: document.getElementById("quit-btn"),
+    resultsBody: document.getElementById("results-body"),
+    restartBtn: document.getElementById("restart-btn"),
+    printBtn: document.getElementById("print-btn"),
+    certificate: document.getElementById("certificate"),
+    certConfig: document.getElementById("cert-config"),
+    certName: document.getElementById("cert-name"),
+    certScore: document.getElementById("cert-score"),
+    certDate: document.getElementById("cert-date"),
+  };
+
+  const ALL_QUESTIONS = CLOSED_QUESTIONS.concat(OPEN_QUESTIONS);
+
+  let filters = { difficulty: "misto", type: "mixed" };
+  let state = null;
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function matchesFilter(q) {
+    const diffOk = filters.difficulty === "misto" || q.difficulty === filters.difficulty;
+    const typeOk = filters.type === "mixed" || q.type === filters.type;
+    return diffOk && typeOk;
+  }
+
+  function availableCount() {
+    return ALL_QUESTIONS.filter(matchesFilter).length;
+  }
+
+  function updateAvailableHint() {
+    const avail = availableCount();
+    els.availableHint.textContent = "Domande disponibili per questo filtro: " + avail;
+    const max = Math.max(5, avail);
+    els.qcount.max = String(max);
+    if (Number(els.qcount.value) > avail) {
+      els.qcount.value = String(Math.max(5, avail));
+    }
+    els.qcountLabel.textContent = els.qcount.value;
+  }
+
+  function setupChoiceGrid(gridEl, filterKey) {
+    gridEl.querySelectorAll(".choice-card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        gridEl.querySelectorAll(".choice-card").forEach(function (c) { c.classList.remove("selected"); });
+        card.classList.add("selected");
+        filters[filterKey] = card.getAttribute("data-value");
+        updateAvailableHint();
+      });
+    });
+  }
+  setupChoiceGrid(els.difficultyGrid, "difficulty");
+  setupChoiceGrid(els.typeGrid, "type");
+
+  els.qcount.addEventListener("input", function () {
+    els.qcountLabel.textContent = els.qcount.value;
+  });
+
+  updateAvailableHint();
+
+  function showScreen(name) {
+    els.start.classList.toggle("hidden", name !== "start");
+    els.quiz.classList.toggle("hidden", name !== "quiz");
+    els.results.classList.toggle("hidden", name !== "results");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  els.startForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = els.studentName.value.trim() || "Candidato";
+    const pool = shuffle(ALL_QUESTIONS.filter(matchesFilter));
+    const n = Math.min(Number(els.qcount.value), pool.length);
+    if (n === 0) {
+      alert("Nessuna domanda disponibile per questa combinazione di filtri. Cambia livello o tipo.");
+      return;
+    }
+    const selected = pool.slice(0, n);
+    state = {
+      name: name,
+      difficulty: filters.difficulty,
+      type: filters.type,
+      questions: selected,
+      current: 0,
+      answers: [], // { q, type, correct(bool|null), score(0..1), chosen, userText }
+      answered: false,
+    };
+    showScreen("quiz");
+    renderQuestion();
+  });
+
+  els.quitBtn.addEventListener("click", function () {
+    if (confirm("Vuoi davvero interrompere l'esame? I progressi andranno persi.")) {
+      showScreen("start");
+    }
+  });
+
+  function renderQuestion() {
+    const q = state.questions[state.current];
+    state.answered = false;
+
+    const total = state.questions.length;
+    const pct = Math.round((state.current / total) * 100);
+    els.progressBar.style.width = pct + "%";
+    els.progressLabel.textContent = "Domanda " + (state.current + 1) + " di " + total;
+
+    els.sectionTag.textContent = SECTIONS[q.section];
+    els.difficultyTag.className = "tag-pill diff-" + q.difficulty;
+    els.difficultyTag.textContent = DIFF_LABELS[q.difficulty];
+    els.typeTag.className = "tag-pill type-" + q.type;
+    els.typeTag.textContent = TYPE_LABELS[q.type];
+    els.questionText.textContent = q.question;
+
+    els.feedbackBox.innerHTML = "";
+    els.feedbackBox.className = "feedback-box hidden";
+    els.nextBtn.disabled = true;
+    els.nextBtn.textContent = state.current === total - 1 ? "Vedi risultati" : "Domanda successiva";
+
+    if (q.type === "closed") {
+      els.closedArea.classList.remove("hidden");
+      els.openArea.classList.add("hidden");
+      renderClosedOptions(q);
+    } else {
+      els.closedArea.classList.add("hidden");
+      els.openArea.classList.remove("hidden");
+      renderOpenQuestion(q);
+    }
+  }
+
+  function renderClosedOptions(q) {
+    els.optionsBox.innerHTML = "";
+    q.options.forEach(function (optText, i) {
+      const row = document.createElement("label");
+      row.className = "option";
+      row.innerHTML = '<input type="radio" name="opt" value="' + i + '"> <span>' + escapeHtml(optText) + "</span>";
+      row.addEventListener("click", function () {
+        if (state.answered) return;
+        selectClosedAnswer(q, i, row);
+      });
+      els.optionsBox.appendChild(row);
+    });
+  }
+
+  function selectClosedAnswer(q, chosenIndex, rowEl) {
+    state.answered = true;
+    const isCorrect = chosenIndex === q.correct;
+    state.answers.push({ q: q, type: "closed", correct: isCorrect, score: isCorrect ? 1 : 0, chosen: chosenIndex });
+
+    const optionRows = els.optionsBox.querySelectorAll(".option");
+    optionRows.forEach(function (row, i) {
+      row.classList.add("disabled");
+      const input = row.querySelector("input");
+      if (input) input.disabled = true;
+      if (i === q.correct) row.classList.add("correct");
+      if (i === chosenIndex && i !== q.correct) row.classList.add("incorrect");
+      if (i === chosenIndex) row.classList.add("selected");
+    });
+
+    els.feedbackBox.classList.remove("hidden");
+    els.feedbackBox.classList.add(isCorrect ? "ok" : "bad");
+    els.feedbackBox.innerHTML =
+      (isCorrect ? "✔ Corretto. " : "✘ Non corretto. ") +
+      '<span class="quote">' + escapeHtml(q.explanation) + "</span>";
+
+    els.nextBtn.disabled = false;
+  }
+
+  function renderOpenQuestion(q) {
+    els.openAnswer.value = "";
+    els.openAnswer.disabled = false;
+    els.modelAnswerBox.classList.add("hidden");
+    els.modelAnswerBox.innerHTML = "";
+    els.selfRateRow.classList.add("hidden");
+    els.revealBtn.disabled = false;
+    els.revealBtn.classList.remove("hidden");
+
+    els.selfRateRow.querySelectorAll(".self-rate-btn").forEach(function (btn) {
+      btn.className = "self-rate-btn";
+      btn.onclick = function () {
+        if (state.answered) return;
+        state.answered = true;
+        const score = Number(btn.getAttribute("data-score"));
+        state.answers.push({
+          q: q, type: "open", correct: score === 1, score: score,
+          userText: els.openAnswer.value.trim() || "(nessuna risposta scritta)"
+        });
+        els.selfRateRow.querySelectorAll(".self-rate-btn").forEach(function (b) { b.disabled = true; });
+        const cls = score === 1 ? "chosen-full" : (score === 0.5 ? "chosen-half" : "chosen-zero");
+        btn.classList.add(cls);
+        els.openAnswer.disabled = true;
+        els.nextBtn.disabled = false;
+      };
+    });
+
+    els.revealBtn.onclick = function () {
+      els.modelAnswerBox.classList.remove("hidden");
+      els.modelAnswerBox.innerHTML = '<strong>Risposta modello (dal manuale):</strong><span class="quote">' +
+        escapeHtml(q.model) + "</span>";
+      els.selfRateRow.classList.remove("hidden");
+      els.revealBtn.disabled = true;
+    };
+  }
+
+  els.nextBtn.addEventListener("click", function () {
+    if (!state.answered) return;
+    state.current++;
+    if (state.current >= state.questions.length) {
+      showResults();
+    } else {
+      renderQuestion();
+    }
+  });
+
+  function showResults() {
+    const answers = state.answers;
+    const total = answers.length;
+    const scoreSum = answers.reduce(function (s, a) { return s + a.score; }, 0);
+    const pct = total ? scoreSum / total : 0;
+    const passed = pct >= PASS_THRESHOLD;
+
+    const closedAnswers = answers.filter(function (a) { return a.type === "closed"; });
+    const openAnswers = answers.filter(function (a) { return a.type === "open"; });
+
+    const bySection = SECTIONS.map(function (name, idx) {
+      const inSection = answers.filter(function (a) { return a.q.section === idx; });
+      const sum = inSection.reduce(function (s, a) { return s + a.score; }, 0);
+      return { name: name, total: inSection.length, sum: sum };
+    }).filter(function (s) { return s.total > 0; });
+
+    const wrongOrPartial = answers.filter(function (a) { return a.score < 1; });
+
+    let html = "";
+    html += '<div class="score-hero">';
+    html += '<div class="score-circle ' + (passed ? "pass" : "fail") + '">';
+    html += '<div class="pct">' + Math.round(pct * 100) + "%</div>";
+    html += '<div class="frac">' + scoreSum.toFixed(1).replace(/\.0$/, "") + " / " + total + "</div>";
+    html += "</div>";
+    html += '<div class="result-title ' + (passed ? "pass" : "fail") + '">' +
+      (passed ? "Esame Superato" : "Esame Non Superato") + "</div>";
+    html += '<div class="result-sub">' + escapeHtml(state.name) + " — soglia richiesta " +
+      Math.round(PASS_THRESHOLD * 100) + "%</div>";
+    html += '<div class="result-sub">Livello: ' + (DIFF_LABELS[state.difficulty] || "Misto") +
+      " · Tipo domande: " + (state.type === "mixed" ? "Miste" : TYPE_LABELS[state.type]) + "</div>";
+    html += "</div>";
+
+    html += '<div class="stats-grid">';
+    html += '<div class="stat"><div class="num">' + total + '</div><div class="lab">Domande</div></div>';
+    html += '<div class="stat"><div class="num">' + closedAnswers.length + '</div><div class="lab">Chiuse</div></div>';
+    html += '<div class="stat"><div class="num">' + openAnswers.length + '</div><div class="lab">Aperte</div></div>';
+    html += "</div>";
+
+    html += "<h3>Risultato per area tematica</h3>";
+    html += '<div class="section-breakdown">';
+    bySection.forEach(function (s) {
+      const p = s.total ? Math.round((s.sum / s.total) * 100) : 0;
+      html += '<div class="sb-row">';
+      html += '<div class="name">' + escapeHtml(s.name) + "</div>";
+      html += '<div class="sb-bar"><div style="width:' + p + '%"></div></div>';
+      html += '<div class="val">' + s.sum.toFixed(1).replace(/\.0$/, "") + "/" + s.total + "</div>";
+      html += "</div>";
+    });
+    html += "</div>";
+
+    if (wrongOrPartial.length) {
+      html += '<h3 style="margin-top:22px;">Domande da ripassare</h3>';
+      wrongOrPartial.forEach(function (a) {
+        const q = a.q;
+        html += '<div class="review-item">';
+        html += '<div class="rq">' + escapeHtml(q.question) + "</div>";
+        if (a.type === "closed") {
+          html += '<div class="ra wrong-answer">Risposta data: ' + escapeHtml(q.options[a.chosen]) + "</div>";
+          html += '<div class="ra correct-answer">Risposta corretta: ' + escapeHtml(q.options[q.correct]) + "</div>";
+          html += '<div class="rexp">' + escapeHtml(q.explanation) + "</div>";
+        } else {
+          html += '<div class="ra user-open-answer">La tua risposta: ' + escapeHtml(a.userText) + "</div>";
+          html += '<div class="ra correct-answer">Risposta modello: ' + escapeHtml(q.model) + "</div>";
+        }
+        html += "</div>";
+      });
+    } else {
+      html += '<p class="lead" style="margin-top:20px;">Nessuna risposta da rivedere: punteggio pieno. Ottimo lavoro!</p>';
+    }
+
+    els.resultsBody.innerHTML = html;
+
+    els.certConfig.textContent = "Livello " + (DIFF_LABELS[state.difficulty] || "Misto") +
+      " · " + (state.type === "mixed" ? "domande miste" : TYPE_LABELS[state.type].toLowerCase());
+    els.certName.textContent = state.name;
+    els.certScore.textContent = Math.round(pct * 100) + "%";
+    els.certDate.textContent = new Date().toLocaleDateString("it-IT", { year: "numeric", month: "long", day: "numeric" });
+    els.certificate.classList.toggle("hidden", !passed);
+    els.printBtn.classList.toggle("hidden", !passed);
+
+    showScreen("results");
+  }
+
+  els.restartBtn.addEventListener("click", function () {
+    showScreen("start");
+  });
+
+  els.printBtn.addEventListener("click", function () {
+    window.print();
+  });
+})();
+
+</script>
+</body>
+</html>
