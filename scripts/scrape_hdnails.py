@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# trigger workflow: 2026-08-07
 import csv, hashlib, json, os, re, time, xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from decimal import Decimal, InvalidOperation
