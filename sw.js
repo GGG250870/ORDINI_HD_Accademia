@@ -1,5 +1,5 @@
-const CACHE_NAME='ordini-hd-accademia-v12';
-const FILES=['./','./index.html?v=12','./style.css?v=12','./v4.css?v=12','./app.js?v=12','./danea_patch.js?v=12','./prodotti.json?v=12','./app.webmanifest?v=12','./icon.svg'];
+const CACHE_NAME='ordini-hd-accademia-v13';
+const FILES=['./','./index.html?v=13','./style.css?v=13','./v4.css?v=13','./app.js?v=13','./danea_patch.js?v=13','./prodotti.json?v=13','./app.webmanifest?v=13','./icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(FILES)).catch(()=>null));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))));self.clients.claim();});
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{let copy=r.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,copy)).catch(()=>{});return r;}).catch(()=>caches.match(e.request).then(c=>c||caches.match('./index.html?v=12'))));});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{let copy=r.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,copy)).catch(()=>{});return r;}).catch(()=>caches.match(e.request).then(c=>c||caches.match('./index.html?v=13'))));});
