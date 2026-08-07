@@ -16,6 +16,11 @@ TIMEOUT=int(os.getenv('TIMEOUT','30'))
 S=requests.Session()
 S.headers.update({'User-Agent':'Mozilla/5.0 (compatible; AccademiaSavonaCatalogBot/1.0; +https://github.com/GGG250870/ORDINI_HD_Accademia)','Accept-Language':'it-IT,it;q=0.9,en;q=0.6'})
 SKIP=('/blog','/privacy','/termini','/spedizioni','/professionisti','/account','/academy','/formazione','/centro-estetico','/schede-tecniche','/contatti')
+EXCLUDE_TERMS=('epilazione laser','laser epilazione','epilazione','laser a diodo','diodo laser')
+
+def excluded_product(*values):
+    text=' '.join(clean(v).lower() for v in values if v)
+    return any(term in text for term in EXCLUDE_TERMS)
 
 def get(url,retries=3):
     err=None
@@ -86,7 +91,7 @@ def category(soup,name):
     return vals[-1] if vals else 'Altri prodotti'
 
 def parse_product(url):
-    if any(x in url.lower() for x in SKIP):return None
+    if any(x in url.lower() for x in SKIP) or excluded_product(url):return None
     try:r=get(url)
     except Exception:return None
     if 'text/html' not in r.headers.get('content-type',''):return None
@@ -119,6 +124,8 @@ def parse_product(url):
             if e:
                 desc=clean(txt(e))
                 if desc:break
+    cat=category(soup,name)
+    if excluded_product(url,name,desc,cat):return None
     img=(p or {}).get('image') or ''
     if isinstance(img,list):img=img[0] if img else ''
     if isinstance(img,dict):img=img.get('url','')
@@ -131,7 +138,7 @@ def parse_product(url):
     canon=soup.find('link',rel='canonical'); cu=canon.get('href') if canon and canon.get('href') else r.url
     old=soup.select_one('.old-price .price,.price-box .old-price .price'); listino=price(txt(old)) if old else None
     stable=sku or cu; pid=hashlib.sha1(stable.encode()).hexdigest()[:16]
-    return {'id':pid,'sku':sku or pid,'nome':name,'categoria':category(soup,name),'prezzo':round(pr,2),'prezzo_str':money(pr),'prezzo_listino':round(listino,2) if listino is not None else None,'disponibilita':av,'immagine':img,'descrizione':desc,'specifiche':'','url':cu}
+    return {'id':pid,'sku':sku or pid,'nome':name,'categoria':cat,'prezzo':round(pr,2),'prezzo_str':money(pr),'prezzo_listino':round(listino,2) if listino is not None else None,'disponibilita':av,'immagine':img,'descrizione':desc,'specifiche':'','url':cu}
 
 def main():
     urls=sorted({u for u in sitemap_urls(SITEMAP) if urlparse(u).netloc.endswith('hdnails.it')})
@@ -148,12 +155,13 @@ def main():
     for p in products:
         k=(p.get('sku') or '').lower().strip() or p['url'].lower().strip()
         if k not in dedup or (not dedup[k].get('descrizione') and p.get('descrizione')):dedup[k]=p
-    products=list(dedup.values()); products.sort(key=lambda x:(x.get('categoria','').casefold(),x.get('nome','').casefold()))
+    products=[p for p in dedup.values() if not excluded_product(p.get('url'),p.get('nome'),p.get('descrizione'),p.get('categoria'))]
+    products.sort(key=lambda x:(x.get('categoria','').casefold(),x.get('nome','').casefold()))
     with open(OUT_JSON,'w',encoding='utf-8') as f:json.dump(products,f,ensure_ascii=False,indent=2); f.write('\n')
     fields=['id','sku','nome','categoria','prezzo','prezzo_str','prezzo_listino','disponibilita','immagine','descrizione','specifiche','url']
     with open(OUT_CSV,'w',encoding='utf-8-sig',newline='') as f:
         w=csv.DictWriter(f,fieldnames=fields,delimiter=';'); w.writeheader(); w.writerows(products)
-    print('Scritti',len(products),'prodotti')
+    print('Scritti',len(products),'prodotti (epilazione laser esclusa)')
     if len(products)<50:raise SystemExit('Catalogo troppo piccolo: scraping probabilmente incompleto')
 
 if __name__=='__main__':main()
