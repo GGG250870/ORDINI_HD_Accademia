@@ -100,8 +100,94 @@ function patchPrintOrder(){
   document.querySelector('#printArea').innerHTML='<h1>ORDINI_HD_ACCADEMIA</h1><pre>'+esc(text())+'</pre>';
   setTimeout(()=>window.print(),300);
 }
+
+/* Macro-categorie catalogo, allineate alla logica del sito HD Nails */
+const HD_GROUP_ORDER=[
+  'Costruttori',
+  'Gel in bottiglia',
+  'Basi',
+  'Top / Lucidi',
+  'Colori',
+  'Acrygel / Polygel',
+  'Preparatori e Liquidi',
+  'Nail Art / Decorazioni',
+  'Dual Form / Tip',
+  'Lime / Buffer',
+  'Pennelli',
+  'Strumenti',
+  'Attrezzature',
+  'Mani / Pedicure',
+  'Kit',
+  'Altri prodotti'
+];
+
+function hdGroup(x){
+  const c=String(x?.categoria||'').toLowerCase();
+  const n=String(x?.nome||'').toLowerCase();
+  const t=(c+' '+n).replace(/[_-]+/g,' ');
+
+  /* esclusione definitiva epilazione laser */
+  if(/laser|epilaz/.test(t)) return '__EXCLUDE__';
+
+  if(/kit/.test(c)||/^kit\b/.test(n)) return 'Kit';
+  if(/top|gloss|lucid|sigillant|finish/.test(t)) return 'Top / Lucidi';
+  if(/base gel|base rubber|flexy base|fiber base|base extra|gelac base|\bbase\b/.test(t)) return 'Basi';
+  if(/gel in bottiglia/.test(c)) return 'Gel in bottiglia';
+  if(/acrygel|polygel|poly gel/.test(t)) return 'Acrygel / Polygel';
+  if(/costrutt|builder|monofas|monofase|jelly cover|creamy cover|easy cover|gel da ricostruzione/.test(t)) return 'Costruttori';
+  if(/semipermanent|gelac color|color gel|colore|smalt/.test(t)) return 'Colori';
+  if(/primer|prep|deidrat|cleaner|remover|liquid|liquidi/.test(t)) return 'Preparatori e Liquidi';
+  if(/nail art|decoraz|glitter|cromat|pigment|foil|sticker|strass|paint/.test(t)) return 'Nail Art / Decorazioni';
+  if(/dual form|\btip\b|nail form|cartin/.test(t)) return 'Dual Form / Tip';
+  if(/lime|lima|buffer/.test(t)) return 'Lime / Buffer';
+  if(/pennell/.test(t)) return 'Pennelli';
+  if(/strument|spingicuticole|tronches|forbic|pinz/.test(t)) return 'Strumenti';
+  if(/attrezz|lampad|fresa|aspirator/.test(t)) return 'Attrezzature';
+  if(/trattamento mani|pedicure|mano|mani|piede|piedi|cuticol/.test(t)) return 'Mani / Pedicure';
+  return 'Altri prodotti';
+}
+
+function hdVisibleProducts(){return (S.p||[]).filter(x=>hdGroup(x)!=='__EXCLUDE__')}
+
+chips=function(){
+  const counts={};
+  hdVisibleProducts().forEach(x=>{const g=hdGroup(x);counts[g]=(counts[g]||0)+1});
+  const total=Object.values(counts).reduce((a,b)=>a+b,0);
+  let h='<button class="chip on" data-c="ALL">Tutti '+total+'</button>';
+  HD_GROUP_ORDER.forEach(g=>{if(counts[g])h+=`<button class="chip" data-c="${esc(g)}">${esc(g)} ${counts[g]}</button>`});
+  $('#chips').innerHTML=h;
+  $$('.chip').forEach(b=>b.onclick=()=>{S.mode='ALL';S.cat=b.dataset.c;S.q='';$('#search').value='';setChip();filter()});
+};
+
+filter=function(){
+  let arr=hdVisibleProducts();
+  if(S.mode==='FAV')arr=arr.filter(x=>S.fav.includes(x.id));
+  if(S.mode==='NEWS')arr=arr.slice(-60).reverse();
+  S.f=arr.filter(x=>
+    (S.cat==='ALL'||hdGroup(x)===S.cat) &&
+    (!S.q||(x.nome+' '+x.categoria+' '+hdGroup(x)+' '+x.descrizione+' '+x.sku).toLowerCase().includes(S.q))
+  ).sort(sortProducts);
+  S.v=0;
+  $('#grid').innerHTML='';
+  let label=S.mode==='FAV'?'Preferiti':S.mode==='NEWS'?'Novità':(S.cat==='ALL'?'Tutti i prodotti':S.cat);
+  $('#status').textContent=label+' ('+S.f.length+')';
+  more();
+};
+
 setTimeout(()=>{
   if(document.querySelector('#mail'))document.querySelector('#mail').onclick=patchMail;
   if(document.querySelector('#wa'))document.querySelector('#wa').onclick=patchWa;
   if(document.querySelector('#print'))document.querySelector('#print').onclick=patchPrintOrder;
+
+  let tries=0;
+  const refreshGroups=()=>{
+    tries++;
+    if(typeof S!=='undefined'&&Array.isArray(S.p)&&S.p.length){
+      chips();
+      filter();
+      return;
+    }
+    if(tries<40)setTimeout(refreshGroups,250);
+  };
+  refreshGroups();
 },300);
