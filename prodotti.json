@@ -1402,13 +1402,13 @@
   {
     "id": "c3f9769257b1ce17",
     "sku": "Codice: cappucci-fresa-sanding-100pz",
-    "nome": "CAPPUCCI FRESA - SANDING 100PZ",
+    "nome": "CAPPUCCI FRESA - Mandrino Sanding 100PZ",
     "categoria": "Altri prodotti",
     "prezzo": 10.0,
     "prezzo_str": "10,00 €",
     "prezzo_listino": null,
     "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_69608f9ea1221_1.jpg",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/r/i/ricarica_mandrino.png",
     "descrizione": "Sanding 1 confezione da 100pc grana media Diametro interno 0,7mm",
     "specifiche": "",
     "url": "https://www.hdnails.it/cappucci-fresa-sanding-100pz"
@@ -6216,20 +6216,6 @@
     "url": "https://www.hdnails.it/pennello-one-stroke-new"
   },
   {
-    "id": "ab2d79ac501671c8",
-    "sku": "Codice: pennello-oval-short-new",
-    "nome": "Pennello Oval Short New",
-    "categoria": "Altri prodotti",
-    "prezzo": 12.2,
-    "prezzo_str": "12,20 €",
-    "prezzo_listino": null,
-    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab1356e44_1.jpg",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Questo pennello da gel è uno strumento indispensabile per le onicotecniche, progettato per garantire una stesura del gel precisa e uniforme, specialmente nelle aree più delicate come la zona cuticole. Caratteristiche principali: Setole ultra sottili e corte: Le setole di questo pennello,lunghe 0,7 mm consentono di prelevare la giusta quantità di materiale, evitando di abbondare e riducendo così il rischio di applicare troppo prodotto. Questa qualità lo rende particolarmente indicato per chi è alle prime armi, aiutando a mantenere il controllo e a ottenere risultati professionali fin dalle prime applicazioni. Forma arrotondata: La forma arrotondata delle setole si adatta perfettamente alla zona cuticole, facilitando l'applicazione del gel in modo preciso e senza sbavature. Questo design permette di raggiungere facilmente ogni angolo dell’unghia, garantendo una finitura pulita e ben definita. Versatilità: Ideale per la stesura della base, di gel da ricostruzione e dei gel colorati, questo pennello offre un’eccellente capacità di distribuire il prodotto in modo uniforme. La sua versatilità lo rende perfetto per diverse tecniche di manicure in gel, assicurando una copertura liscia e senza striature. Manico ergonomico: Il manico, leggero ed ergonomico, è progettato per offrire una presa confortevole e un controllo ottimale durante l’uso. Questa caratteristica riduce l'affaticamento della mano, permettendo di lavorare con precisione anche durante sessioni prolungate. Facile manutenzione: Per preservare la qualità e la forma delle setole, si consiglia di pulire il pennello con alcool subito dopo l'uso. Per evitare che le setole si aprano, prima di riporre il pennello nel suo tappo, è consigliabile immergerle in una base o in un finish, quindi schiacciarle delicatamente con un pezzo di carta per mantenere la forma piatta e compatta. Uso: Questo pennello è l'alleato perfetto per onicotecniche di ogni livello, ma è particolarmente utile per chi è alle prime armi grazie alle sue setole corte che permettono di prelevare la giusta quantità di prodotto. La combinazione di setole sottili, corte e arrotondate consente una stesura del gel perfetta, anche nelle zone più difficili come il giro cuticole, assicurando risultati impeccabili e una finitura professionale.",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/pennello-oval-short-new"
-  },
-  {
     "id": "2a285d488d786f7c",
     "sku": "Codice: pennello-silicon-brush",
     "nome": "Pennello Silicon Brush",
@@ -7476,20 +7462,6 @@
     "url": "https://www.hdnails.it/punta-cono-grande"
   },
   {
-    "id": "683cbd05fcf9f871",
-    "sku": "Codice: punta-cono-media-cuticole-diamantata",
-    "nome": "Punta Cono Media Cuticole Diamantata",
-    "categoria": "Altri prodotti",
-    "prezzo": 15.0,
-    "prezzo_str": "15,00 €",
-    "prezzo_listino": null,
-    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_69c0c861ccec5_1_1.jpg",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Punta Cono Media Cuticole Diamantata Punta cuticole diamantata - Con la sua forma a trapezio perfetta per la preparazione delle unghie prima dello smalto gel o della ricostruzione",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/punta-cono-media-cuticole-diamantata"
-  },
-  {
     "id": "03aec563ae6016fd",
     "sku": "Codice: punta-cono-rimozione-fascia-blu",
     "nome": "Punta Cono Rimozione Fascia Blu",
@@ -8066,7 +8038,7 @@
   {
     "id": "0eec4e16c32dd83e",
     "sku": "Codice: ricambi-punta-mandrino-piccola",
-    "nome": "Ricambi Punta Mandrino Piccola",
+    "nome": "Ricambi Punta Mandrino Sanding Piccola",
     "categoria": "Altri prodotti",
     "prezzo": 7.9,
     "prezzo_str": "7,90 €",
@@ -8288,20 +8260,6 @@
     "url": "https://www.hdnails.it/scrub-rigenerante"
   },
   {
-    "id": "0d7a62ecbb6c1203",
-    "sku": "Codice: set-lime-adesive-120-2",
-    "nome": "Set Lime adesive 120",
-    "categoria": "Altri prodotti",
-    "prezzo": 32.98,
-    "prezzo_str": "32,98 €",
-    "prezzo_listino": 32.98,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
-  },
-  {
     "id": "63176f4968598f42",
     "sku": "Codice: set-lime-adesive-120",
     "nome": "Set Lime adesive 120",
@@ -8314,6 +8272,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
     "specifiche": "",
     "url": "https://www.hdnails.it/set-lime-adesive-120"
+  },
+  {
+    "id": "0d7a62ecbb6c1203",
+    "sku": "Codice: set-lime-adesive-120-2",
+    "nome": "Set Lime adesive 120",
+    "categoria": "Altri prodotti",
+    "prezzo": 32.98,
+    "prezzo_str": "32,98 €",
+    "prezzo_listino": 32.98,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
   },
   {
     "id": "4946c07db2399928",
@@ -11235,7 +11207,7 @@
     "prezzo": 24.9,
     "prezzo_str": "24,90 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/t/o/torcia_led_11.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Torcia per dual form Rosa La torcetta LED HD Nails è uno strumento professionale progettato per bloccare rapidamente il materiale durante la lavorazione , garantendo precisione, controllo e massima comodità durante. Grazie alla sua elevata potenza e alla doppia lunghezza d'onda , consente una pre-polimerizzazione rapida ed efficace , rendendola perfetta per lavorare con sicurezza e velocità. È ideale per: Dual Form Applicazione di Tips Polimerizzazione rapida di Nail Art, decorazioni e dettagli Dopo il fissaggio iniziale con la torcetta, si consiglia sempre di completare la polimerizzazione finale nella lampada LED professionale . Doppia modalità di accensione La torcetta è dotata di due sistemi di attivazione , per adattarsi perfettamente al tuo modo di lavorare: Touch : accensione manuale con un semplice tocco. Sensore automatico : si attiva automaticamente quando inserisci il dito o la dual form sotto la torcetta. ⚠️ Nota per l’utilizzo del sensore: Per permettere al sensore di rilevare correttamente il movimento, la torcetta deve essere posizionata circa a 45° . Se puntata completamente verso il basso il sensore potrebbe non attivarsi. Supporto professionale La torcetta può essere utilizzata con o senza supporto , a seconda delle esigenze di lavoro. Il supporto è dotato di: Gambo flessibile , facilmente regolabile Struttura stabile , che mantiene la posizione durante il lavoro Calamita , che consente un fissaggio rapido e sicuro Ricaricabile e pratica La torcetta è ricaricabile ed è dotata di batteria al litio da 800 mAh e progettata per garantire un’ottima autonomia. Nella confezione è incluso il cavo usb per caricarla Compatta, potente e versatile, è uno di quegli strumenti che semplificano davvero il lavoro quotidiano , permettendoti di fissare velocemente dual form, tips e nail art con precisione professionale.",
     "specifiche": "",
