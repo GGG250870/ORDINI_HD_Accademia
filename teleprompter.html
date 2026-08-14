@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="icon.svg">
+<title>Teleprompter</title>
+<style>
+  :root{
+    --bg:#0b0b0c; --fg:#f5f5f7; --accent:#3b82f6; --panel:#18181b; --border:#2a2a2e; --muted:#9a9aa2;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  #setup{max-width:720px;margin:0 auto;padding:20px 16px 100px;}
+  h1{font-size:20px;margin:8px 0 4px;}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 20px;}
+  label{display:block;font-size:13px;color:var(--muted);margin:16px 0 6px;}
+  textarea{width:100%;min-height:220px;background:var(--panel);color:var(--fg);border:1px solid var(--border);
+    border-radius:10px;padding:12px;font-size:16px;line-height:1.5;resize:vertical;font-family:inherit;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row > div{flex:1;min-width:140px;}
+  input[type=range]{width:100%;}
+  .rangeVal{color:var(--fg);font-weight:600;font-size:13px;}
+  .toggles{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .toggle{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);
+    border-radius:10px;padding:10px 12px;font-size:14px;flex:1;min-width:150px;}
+  .toggle input{width:18px;height:18px;}
+  .themes{display:flex;gap:10px;margin-top:8px;}
+  .themeBtn{flex:1;border-radius:10px;border:2px solid var(--border);padding:14px 0;text-align:center;font-size:13px;cursor:pointer;}
+  .themeBtn.active{border-color:var(--accent);}
+  .actions{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg,transparent,var(--bg) 30%);display:flex;gap:10px;max-width:720px;margin:0 auto;}
+  button{cursor:pointer;font-family:inherit;}
+  .btn{flex:1;padding:14px 12px;border-radius:12px;border:1px solid var(--border);background:var(--panel);color:var(--fg);font-size:15px;font-weight:600;}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .btn.small{flex:none;padding:10px 16px;font-size:13px;font-weight:500;}
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000;color:#fff;
+    padding:10px 16px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;}
+  .toast.show{opacity:.95;}
+
+  /* Prompter view */
+  #prompter{position:fixed;inset:0;display:none;flex-direction:column;z-index:20;}
+  #prompter.open{display:flex;}
+  #promptScroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  #promptScroll::-webkit-scrollbar{display:none;}
+  #promptText{padding:60vh 24px 90vh;white-space:pre-wrap;word-wrap:break-word;text-align:center;}
+  #promptText.mirror{transform:scaleX(-1);}
+  .guide{position:absolute;left:0;right:0;top:38%;height:1px;background:rgba(255,255,255,.15);pointer-events:none;}
+  .guide.hidden{display:none;}
+  #hud{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:21;}
+  #hud button{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:10px;padding:10px 12px;font-size:14px;}
+  #hud .grow{flex:1;}
+  #speedLbl{min-width:52px;text-align:center;font-variant-numeric:tabular-nums;font-size:13px;color:#ddd;}
+  #countdown{position:fixed;inset:0;display:none;align-items:center;justify-content:center;font-size:96px;
+    font-weight:700;z-index:30;background:rgba(0,0,0,.6);}
+  #countdown.show{display:flex;}
+  .hint{color:var(--muted);font-size:12px;margin-top:6px;}
+
+  /* Light theme override for prompter text only */
+  #prompter.light{background:#fff;color:#111;}
+  #prompter.light #hud{background:rgba(255,255,255,.75);}
+  #prompter.light #hud button{background:rgba(0,0,0,.08);color:#111;}
+  #prompter.dark{background:#000;color:#fff;}
+  #prompter.yellow{background:#000;color:#ffd400;}
+</style>
+</head>
+<body>
+
+<section id="setup">
+  <h1>🎬 Teleprompter</h1>
+  <p class="sub">Scrivi o incolla il testo, regola velocità e stile, poi condividi il link o avvia la lettura.</p>
+
+  <label for="script">Testo da leggere</label>
+  <textarea id="script" placeholder="Incolla qui il testo del tuo copione..."></textarea>
+
+  <div class="row">
+    <div>
+      <label>Velocità <span class="rangeVal" id="speedVal">5</span></label>
+      <input type="range" id="speed" min="1" max="15" value="5" step="1">
+    </div>
+    <div>
+      <label>Dimensione testo <span class="rangeVal" id="sizeVal">42</span>px</label>
+      <input type="range" id="size" min="20" max="90" value="42" step="2">
+    </div>
+  </div>
+
+  <label>Tema</label>
+  <div class="themes">
+    <div class="themeBtn active" data-theme="dark">⚫ Scuro</div>
+    <div class="themeBtn" data-theme="light">⚪ Chiaro</div>
+    <div class="themeBtn" data-theme="yellow">🟡 Giallo/nero</div>
+  </div>
+
+  <div class="toggles">
+    <label class="toggle"><input type="checkbox" id="mirror"> Specchio (vetro teleprompter)</label>
+    <label class="toggle"><input type="checkbox" id="guideLine" checked> Riga guida centrale</label>
+  </div>
+
+  <p class="hint" id="shareHint"></p>
+
+  <div class="actions">
+    <button class="btn small" id="shareBtn">🔗 Condividi</button>
+    <button class="btn primary" id="startBtn">▶ Avvia lettura</button>
+  </div>
+</section>
+
+<div id="countdown">3</div>
+
+<section id="prompter" class="dark">
+  <div class="guide" id="guideEl"></div>
+  <div id="promptScroll"><div id="promptText"></div></div>
+  <div id="hud">
+    <button id="closeBtn">✕ Chiudi</button>
+    <button id="slowerBtn">−</button>
+    <span id="speedLbl">5</span>
+    <button id="fasterBtn">+</button>
+    <div class="grow"></div>
+    <button id="playBtn">⏸</button>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const scriptEl=$('script'), speedEl=$('speed'), sizeEl=$('size'), speedVal=$('speedVal'), sizeVal=$('sizeVal');
+  const mirrorEl=$('mirror'), guideEl=$('guideLine'), shareHint=$('shareHint');
+  const prompter=$('prompter'), promptScroll=$('promptScroll'), promptText=$('promptText');
+  const guideLine=$('guideEl'), speedLbl=$('speedLbl'), playBtn=$('playBtn'), countdown=$('countdown');
+  let theme='dark';
+
+  // ---- load state from URL or localStorage ----
+  function loadState(){
+    const p=new URLSearchParams(location.search);
+    if(p.has('t')){
+      return {
+        text: p.get('t')||'',
+        speed: parseInt(p.get('v'))||5,
+        size: parseInt(p.get('f'))||42,
+        mirror: p.get('m')==='1',
+        theme: p.get('th')||'dark',
+        guide: p.get('g')!=='0'
+      };
+    }
+    try{
+      const saved=JSON.parse(localStorage.getItem('tp_state')||'null');
+      if(saved) return saved;
+    }catch(e){}
+    return null;
+  }
+
+  function applyState(s){
+    if(!s) return;
+    scriptEl.value=s.text||'';
+    speedEl.value=s.speed||5; speedVal.textContent=speedEl.value; speedLbl.textContent=speedEl.value;
+    sizeEl.value=s.size||42; sizeVal.textContent=sizeEl.value;
+    mirrorEl.checked=!!s.mirror;
+    guideEl.checked=s.guide!==false;
+    setTheme(s.theme||'dark');
+  }
+
+  function currentState(){
+    return {
+      text: scriptEl.value,
+      speed: parseInt(speedEl.value),
+      size: parseInt(sizeEl.value),
+      mirror: mirrorEl.checked,
+      theme: theme,
+      guide: guideEl.checked
+    };
+  }
+
+  function saveLocal(){
+    try{ localStorage.setItem('tp_state', JSON.stringify(currentState())); }catch(e){}
+  }
+
+  applyState(loadState());
+
+  // ---- setup form interactions ----
+  speedEl.addEventListener('input',()=>{speedVal.textContent=speedEl.value; speedLbl.textContent=speedEl.value; saveLocal();});
+  sizeEl.addEventListener('input',()=>{sizeVal.textContent=sizeEl.value; saveLocal();});
+  mirrorEl.addEventListener('change',saveLocal);
+  guideEl.addEventListener('change',saveLocal);
+  scriptEl.addEventListener('input',saveLocal);
+
+  document.querySelectorAll('.themeBtn').forEach(btn=>{
+    btn.addEventListener('click',()=>{ setTheme(btn.dataset.theme); saveLocal(); });
+  });
+  function setTheme(t){
+    theme=t;
+    document.querySelectorAll('.themeBtn').forEach(b=>b.classList.toggle('active', b.dataset.theme===t));
+  }
+
+  // ---- toast ----
+  let toastTimer;
+  function toast(msg){
+    const el=$('toast');
+    el.textContent=msg; el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>el.classList.remove('show'),2200);
+  }
+
+  // ---- share link ----
+  function buildShareUrl(){
+    const s=currentState();
+    const p=new URLSearchParams();
+    p.set('t', s.text);
+    p.set('v', s.speed);
+    p.set('f', s.size);
+    p.set('m', s.mirror?'1':'0');
+    p.set('th', s.theme);
+    p.set('g', s.guide?'1':'0');
+    return location.origin+location.pathname+'?'+p.toString();
+  }
+
+  $('shareBtn').addEventListener('click', async ()=>{
+    if(!scriptEl.value.trim()){ toast('Scrivi prima un testo da condividere'); return; }
+    const url=buildShareUrl();
+    if(navigator.share){
+      try{ await navigator.share({title:'Teleprompter', url}); return; }catch(e){}
+    }
+    try{
+      await navigator.clipboard.writeText(url);
+      toast('Link copiato negli appunti ✅');
+    }catch(e){
+      shareHint.textContent=url;
+    }
+  });
+
+  // ---- prompter engine ----
+  let rafId=null, playing=false, lastTs=0;
+
+  function openPrompter(){
+    promptText.textContent=scriptEl.value;
+    promptText.className = mirrorEl.checked ? 'mirror' : '';
+    prompter.className = theme;
+    guideLine.classList.toggle('hidden', !guideEl.checked);
+    speedLbl.textContent=speedEl.value;
+    prompter.classList.add('open');
+    document.body.style.overflow='hidden';
+    promptScroll.scrollTop=0;
+    if(prompter.requestFullscreen){ prompter.requestFullscreen().catch(()=>{}); }
+    runCountdown(()=>startScroll());
+  }
+
+  function runCountdown(cb){
+    let n=3;
+    countdown.textContent=n;
+    countdown.classList.add('show');
+    const id=setInterval(()=>{
+      n--;
+      if(n<=0){ clearInterval(id); countdown.classList.remove('show'); cb(); }
+      else countdown.textContent=n;
+    },700);
+  }
+
+  function startScroll(){
+    playing=true; playBtn.textContent='⏸'; lastTs=performance.now();
+    tick();
+  }
+  function stopScroll(){ playing=false; playBtn.textContent='▶'; if(rafId) cancelAnimationFrame(rafId); }
+  function tick(ts){
+    if(!playing) return;
+    const dt = ts - lastTs; lastTs = ts;
+    const speed = parseInt(speedEl.value);
+    const pxPerSec = speed * 22;
+    promptScroll.scrollTop += pxPerSec * (dt/1000);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function closePrompter(){
+    stopScroll();
+    prompter.classList.remove('open');
+    document.body.style.overflow='';
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+  }
+
+  $('startBtn').addEventListener('click', ()=>{
+    if(!scriptEl.value.trim()){ toast('Scrivi prima un testo'); return; }
+    promptText.style.fontSize=sizeEl.value+'px';
+    saveLocal();
+    openPrompter();
+  });
+  $('closeBtn').addEventListener('click', closePrompter);
+  $('playBtn').addEventListener('click', ()=>{ playing ? stopScroll() : (lastTs=performance.now(), startScroll()); });
+  $('fasterBtn').addEventListener('click', ()=>{ speedEl.value=Math.min(15, +speedEl.value+1); speedLbl.textContent=speedEl.value; speedVal.textContent=speedEl.value; });
+  $('slowerBtn').addEventListener('click', ()=>{ speedEl.value=Math.max(1, +speedEl.value-1); speedLbl.textContent=speedEl.value; speedVal.textContent=speedEl.value; });
+
+  document.addEventListener('keydown', e=>{
+    if(!prompter.classList.contains('open')) return;
+    if(e.code==='Space'){ e.preventDefault(); playing ? stopScroll() : (lastTs=performance.now(), startScroll()); }
+    else if(e.code==='ArrowUp'){ e.preventDefault(); speedEl.value=Math.min(15,+speedEl.value+1); speedLbl.textContent=speedEl.value; }
+    else if(e.code==='ArrowDown'){ e.preventDefault(); speedEl.value=Math.max(1,+speedEl.value-1); speedLbl.textContent=speedEl.value; }
+    else if(e.code==='Escape'){ closePrompter(); }
+  });
+
+  // If opened via a shared link with text already present, offer a quick-start hint
+  if(new URLSearchParams(location.search).has('t')){
+    shareHint.textContent='Testo ricevuto da un link condiviso: puoi modificarlo o avviarlo subito.';
+  }
+})();
+</script>
+</body>
+</html>
