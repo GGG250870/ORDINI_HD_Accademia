@@ -1,5 +1,7 @@
 name: Aggiorna catalogo HDNails
 
+# Test attivazione monitor: 2026-08-24
+
 on:
   workflow_dispatch:
   schedule:
