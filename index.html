@@ -9,18 +9,21 @@
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="app.webmanifest?v=14">
-<link rel="stylesheet" href="style.css?v=14">
-<link rel="stylesheet" href="v4.css?v=14">
+<link rel="manifest" href="app.webmanifest?v=15">
+<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="v4.css?v=15">
 <title>ORDINI_HD_ACCADEMIA</title>
 <style>
 #updateNotice{display:none;position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top));z-index:9999;background:linear-gradient(135deg,#e4007f,#b40065);color:#fff;border-radius:16px;padding:11px 12px;box-shadow:0 8px 26px #0004;align-items:center;gap:10px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif}
 #updateNotice.on{display:flex}#updateNotice .uText{flex:1;min-width:0}#updateNotice .uTitle{font-size:14px;font-weight:900;line-height:1.15}#updateNotice .uSub{font-size:11px;opacity:.92;margin-top:2px}#updateNow{border:0;background:#fff;color:#b40065;border-radius:12px;min-height:42px;padding:0 13px;font-weight:900;font-size:12px;white-space:nowrap}
-@media(max-width:430px){#updateNotice{left:8px;right:8px;padding:10px}.uSub{display:none!important}#updateNow{min-height:40px;padding:0 11px}}
+#newsBackdrop{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.48);padding:18px;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif}
+#newsBackdrop.on{display:flex}#newsPopup{width:min(420px,100%);background:#fff;color:#1a1a1a;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}#newsHead{background:linear-gradient(135deg,#e4007f,#b40065);color:#fff;padding:18px 18px 15px}#newsHead b{display:block;font-size:20px;line-height:1.1}#newsHead span{display:block;margin-top:5px;font-size:13px;opacity:.92}#newsBody{padding:16px 18px 18px}#newsBody ul{margin:0 0 16px 18px;padding:0}#newsBody li{font-size:14px;line-height:1.35;margin:8px 0}#newsClose{width:100%;border:0;background:#1a1a1a;color:#d4a574;border-radius:14px;min-height:48px;font-size:15px;font-weight:900}
+@media(max-width:430px){#updateNotice{left:8px;right:8px;padding:10px}.uSub{display:none!important}#updateNow{min-height:40px;padding:0 11px}#newsBackdrop{padding:12px;align-items:flex-end}#newsPopup{border-radius:18px}}
 </style>
 </head>
 <body>
 <div id="updateNotice" role="status" aria-live="polite"><div class="uText"><div class="uTitle">Aggiornamento in corso</div><div class="uSub">L'app si sta aggiornando automaticamente.</div></div><button id="updateNow" type="button">ATTENDI...</button></div>
+<div id="newsBackdrop" role="dialog" aria-modal="true" aria-labelledby="newsTitle"><div id="newsPopup"><div id="newsHead"><b id="newsTitle">Novita disponibili</b><span>Abbiamo aggiornato l'app ordini Accademia Savona.</span></div><div id="newsBody"><ul><li>Email ordini aggiornata a ordiniaccademiasavona@gmail.com.</li><li>Il file CSV Danea viene preparato insieme all'ordine.</li><li>L'app ora si aggiorna automaticamente quando esce una nuova versione.</li></ul><button id="newsClose" type="button">Ho capito</button></div></div></div>
 <header class="topbar">
   <div class="brand"><b>ORDINI_HD_ACCADEMIA</b><span id="hello">Accademia Savona</span></div>
   <button id="profileBtn" class="cartBtn secondaryMini" type="button">Cliente</button>
@@ -41,11 +44,18 @@
 <section id="printArea" class="printArea"></section>
 <script>
 (function(){
-  const APP_VERSION='14';
+  const APP_VERSION='15';
   const updateKey='hd_app_version';
   const reloadKey='hd_auto_reload_'+APP_VERSION;
+  const newsKey='hd_news_seen_'+APP_VERSION;
   const seen=localStorage.getItem(updateKey);
   const notice=document.getElementById('updateNotice');
+  const news=document.getElementById('newsBackdrop');
+  const closeNews=document.getElementById('newsClose');
+  function showNews(){if(localStorage.getItem(newsKey)==='1')return;news.classList.add('on')}
+  function hideNews(){localStorage.setItem(newsKey,'1');news.classList.remove('on')}
+  closeNews.addEventListener('click',hideNews);
+  news.addEventListener('click',e=>{if(e.target===news)hideNews()});
   async function clearOldApp(){
     try{
       if('caches' in window){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)));}
@@ -56,7 +66,7 @@
     }catch(e){}
   }
   async function autoUpdate(){
-    if(seen===APP_VERSION)return;
+    if(seen===APP_VERSION){setTimeout(showNews,700);return;}
     notice.classList.add('on');
     await clearOldApp();
     localStorage.setItem(updateKey,APP_VERSION);
@@ -67,6 +77,7 @@
       location.replace(u.toString());
     }else{
       notice.classList.remove('on');
+      setTimeout(showNews,500);
     }
   }
   document.getElementById('updateNow').addEventListener('click',()=>{localStorage.removeItem(updateKey);sessionStorage.removeItem(reloadKey);autoUpdate();});
@@ -79,7 +90,7 @@
   autoUpdate();
 })();
 </script>
-<script src="app.js?v=14"></script>
-<script src="danea_patch.js?v=14"></script>
+<script src="app.js?v=15"></script>
+<script src="danea_patch.js?v=15"></script>
 </body>
 </html>
