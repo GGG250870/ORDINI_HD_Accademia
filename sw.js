@@ -1,5 +1,5 @@
 const CACHE_NAME='ordini-hd-accademia-v19';
-const FILES=['./style.css?v=19','./v4.css?v=19','./app.js?v=19','./catalog_patch.js?v=19','./danea_patch.js?v=19','./HDNails_Catalogo_Facebook_Commerce.csv?v=19','./app.webmanifest?v=19','./icon.svg'];
+const FILES=['./style.css?v=19','./v4.css?v=19','./app.js?v=19','./catalog_patch.js?v=19','./danea_patch.js?v=19','./HDNails_Catalogo_Facebook_Commerce.csv?v=19','./app.webmanifest?v=19','./apri.html?v=19','./icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(FILES)).catch(()=>null));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING')self.skipWaiting();});
