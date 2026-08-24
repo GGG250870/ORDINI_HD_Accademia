@@ -3,10 +3,13 @@ name: Aggiorna catalogo HDNails
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 4 * * *'
+    # GitHub usa UTC. 04:00 UTC copre le 06:00 in ora legale,
+    # 05:00 UTC copre le 06:00 in ora solare.
+    - cron: '0 4,5 * * *'
   push:
     paths:
       - 'scripts/scrape_hdnails.py'
+      - 'scripts/update_app_catalog.py'
       - 'requirements-scraper.txt'
       - '.github/workflows/update-catalog.yml'
 
@@ -20,8 +23,17 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
+      - name: Esegui solo alle 06:00 italiane
+        if: github.event_name == 'schedule'
+        run: |
+          HOUR=$(TZ=Europe/Rome date +%H)
+          if [ "$HOUR" != "06" ]; then
+            echo "Ora italiana: $HOUR, esco."
+            exit 0
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -35,13 +47,16 @@ jobs:
       - name: Dipendenze
         run: pip install -r requirements-scraper.txt
 
+      - name: Verifica script
+        run: python -m py_compile scripts/scrape_hdnails.py scripts/update_app_catalog.py
+
       - name: Scraping hdnails.it
         env:
           MAX_WORKERS: '10'
           TIMEOUT: '30'
         run: python scripts/scrape_hdnails.py
 
-      - name: Verifica file
+      - name: Verifica file catalogo
         run: |
           python - <<'PY'
           import json, csv
@@ -54,14 +69,17 @@ jobs:
           assert rows == len(data)
           PY
 
-      - name: Pubblica catalogo aggiornato
+      - name: Aggiorna app e popup novita
+        run: python scripts/update_app_catalog.py
+
+      - name: Pubblica aggiornamenti
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add prodotti.json prodotti.csv
+          git add prodotti.json prodotti.csv catalog_monitor_state.json catalog_patch.js index.html sw.js .nojekyll
           if git diff --cached --quiet; then
-            echo 'Catalogo già aggiornato.'
+            echo 'Nessun aggiornamento da pubblicare.'
           else
-            git commit -m 'Aggiorna catalogo HDNails'
+            git commit -m 'Aggiorna catalogo HDNails e app'
             git push
           fi
