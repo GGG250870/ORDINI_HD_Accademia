@@ -2,13 +2,16 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="app.webmanifest?v=13">
-<link rel="stylesheet" href="style.css?v=13">
-<link rel="stylesheet" href="v4.css?v=13">
+<link rel="manifest" href="app.webmanifest?v=14">
+<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="v4.css?v=14">
 <title>ORDINI_HD_ACCADEMIA</title>
 <style>
 #updateNotice{display:none;position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top));z-index:9999;background:linear-gradient(135deg,#e4007f,#b40065);color:#fff;border-radius:16px;padding:11px 12px;box-shadow:0 8px 26px #0004;align-items:center;gap:10px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif}
@@ -17,7 +20,7 @@
 </style>
 </head>
 <body>
-<div id="updateNotice" role="status" aria-live="polite"><div class="uText"><div class="uTitle">✨ Aggiornamento disponibile — NOVITÀ</div><div class="uSub">Nuova versione dell'app e catalogo aggiornato.</div></div><button id="updateNow" type="button">AGGIORNA ORA</button></div>
+<div id="updateNotice" role="status" aria-live="polite"><div class="uText"><div class="uTitle">Aggiornamento in corso</div><div class="uSub">L'app si sta aggiornando automaticamente.</div></div><button id="updateNow" type="button">ATTENDI...</button></div>
 <header class="topbar">
   <div class="brand"><b>ORDINI_HD_ACCADEMIA</b><span id="hello">Accademia Savona</span></div>
   <button id="profileBtn" class="cartBtn secondaryMini" type="button">Cliente</button>
@@ -38,24 +41,45 @@
 <section id="printArea" class="printArea"></section>
 <script>
 (function(){
-  const APP_VERSION='13';
-  const seen=localStorage.getItem('hd_app_version');
+  const APP_VERSION='14';
+  const updateKey='hd_app_version';
+  const reloadKey='hd_auto_reload_'+APP_VERSION;
+  const seen=localStorage.getItem(updateKey);
   const notice=document.getElementById('updateNotice');
-  if(seen!==APP_VERSION) notice.classList.add('on');
-  async function forceUpdate(){
-    const btn=document.getElementById('updateNow');btn.textContent='AGGIORNO…';btn.disabled=true;
+  async function clearOldApp(){
     try{
       if('caches' in window){const keys=await caches.keys();await Promise.all(keys.map(k=>caches.delete(k)));}
-      if('serviceWorker' in navigator){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()));}
+      if('serviceWorker' in navigator){
+        const regs=await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map(r=>{if(r.waiting)r.waiting.postMessage({type:'SKIP_WAITING'});return r.update().catch(()=>null);}));
+      }
     }catch(e){}
-    localStorage.setItem('hd_app_version',APP_VERSION);
-    const u=new URL(location.href);u.searchParams.set('v',APP_VERSION+'-'+Date.now());location.replace(u.toString());
   }
-  document.getElementById('updateNow').addEventListener('click',forceUpdate);
-  if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.update()))).catch(()=>{});}
+  async function autoUpdate(){
+    if(seen===APP_VERSION)return;
+    notice.classList.add('on');
+    await clearOldApp();
+    localStorage.setItem(updateKey,APP_VERSION);
+    if(!sessionStorage.getItem(reloadKey)){
+      sessionStorage.setItem(reloadKey,'1');
+      const u=new URL(location.href);
+      u.searchParams.set('v',APP_VERSION+'-'+Date.now());
+      location.replace(u.toString());
+    }else{
+      notice.classList.remove('on');
+    }
+  }
+  document.getElementById('updateNow').addEventListener('click',()=>{localStorage.removeItem(updateKey);sessionStorage.removeItem(reloadKey);autoUpdate();});
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js?v='+APP_VERSION).then(reg=>{
+      reg.update().catch(()=>{});
+      if(reg.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'});
+    }).catch(()=>{});
+  }
+  autoUpdate();
 })();
 </script>
-<script src="app.js?v=13"></script>
-<script src="danea_patch.js?v=13"></script>
+<script src="app.js?v=14"></script>
+<script src="danea_patch.js?v=14"></script>
 </body>
 </html>
