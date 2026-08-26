@@ -3885,7 +3885,7 @@
     "prezzo": 159.2,
     "prezzo_str": "159,20 €",
     "prezzo_listino": 159.2,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960e2ce009d9.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Kit Liquid Polygel Reflective Questo kit è la soluzione completa per chi vuole portare in salone una linea performante, veloce e dall’effetto luminoso immediato. Dentro trovi tutti e 7 i Liquid Polygel Reflective , ognuno con una base colorata arricchita da microglitter ultra-sottili e flakes cangianti che si accendono sotto qualsiasi luce. Perfetti per manicure eleganti, moderne e con quel tocco scintillante che fa sempre colpo. La formula è HEMA Free , stabile e autolivellante: scorre dove serve senza colare, riduce i tempi di limatura e ti permette di creare una struttura precisa in pochissimi passaggi. Morbida da lavorare ma resistente grazie alla componente acrilica, è ideale per refill, coperture e ricostruzioni sia corte che lunghe. La bottiglia presenta un pennello stondato , progettato per facilitare la stesura del prodotto vicino alle cuticole e rendere la lavorazione ancora più veloce, precisa e pulita. Consiglio: su unghie difficili o grasse, applica prima la Fiber Base per massimizzare l’aderenza. Polimerizza: 60 sec LED. Perché sceglierlo • Sicuro e tollerabile (HEMA Free) • Zero limatura o quasi • Perfetto per refill, coperture e allungamenti • Effetto reflective premium su tutte le 7 tonalità Un kit completo, performante e subito pronto per dare alle tue clienti un risultato luminoso, elegante e completamente professionale. ✨",
     "specifiche": "",
@@ -4361,7 +4361,7 @@
     "prezzo": 19.9,
     "prezzo_str": "19,90 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960e122f114e.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Liquid Polygel 2 - Reflective Scopri il Liquid Polygel Reflective, un gel costruttore in bottiglia, il compagno perfetto per una manicure professionale e impeccabile, ideale per chi cerca precisione, velocità e durata, con un’attenzione particolare alla sicurezza e alla salute delle unghie. Caratteristiche Principali: Formula HEMA Free : Realizzato senza HEMA, per una maggiore sicurezza e tollerabilità. Perfetto anche per chi ha pelle sensibile o è soggetto a reazioni allergiche, garantendo un’applicazione delicata ma resistente. Tecnica Senza Limatura : Grazie alla sua consistenza autolivellante e la facile applicazione, questo polygel riduce drasticamente i tempi di lavorazione, eliminando la necessità di limare. Perfetto per realizzare una struttura precisa in poche mosse. Composizione Rigida e Resistente : La sua formula arricchita con una percentuale di acrilico conferisce al prodotto una rigidità superiore, rendendolo stabile e resistente anche nelle condizioni più difficili. Una nuance ROSA freddo elegante e pulita, pensata per dare subito un look professionale, moderno e luminoso. La base rosa è arricchita da microglitter reflective ultra-sottili e da flakes cangianti , che cambiano riflesso a seconda della luce e trasformano la manicure in un effetto scenico immediato, ideale sia per salone che per contenuti social ad alto impatto. Consigli di Utilizzo : Unghie Difficili: Per garantire un risultato ottimale su unghie problematiche o particolarmente grasse, è consigliata l'applicazione della Fiber Base prima del polygel. Questo step aiuta a creare un'adesione ancora più forte e duratura. Vantaggi: Sicurezza e Salute: La formula HEMA Free rende il prodotto sicuro e ideale per una clientela attenta alla qualità dei materiali utilizzati. Versatilità: Adatto sia per allungamenti che per coperture di unghie naturali. Velocità: Riduce i tempi di applicazione, permettendo di ottenere un risultato perfetto con meno passaggi.",
     "specifiche": "",
@@ -6853,7 +6853,7 @@
     "prezzo": 5.9,
     "prezzo_str": "5,90 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_69609627b5900_1.jpg",
     "descrizione": "Poggiamani morbido lavabile",
     "specifiche": "",
@@ -8246,20 +8246,6 @@
     "url": "https://www.hdnails.it/scrub-rigenerante"
   },
   {
-    "id": "63176f4968598f42",
-    "sku": "Codice: set-lime-adesive-120",
-    "nome": "Set Lime adesive 120",
-    "categoria": "Altri prodotti",
-    "prezzo": 19.9,
-    "prezzo_str": "19,90 €",
-    "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_696094d718041.png",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/set-lime-adesive-120"
-  },
-  {
     "id": "0d7a62ecbb6c1203",
     "sku": "Codice: set-lime-adesive-120-2",
     "nome": "Set Lime adesive 120",
@@ -8272,6 +8258,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
     "specifiche": "",
     "url": "https://www.hdnails.it/set-lime-adesive-120-2"
+  },
+  {
+    "id": "63176f4968598f42",
+    "sku": "Codice: set-lime-adesive-120",
+    "nome": "Set Lime adesive 120",
+    "categoria": "Altri prodotti",
+    "prezzo": 19.9,
+    "prezzo_str": "19,90 €",
+    "prezzo_listino": null,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_696094d718041.png",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/set-lime-adesive-120"
   },
   {
     "id": "4946c07db2399928",
@@ -11174,7 +11174,7 @@
   {
     "id": "75c416a54ceac2b2",
     "sku": "Codice: ultra-bond",
-    "nome": "Ultra Bond",
+    "nome": "Ultra Bond 15ml",
     "categoria": "Altri prodotti",
     "prezzo": 12.2,
     "prezzo_str": "12,20 €",
