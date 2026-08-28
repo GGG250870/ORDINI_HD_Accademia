@@ -340,7 +340,6 @@
     "liquid-polygel-super-lac-7-gel-costruttore-in-bottiglia",
     "liquid-polygel-super-lac-8-gel-costruttore-in-bottiglia",
     "liquid-polygel-super-lac-9-gel-costruttore-in-bottiglia",
-    "luce-led-pieghevole-con-supporto-per-cellulare",
     "macro-per-cellulare",
     "manipolo-fresa",
     "mattoncino-buffer",
@@ -838,6 +837,7 @@
     "aspiratore-professionale-da-tavolo-new",
     "calamita-cat-eye-double",
     "forbicina-comfort-cut-pro",
+    "luce-led-pieghevole-con-supporto-per-cellulare",
     "olio-cuticole-glitter-sweet-gummy",
     "pennello-liner-3",
     "smalto-semipermanente-gelac-color-144",
@@ -847,19 +847,10 @@
     "super-paint-blu-9-gel-da-decorazione"
   ],
   "last_news": [],
-  "last_checked": "2026-08-27T15:12:29.178189+00:00",
+  "last_checked": "2026-08-28T16:35:34.849554+00:00",
   "last_added": [],
   "last_removed": [
-    "aspiratore-professionale-da-tavolo-new",
-    "calamita-cat-eye-double",
-    "forbicina-comfort-cut-pro",
-    "olio-cuticole-glitter-sweet-gummy",
-    "pennello-liner-3",
-    "smalto-semipermanente-gelac-color-144",
-    "smalto-semipermanente-gelac-glitter-color-122",
-    "smalto-semipermanente-gelac-platinum-prosecco-02",
-    "strong-acrigel-5-bianco-latte",
-    "super-paint-blu-9-gel-da-decorazione"
+    "luce-led-pieghevole-con-supporto-per-cellulare"
   ],
-  "last_version": 20
+  "last_version": 21
 }
