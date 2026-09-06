@@ -2583,7 +2583,7 @@
     "prezzo": 12.2,
     "prezzo_str": "12,20 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960e0010d1fa.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Gelac Burgundy Collection 1 Una collezione che celebra le tonalità Burgundy in tutte le loro sfumature più iconiche. Sette colori intensi, profondi e sofisticati: dai burgundy più classici e vellutati fino alle varianti più scure, ricche e avvolgenti. Una palette perfetta per la stagione fredda, dove i toni vino diventano un must assoluto. La texture cremosa e la coprenza piena già dalla prima passata ti permette di ottenere manicure uniformi, eleganti e ad alta resa senza rinunciare alla velocità. La formula HEMA & TPO Free garantisce un’applicazione più sicura anche per le clienti sensibili, mentre la poca dispersione facilita la stesura del top e la creazione di nail art. Il pennello con setola tonda segue naturalmente il giro cuticola, aiutandoti a creare linee morbide e precise per un risultato impeccabile. Ogni tonalità è pensata per funzionare da sola oppure come base per nail art invernali, look glossy o dettagli decorativi più strutturati. Una collezione ricca, elegante e irresistibile: i Burgundy restano tra i colori più amati e richiesti durante l’autunno e l’inverno, e con questa selezione diventano un vero asset per ogni nail art. Formato 10 g . Polimerizza in 60 secondi in lampada LED . Sigillare con Top Coat .",
     "specifiche": "",
@@ -7161,7 +7161,7 @@
     "prezzo": 8.9,
     "prezzo_str": "8,90 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960955b9bf63_1.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down PORTA PENNELLO HD NAILS",
     "specifiche": "",
@@ -8162,20 +8162,6 @@
     "url": "https://www.hdnails.it/scrub-rigenerante"
   },
   {
-    "id": "0d7a62ecbb6c1203",
-    "sku": "Codice: set-lime-adesive-120-2",
-    "nome": "Set Lime adesive 120",
-    "categoria": "Altri prodotti",
-    "prezzo": 32.98,
-    "prezzo_str": "32,98 €",
-    "prezzo_listino": 32.98,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
-  },
-  {
     "id": "63176f4968598f42",
     "sku": "Codice: set-lime-adesive-120",
     "nome": "Set Lime adesive 120",
@@ -8188,6 +8174,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
     "specifiche": "",
     "url": "https://www.hdnails.it/set-lime-adesive-120"
+  },
+  {
+    "id": "0d7a62ecbb6c1203",
+    "sku": "Codice: set-lime-adesive-120-2",
+    "nome": "Set Lime adesive 120",
+    "categoria": "Altri prodotti",
+    "prezzo": 32.98,
+    "prezzo_str": "32,98 €",
+    "prezzo_listino": 32.98,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
   },
   {
     "id": "4946c07db2399928",
@@ -8365,7 +8365,7 @@
     "prezzo": 12.9,
     "prezzo_str": "12,90 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960afc2f39e8.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down SILKY TOUCH Una nuvola di benessere che avvolge la tua pelle in un istante. Questo spray rigenerante è la coccola quotidiana che mani, unghie e corpo stavano aspettando. Arricchito con acido ialuronico e cheratina, ha un’azione ristrutturante e rinforzante, ideale per cuticole secche e pelle disidratata, e una buonissima profumazione simile al famoso profumo Bianco Latte. La sua formula a rapido assorbimento regala un’immediata sensazione di freschezza, lasciando la pelle morbida, luminosa e vellutata, senza ungere. Perfetto da usare alla fine del trattamento o da consigliare alle tue clienti per un rituale di bellezza completo, anche a casa. ✨ Un gesto semplice, un risultato visibile. Una vera coccola per te e per chi si affida alle tue mani.",
     "specifiche": "",
