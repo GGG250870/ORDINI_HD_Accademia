@@ -710,7 +710,6 @@
     "smalto-semipermanente-neon-cat-eye-6",
     "smalto-semipermanente-neon-cat-eye-7",
     "smalto-semipermanente-neon-cat-eye-8",
-    "smalto-semipermanente-pastel-cat-eye-1",
     "smalto-semipermanente-pastel-cat-eye-2",
     "smalto-semipermanente-pastel-cat-eye-3",
     "smalto-semipermanente-pastel-cat-eye-4",
@@ -842,15 +841,16 @@
     "smalto-semipermanente-gelac-color-144",
     "smalto-semipermanente-gelac-glitter-color-122",
     "smalto-semipermanente-gelac-platinum-prosecco-02",
+    "smalto-semipermanente-pastel-cat-eye-1",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
     "tips-in-gel-forma-mandorla-a-punta"
   ],
   "last_news": [],
-  "last_checked": "2026-09-04T08:52:03.478619+00:00",
+  "last_checked": "2026-09-07T09:19:24.053132+00:00",
   "last_added": [],
   "last_removed": [
-    "tips-in-gel-forma-mandorla-a-punta"
+    "smalto-semipermanente-pastel-cat-eye-1"
   ],
-  "last_version": 22
+  "last_version": 23
 }
