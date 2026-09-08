@@ -184,7 +184,6 @@
     "gel-paint-blue-gel-da-decorazione",
     "gel-paint-corallo-gel-colorato",
     "gel-polish-remover",
-    "gelac-burgundy-collection-1",
     "gelac-burgundy-collection-2",
     "gelac-burgundy-collection-3",
     "gelac-burgundy-collection-4",
@@ -513,7 +512,6 @@
     "polvere-specchio-fuxia-16",
     "polvere-specchio-rosa-14",
     "porta-pennelli-da-tavolo",
-    "porta-pennelli-hdnails",
     "porta-punte-bianco",
     "porta-punte-lilla",
     "porta-punte-pink",
@@ -708,7 +706,6 @@
     "smalto-semipermanente-neon-cat-eye-3",
     "smalto-semipermanente-neon-cat-eye-4",
     "smalto-semipermanente-neon-cat-eye-6",
-    "smalto-semipermanente-neon-cat-eye-7",
     "smalto-semipermanente-neon-cat-eye-8",
     "smalto-semipermanente-pastel-cat-eye-2",
     "smalto-semipermanente-pastel-cat-eye-3",
@@ -835,22 +832,27 @@
     "aspiratore-professionale-da-tavolo-new",
     "calamita-cat-eye-double",
     "forbicina-comfort-cut-pro",
+    "gelac-burgundy-collection-1",
     "luce-led-pieghevole-con-supporto-per-cellulare",
     "olio-cuticole-glitter-sweet-gummy",
     "pennello-liner-3",
+    "porta-pennelli-hdnails",
     "smalto-semipermanente-gelac-color-144",
     "smalto-semipermanente-gelac-glitter-color-122",
     "smalto-semipermanente-gelac-platinum-prosecco-02",
+    "smalto-semipermanente-neon-cat-eye-7",
     "smalto-semipermanente-pastel-cat-eye-1",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
     "tips-in-gel-forma-mandorla-a-punta"
   ],
   "last_news": [],
-  "last_checked": "2026-09-07T09:19:24.053132+00:00",
+  "last_checked": "2026-09-08T08:52:59.321884+00:00",
   "last_added": [],
   "last_removed": [
-    "smalto-semipermanente-pastel-cat-eye-1"
+    "gelac-burgundy-collection-1",
+    "porta-pennelli-hdnails",
+    "smalto-semipermanente-neon-cat-eye-7"
   ],
-  "last_version": 23
+  "last_version": 24
 }
