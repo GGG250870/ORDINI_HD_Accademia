@@ -15,6 +15,23 @@ NOJEKYLL = ROOT / '.nojekyll'
 STATE = ROOT / 'catalog_monitor_state.json'
 MAX_NEWS = 6
 
+MANUAL_PRODUCTS = [
+    {
+        'id': 'HDN-0966',
+        'sku': 'HDN-0966',
+        'nome': 'HEXA Lampada Unghie',
+        'categoria': 'Attrezzature',
+        'descrizione': 'HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.',
+        'specifiche': '80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat',
+        'disponibilita': 'Disponibile',
+        'prezzo': 79.0,
+        'prezzo_str': '79,00 EUR',
+        'immagine': 'https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png',
+        'link': 'https://www.hdnails.it/hexa-lampada-uv-led-unghie',
+        'brand': 'HDNails',
+    }
+]
+
 
 def norm(value):
     return re.sub(r'\s+', ' ', str(value or '')).strip().casefold()
@@ -31,15 +48,11 @@ def product_key(product):
     return key(product.get('link') or product.get('url') or product.get('nome'))
 
 
-def money(value):
+def euro(value):
     try:
         number = float(value or 0)
     except Exception:
         number = 0
-    return new_money(number)
-
-
-def new_money(number):
     return f'{number:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.') + ' EUR'
 
 
@@ -66,32 +79,37 @@ def category(title, description):
     return 'Altri prodotti'
 
 
+def normal_product(item):
+    name = item.get('nome') or item.get('name') or ''
+    url = item.get('url') or item.get('link') or ''
+    if not name or not url:
+        return None
+    price = float(item.get('prezzo') or 0)
+    description = item.get('descrizione') or name
+    stable = item.get('sku') or item.get('id') or key(url)[:16]
+    return {
+        'id': str(item.get('id') or stable),
+        'sku': str(stable),
+        'nome': name,
+        'categoria': item.get('categoria') or category(name, description),
+        'descrizione': description,
+        'specifiche': item.get('specifiche') or '',
+        'disponibilita': item.get('disponibilita') or 'Disponibile',
+        'prezzo': price,
+        'prezzo_str': item.get('prezzo_str') or euro(price),
+        'immagine': item.get('immagine') or '',
+        'link': url,
+        'brand': item.get('brand') or 'HDNails',
+    }
+
+
 def load_site_products():
     data = json.loads(SITE_JSON.read_text(encoding='utf-8'))
-    products = []
-    for item in data:
-        name = item.get('nome') or item.get('name') or ''
-        url = item.get('url') or item.get('link') or ''
-        if not name or not url:
-            continue
-        price = float(item.get('prezzo') or 0)
-        description = item.get('descrizione') or name
-        stable = item.get('sku') or item.get('id') or key(url)[:16]
-        products.append({
-            'id': str(item.get('id') or stable),
-            'sku': str(stable),
-            'nome': name,
-            'categoria': item.get('categoria') or category(name, description),
-            'descrizione': description,
-            'specifiche': item.get('specifiche') or '',
-            'disponibilita': item.get('disponibilita') or 'Disponibile',
-            'prezzo': price,
-            'prezzo_str': item.get('prezzo_str') or new_money(price),
-            'immagine': item.get('immagine') or '',
-            'link': url,
-            'brand': 'HDNails',
-        })
-    return products
+    products = [p for p in (normal_product(item) for item in data) if p]
+    by_key = {product_key(product): product for product in products}
+    for product in MANUAL_PRODUCTS:
+        by_key[product_key(product)] = product
+    return list(by_key.values())
 
 
 def load_csv_keys():
@@ -188,34 +206,39 @@ def main():
     csv_keys = load_csv_keys()
     patch_keys = load_patch_keys()
     app_keys = csv_keys | patch_keys
+    manual_keys = {product_key(product) for product in MANUAL_PRODUCTS}
     state = load_state()
     known = set(state.get('known_keys') or [])
 
     if not known:
-        extra_keys = sorted(key for key in patch_keys if key in site_by_key and key not in csv_keys)
+        extra_keys = sorted((patch_keys | manual_keys) & set(site_by_key) - csv_keys)
         state.update({
             'known_keys': sorted(site_by_key),
             'extra_keys': extra_keys,
             'removed_keys': [],
-            'last_news': [site_by_key[key] for key in extra_keys[:MAX_NEWS]],
+            'last_news': [site_by_key[item] for item in extra_keys[:MAX_NEWS]],
             'last_checked': datetime.now(timezone.utc).isoformat(),
         })
         STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         print('Stato inizializzato, nessuna pubblicazione app.')
         return
 
-    new_keys = sorted(key for key in site_by_key if key not in known and key not in app_keys)
-    removed_keys = sorted(key for key in known if key not in site_by_key)
-    if not new_keys and not removed_keys:
+    new_keys = sorted(item for item in site_by_key if item not in known and item not in app_keys)
+    removed_keys = sorted(item for item in known if item not in site_by_key and item not in manual_keys)
+    missing_manual = sorted(item for item in manual_keys if item not in patch_keys and item not in csv_keys)
+
+    if not new_keys and not removed_keys and not missing_manual:
         print('Nessuna novita catalogo.')
         return
 
-    extra_keys = set(state.get('extra_keys') or []) | {key for key in patch_keys if key in site_by_key and key not in csv_keys} | set(new_keys)
-    removed_state = (set(state.get('removed_keys') or []) | {key for key in removed_keys if key in app_keys})
-    extra_keys = {key for key in extra_keys if key in site_by_key and key not in removed_state and key not in csv_keys}
+    extra_keys = set(state.get('extra_keys') or []) | {item for item in patch_keys if item in site_by_key and item not in csv_keys} | set(new_keys) | manual_keys
+    removed_state = set(state.get('removed_keys') or []) | {item for item in removed_keys if item in app_keys}
+    removed_state -= manual_keys
+    extra_keys = {item for item in extra_keys if item in site_by_key and item not in removed_state and item not in csv_keys}
 
-    extras = [site_by_key[key] for key in sorted(extra_keys)]
-    news = [site_by_key[key] for key in new_keys[:MAX_NEWS]]
+    extras = [site_by_key[item] for item in sorted(extra_keys)]
+    news_keys = new_keys[:MAX_NEWS] or missing_manual[:MAX_NEWS]
+    news = [site_by_key[item] for item in news_keys]
     if not news:
         news = [item for item in state.get('last_news', []) if product_key(item) in site_by_key][:MAX_NEWS]
     version = current_version() + 1
@@ -229,12 +252,14 @@ def main():
         'last_news': news,
         'last_added': new_keys,
         'last_removed': removed_keys,
+        'last_manual_restored': missing_manual,
         'last_checked': datetime.now(timezone.utc).isoformat(),
         'last_version': version,
     })
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print('Novita aggiunte:', len(new_keys))
     print('Prodotti rimossi/non trovati:', len(removed_keys))
+    print('Manuali ripristinati:', len(missing_manual))
     print('Versione app:', version)
 
 
