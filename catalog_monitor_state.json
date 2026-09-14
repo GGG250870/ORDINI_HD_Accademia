@@ -161,7 +161,6 @@
     "easy-cover-21-gel-costruttore",
     "easy-cover-22-gel-costruttore",
     "easy-cover-23-gel-costruttore",
-    "easy-cover-24-gel-costruttore-autolivellante-limited-edition",
     "easy-cover-25-gel-costruttore-autolivellante-limited-edition",
     "easy-cover-26-gel-costruttore-autolivellante-limited-edition",
     "easy-cover-8-gel-costruttore",
@@ -184,6 +183,7 @@
     "gel-paint-blue-gel-da-decorazione",
     "gel-paint-corallo-gel-colorato",
     "gel-polish-remover",
+    "gelac-burgundy-collection-1",
     "gelac-burgundy-collection-2",
     "gelac-burgundy-collection-3",
     "gelac-burgundy-collection-4",
@@ -222,6 +222,7 @@
     "hd-polygel-5-acrigel-costruttore",
     "hd-polygel-6-acrigel-costruttore",
     "hd-polygel-8-acrigel-costruttore",
+    "hexa-lampada-uv-led-unghie",
     "jelly-cover-1",
     "jelly-cover-10",
     "jelly-cover-11",
@@ -827,10 +828,13 @@
     "videocorso-di-nail-art",
     "white-french-bianco-gesso-gel-colorato"
   ],
-  "extra_keys": [],
+  "extra_keys": [
+    "hexa-lampada-uv-led-unghie"
+  ],
   "removed_keys": [
     "aspiratore-professionale-da-tavolo-new",
     "calamita-cat-eye-double",
+    "easy-cover-24-gel-costruttore-autolivellante-limited-edition",
     "forbicina-comfort-cut-pro",
     "gelac-burgundy-collection-1",
     "luce-led-pieghevole-con-supporto-per-cellulare",
@@ -847,12 +851,11 @@
     "tips-in-gel-forma-mandorla-a-punta"
   ],
   "last_news": [],
-  "last_checked": "2026-09-08T08:52:59.321884+00:00",
+  "last_checked": "2026-09-14T11:17:47.707199+00:00",
   "last_added": [],
   "last_removed": [
-    "gelac-burgundy-collection-1",
-    "porta-pennelli-hdnails",
-    "smalto-semipermanente-neon-cat-eye-7"
+    "easy-cover-24-gel-costruttore-autolivellante-limited-edition"
   ],
-  "last_version": 24
+  "last_version": 26,
+  "last_manual_restored": []
 }
