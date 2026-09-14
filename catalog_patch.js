@@ -6,7 +6,20 @@ function cpPriceLabel(n){return new Intl.NumberFormat('it-IT',{style:'currency',
 function cpCat(title,desc){let t=((title||'')+' '+(desc||'')).toLowerCase();if(t.includes('kit'))return'Kit';if(/builder|costrutt|ricostruzione|monofas|monofase|cover/.test(t))return'Gel da Ricostruzione';if(/base gel|rubber base|fiber base|\bbase\b/.test(t))return'Base Gel';if(/semipermanent|gelac|smalto|color gel|colore|colors/.test(t))return'Smalti Semipermanenti';if(/acrygel|polygel|poly gel/.test(t))return'Acrygel';if(/top|gloss|lucid|sigillant/.test(t))return'Lucidi Top Gloss';if(/primer|cleaner|remover|prep|liquid|liquido/.test(t))return'Preparatori & Liquidi';if(/glitter|nail art|decor|strass|foil|pigment|cromo/.test(t))return'Nail Art & Decorazioni';if(/dual form|\btip\b|cartin/.test(t))return'Dual Form & Tip';if(/lima|lime|buffer/.test(t))return'Lime & Buffer';if(/pennell/.test(t))return'Pennelli';if(/lampada|fresa|attrezz/.test(t))return'Attrezzature';if(/pedicure|mani|mano|piede|cuticol/.test(t))return'Trattamento Mani';return'Altri prodotti'}
 function cpKey(x){return String((x&&x.link)||'').toLowerCase().replace(/^https?:\/\/(www\.)?hdnails\.it\/?/,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||String((x&&x.nome)||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 function cpMapProduct(r,i){let nome=(r.title||'').trim(),descr=(r.description||nome).trim(),prezzo=cpPriceNum(r.price),id=(r.id||('HDN-'+String(i+1).padStart(4,'0'))).trim();return{id,sku:id,nome,categoria:cpCat(nome,descr),descrizione:descr,specifiche:'',disponibilita:(r.availability||'').trim(),prezzo,prezzo_str:cpPriceLabel(prezzo),immagine:(r.image_link||'').trim(),link:(r.link||'').trim(),brand:(r.brand||'HDNails').trim()}}
-function cpHexa(){return {id:'HDN-0966',sku:'HDN-0966',nome:'HEXA Lampada Unghie',categoria:'Attrezzature',descrizione:'HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.',specifiche:'80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat',disponibilita:'Disponibile',prezzo:79,prezzo_str:'79,00 EUR',immagine:'https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png',link:'https://www.hdnails.it/hexa-lampada-uv-led-unghie',brand:'HDNails'}}
+function cpHexa(){return {
+  id:'HDN-0966',
+  sku:'HDN-0966',
+  nome:'HEXA Lampada Unghie',
+  categoria:'Attrezzature',
+  descrizione:'Lampada UV/LED professionale con sensore a infrarossi, 4 timer e modalita low heat.',
+  specifiche:'80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat',
+  disponibilita:'Disponibile',
+  prezzo:79,
+  prezzo_str:'79,00 EUR',
+  immagine:'https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png',
+  link:'https://www.hdnails.it/hexa-lampada-uv-led-unghie',
+  brand:'HDNails'
+}}
 function cpExtraProducts(){return [cpHexa()]}
 function cpNewsProducts(){return [cpHexa()]}
 function cpRemovedProducts(){return ["aspiratore-professionale-da-tavolo-new", "calamita-cat-eye-double", "forbicina-comfort-cut-pro", "gelac-burgundy-collection-1", "luce-led-pieghevole-con-supporto-per-cellulare", "olio-cuticole-glitter-sweet-gummy", "pennello-liner-3", "porta-pennelli-hdnails", "smalto-semipermanente-gelac-color-144", "smalto-semipermanente-gelac-glitter-color-122", "smalto-semipermanente-gelac-platinum-prosecco-02", "smalto-semipermanente-neon-cat-eye-7", "smalto-semipermanente-pastel-cat-eye-1", "strong-acrigel-5-bianco-latte", "super-paint-blu-9-gel-da-decorazione", "tips-in-gel-forma-mandorla-a-punta"]}
