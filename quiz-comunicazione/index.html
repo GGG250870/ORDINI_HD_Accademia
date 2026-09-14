@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esame di Valutazione Finale — Corso di Comunicazione</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top no-print">
+    <div class="logo-ring"></div>
+    <div class="titles">
+      <h1>Esame di Valutazione Finale</h1>
+      <p>Corso di Comunicazione — Manuale del Supervisore di Sala Pratica</p>
+    </div>
+  </header>
+
+  <!-- SCREEN: START -->
+  <section id="screen-start" class="card">
+    <span class="badge">Esame finale</span>
+    <h2>Prima di iniziare</h2>
+    <p class="lead">
+      Questo esame verifica la comprensione del materiale del corso: il Codice del Supervisore,
+      il glossario della comunicazione, la procedura di gestione della Sala Pratica, i 13 esercizi
+      del percorso "Comunicare da Leader" e i Principi del Comando (Controllo e Intenzione).
+    </p>
+    <ul class="rules">
+      <li>L'esame contiene <strong id="question-count">0</strong> domande a risposta multipla, presentate in ordine casuale.</li>
+      <li>Dopo ogni risposta viene mostrata la correzione con il riferimento testuale al manuale.</li>
+      <li>Per superare l'esame è richiesto almeno il <strong id="pass-threshold">0</strong>% di risposte corrette.</li>
+      <li>Rispondi con la stessa serietà richiesta in Sala Pratica: niente approssimazioni.</li>
+    </ul>
+
+    <form id="start-form">
+      <label class="field-label" for="student-name">Nome e cognome del candidato</label>
+      <input type="text" id="student-name" placeholder="Es. Mario Rossi" autocomplete="name">
+      <div class="actions">
+        <button type="submit" class="btn block">Inizia l'esame</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- SCREEN: QUIZ -->
+  <section id="screen-quiz" class="card hidden">
+    <div class="progress-wrap">
+      <span id="progress-label">Domanda 1 di 0</span>
+      <div class="progress-bar"><div id="progress-bar" style="width:0%"></div></div>
+    </div>
+    <div id="section-tag" class="section-tag">Sezione</div>
+    <div id="question-text" class="question-text">Domanda</div>
+    <div id="options-box" class="options"></div>
+    <div id="feedback-box" class="feedback-box hidden"></div>
+    <div class="actions">
+      <button id="next-btn" class="btn" disabled>Domanda successiva</button>
+      <button id="quit-btn" class="btn secondary no-print">Interrompi esame</button>
+    </div>
+  </section>
+
+  <!-- SCREEN: RESULTS -->
+  <section id="screen-results" class="card hidden">
+    <div id="results-body"></div>
+    <div class="actions no-print">
+      <button id="restart-btn" class="btn secondary">Rifai l'esame</button>
+      <button id="print-btn" class="btn hidden">Stampa attestato</button>
+    </div>
+  </section>
+
+  <footer class="credit no-print">
+    Contenuti tratti fedelmente dal Manuale Operativo del Supervisore di Sala Pratica (OSM) e dal relativo aggiornamento "Principi del Comando".
+  </footer>
+
+  <!-- Printable certificate, shown only on print if the exam is passed -->
+  <div id="certificate">
+    <div style="text-align:center; padding-top:60px; font-family: Arial, sans-serif;">
+      <div style="font-size:.85rem; letter-spacing:.15em; text-transform:uppercase; color:#888;">Attestato di Superamento</div>
+      <h1 style="font-size:1.9rem; margin:14px 0 4px;">Esame di Valutazione Finale</h1>
+      <div style="font-size:1rem; color:#555; margin-bottom:40px;">Corso di Comunicazione</div>
+      <div style="font-size:1.4rem; font-weight:700; margin-bottom:6px;" id="cert-name">—</div>
+      <div style="font-size:1rem; color:#555; margin-bottom:30px;">ha superato l'esame con un punteggio del <strong id="cert-score">—</strong></div>
+      <div style="font-size:.9rem; color:#777;" id="cert-date">—</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
