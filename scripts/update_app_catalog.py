@@ -241,6 +241,8 @@ def main():
     news = [site_by_key[item] for item in news_keys]
     if not news:
         news = [item for item in state.get('last_news', []) if product_key(item) in site_by_key][:MAX_NEWS]
+    if not news:
+        news = [site_by_key[item] for item in sorted(manual_keys) if item in site_by_key][:MAX_NEWS]
     version = current_version() + 1
 
     PATCH.write_text(render_patch(version, extras, news, removed_state), encoding='utf-8')
