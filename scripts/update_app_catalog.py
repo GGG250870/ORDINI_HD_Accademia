@@ -29,7 +29,21 @@ MANUAL_PRODUCTS = [
         'immagine': 'https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png',
         'link': 'https://www.hdnails.it/hexa-lampada-uv-led-unghie',
         'brand': 'HDNails',
-    }
+    },
+    {
+        'id': 'HDN-TEDDY-BEAR-8',
+        'sku': 'Smalto Semipermanente Gelac Teddy Bear 8',
+        'nome': 'Smalto Semipermanente Gelac Teddy Bear 8',
+        'categoria': 'Smalti Semipermanenti',
+        'descrizione': 'Teddy Bear n.8 della Teddy Bear Collection, gel color nei toni del marrone, ultra pigmentato e coprente.',
+        'specifiche': '10 ml, tenuta fino a 4 settimane',
+        'disponibilita': 'Disponibile',
+        'prezzo': 12.2,
+        'prezzo_str': '12,20 EUR',
+        'immagine': '',
+        'link': 'https://www.hdnails.it/smalto-semipermanente-gelac-teddy-bear-8',
+        'brand': 'HDNails',
+    },
 ]
 
 
