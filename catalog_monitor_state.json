@@ -598,7 +598,6 @@
     "silky-touch-pera-vaniglia-spray-idratante",
     "silky-touch-sweet-cream-spray-idratante",
     "silky-touch-velo-di-dolcezza-spray-idratante",
-    "smalto-semipermanente-cat-eye-03",
     "smalto-semipermanente-cat-eye-12",
     "smalto-semipermanente-cat-eye-26",
     "smalto-semipermanente-diamond-gel-1",
@@ -692,6 +691,7 @@
     "smalto-semipermanente-gelac-sweet-chocolate-172",
     "smalto-semipermanente-gelac-sweet-chocolate-173",
     "smalto-semipermanente-gelac-sweet-chocolate-174",
+    "smalto-semipermanente-gelac-teddy-bear-8",
     "smalto-semipermanente-gelac-white-cloud-1",
     "smalto-semipermanente-gelac-white-cloud-2",
     "smalto-semipermanente-gelac-white-cloud-3",
@@ -821,7 +821,8 @@
     "white-french-bianco-gesso-gel-colorato"
   ],
   "extra_keys": [
-    "hexa-lampada-uv-led-unghie"
+    "hexa-lampada-uv-led-unghie",
+    "smalto-semipermanente-gelac-teddy-bear-8"
   ],
   "removed_keys": [
     "aspiratore-professionale-da-tavolo-new",
@@ -838,6 +839,7 @@
     "poggiamano-con-supporto-smartphone-hd-nails-pink",
     "porta-pennelli-hdnails",
     "punta-carbide-cono",
+    "smalto-semipermanente-cat-eye-03",
     "smalto-semipermanente-gelac-color-144",
     "smalto-semipermanente-gelac-color-16",
     "smalto-semipermanente-gelac-color-349",
@@ -850,19 +852,41 @@
     "super-paint-blu-9-gel-da-decorazione",
     "tips-in-gel-forma-mandorla-a-punta"
   ],
-  "last_news": [],
-  "last_checked": "2026-09-15T09:29:49.805228+00:00",
+  "last_news": [
+    {
+      "id": "HDN-0966",
+      "sku": "HDN-0966",
+      "nome": "HEXA Lampada Unghie",
+      "categoria": "Attrezzature",
+      "descrizione": "HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.",
+      "specifiche": "80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat",
+      "disponibilita": "Disponibile",
+      "prezzo": 79.0,
+      "prezzo_str": "79,00 EUR",
+      "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png",
+      "link": "https://www.hdnails.it/hexa-lampada-uv-led-unghie",
+      "brand": "HDNails"
+    },
+    {
+      "id": "HDN-TEDDY-BEAR-8",
+      "sku": "Smalto Semipermanente Gelac Teddy Bear 8",
+      "nome": "Smalto Semipermanente Gelac Teddy Bear 8",
+      "categoria": "Smalti Semipermanenti",
+      "descrizione": "Teddy Bear n.8 della Teddy Bear Collection, gel color nei toni del marrone, ultra pigmentato e coprente.",
+      "specifiche": "10 ml, tenuta fino a 4 settimane",
+      "disponibilita": "Disponibile",
+      "prezzo": 12.2,
+      "prezzo_str": "12,20 EUR",
+      "immagine": "",
+      "link": "https://www.hdnails.it/smalto-semipermanente-gelac-teddy-bear-8",
+      "brand": "HDNails"
+    }
+  ],
+  "last_checked": "2026-09-15T16:29:13.048693+00:00",
   "last_added": [],
   "last_removed": [
-    "easy-cover-25-gel-costruttore-autolivellante-limited-edition",
-    "full-sculpt-dual-form-mandorla",
-    "pennello-liner-1",
-    "poggiamano-con-supporto-smartphone-hd-nails-pink",
-    "punta-carbide-cono",
-    "smalto-semipermanente-gelac-color-16",
-    "smalto-semipermanente-gelac-color-349",
-    "smalto-semipermanente-gelac-glitter-color-351"
+    "smalto-semipermanente-cat-eye-03"
   ],
-  "last_version": 27,
+  "last_version": 30,
   "last_manual_restored": []
 }
