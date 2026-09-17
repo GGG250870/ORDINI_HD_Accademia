@@ -616,7 +616,6 @@
     "smalto-semipermanente-gelac-color-039",
     "smalto-semipermanente-gelac-color-045",
     "smalto-semipermanente-gelac-color-048",
-    "smalto-semipermanente-gelac-color-102",
     "smalto-semipermanente-gelac-color-107",
     "smalto-semipermanente-gelac-color-129",
     "smalto-semipermanente-gelac-color-130",
@@ -767,7 +766,6 @@
     "tips-orsetto",
     "tips-orso",
     "tixo-cover-builder",
-    "top-coat-gelac-glitter-gloss-rose",
     "top-coat-super-lac-pearl-gloss-1",
     "top-coat-super-lac-pearl-gloss-2",
     "top-coat-super-lac-pearl-gloss-3",
@@ -840,6 +838,7 @@
     "porta-pennelli-hdnails",
     "punta-carbide-cono",
     "smalto-semipermanente-cat-eye-03",
+    "smalto-semipermanente-gelac-color-102",
     "smalto-semipermanente-gelac-color-144",
     "smalto-semipermanente-gelac-color-16",
     "smalto-semipermanente-gelac-color-349",
@@ -850,7 +849,8 @@
     "smalto-semipermanente-pastel-cat-eye-1",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
-    "tips-in-gel-forma-mandorla-a-punta"
+    "tips-in-gel-forma-mandorla-a-punta",
+    "top-coat-gelac-glitter-gloss-rose"
   ],
   "last_news": [
     {
@@ -882,11 +882,12 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-09-15T16:29:13.048693+00:00",
+  "last_checked": "2026-09-17T09:29:01.433960+00:00",
   "last_added": [],
   "last_removed": [
-    "smalto-semipermanente-cat-eye-03"
+    "smalto-semipermanente-gelac-color-102",
+    "top-coat-gelac-glitter-gloss-rose"
   ],
-  "last_version": 30,
+  "last_version": 31,
   "last_manual_restored": []
 }
