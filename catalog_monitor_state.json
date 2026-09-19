@@ -471,7 +471,6 @@
     "piastra-stamping-hdnailsr-38",
     "piastra-stamping-hdnailsr-39",
     "piastra-stamping-hdnailsr-4",
-    "piastra-stamping-hdnailsr-5",
     "piastra-stamping-hdnailsr-6",
     "piastra-stamping-hdnailsr-7",
     "piastra-stamping-hdnailsr-8",
@@ -623,7 +622,6 @@
     "smalto-semipermanente-gelac-color-156",
     "smalto-semipermanente-gelac-color-175",
     "smalto-semipermanente-gelac-color-203",
-    "smalto-semipermanente-gelac-color-238",
     "smalto-semipermanente-gelac-color-42",
     "smalto-semipermanente-gelac-color-44",
     "smalto-semipermanente-gelac-color-82",
@@ -834,6 +832,7 @@
     "olio-cuticole-glitter-sweet-gummy",
     "pennello-liner-1",
     "pennello-liner-3",
+    "piastra-stamping-hdnailsr-5",
     "poggiamano-con-supporto-smartphone-hd-nails-pink",
     "porta-pennelli-hdnails",
     "punta-carbide-cono",
@@ -841,6 +840,7 @@
     "smalto-semipermanente-gelac-color-102",
     "smalto-semipermanente-gelac-color-144",
     "smalto-semipermanente-gelac-color-16",
+    "smalto-semipermanente-gelac-color-238",
     "smalto-semipermanente-gelac-color-349",
     "smalto-semipermanente-gelac-glitter-color-122",
     "smalto-semipermanente-gelac-glitter-color-351",
@@ -882,12 +882,12 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-09-17T09:29:01.433960+00:00",
+  "last_checked": "2026-09-19T08:51:03.073266+00:00",
   "last_added": [],
   "last_removed": [
-    "smalto-semipermanente-gelac-color-102",
-    "top-coat-gelac-glitter-gloss-rose"
+    "piastra-stamping-hdnailsr-5",
+    "smalto-semipermanente-gelac-color-238"
   ],
-  "last_version": 31,
+  "last_version": 32,
   "last_manual_restored": []
 }
