@@ -218,7 +218,6 @@
     "hd-polygel-3-acrigel-costruttore",
     "hd-polygel-4-acrigel-costruttore",
     "hd-polygel-5-acrigel-costruttore",
-    "hd-polygel-6-acrigel-costruttore",
     "hd-polygel-8-acrigel-costruttore",
     "hexa-lampada-uv-led-unghie",
     "jelly-cover-1",
@@ -369,7 +368,6 @@
     "neon-builder-gel-6",
     "neon-builder-gel-7",
     "nude-top-coat",
-    "olio-cuticle-bergamotto",
     "olio-secco-per-cuticole-arancia-60ml",
     "olio-secco-per-cuticole-ciliegia-60ml",
     "olio-secco-per-cuticole-fragola-20ml",
@@ -596,7 +594,6 @@
     "silky-touch-flower-spray-idratante",
     "silky-touch-pera-vaniglia-spray-idratante",
     "silky-touch-sweet-cream-spray-idratante",
-    "silky-touch-velo-di-dolcezza-spray-idratante",
     "smalto-semipermanente-cat-eye-12",
     "smalto-semipermanente-cat-eye-26",
     "smalto-semipermanente-diamond-gel-1",
@@ -828,6 +825,7 @@
     "forbicina-comfort-cut-pro",
     "full-sculpt-dual-form-mandorla",
     "gelac-burgundy-collection-1",
+    "hd-polygel-6-acrigel-costruttore",
     "luce-led-pieghevole-con-supporto-per-cellulare",
     "olio-cuticole-glitter-sweet-gummy",
     "pennello-liner-1",
@@ -836,6 +834,7 @@
     "poggiamano-con-supporto-smartphone-hd-nails-pink",
     "porta-pennelli-hdnails",
     "punta-carbide-cono",
+    "silky-touch-velo-di-dolcezza-spray-idratante",
     "smalto-semipermanente-cat-eye-03",
     "smalto-semipermanente-gelac-color-102",
     "smalto-semipermanente-gelac-color-144",
@@ -882,12 +881,13 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-09-19T08:51:03.073266+00:00",
+  "last_checked": "2026-09-22T09:21:59.539749+00:00",
   "last_added": [],
   "last_removed": [
-    "piastra-stamping-hdnailsr-5",
-    "smalto-semipermanente-gelac-color-238"
+    "hd-polygel-6-acrigel-costruttore",
+    "olio-cuticle-bergamotto",
+    "silky-touch-velo-di-dolcezza-spray-idratante"
   ],
-  "last_version": 32,
+  "last_version": 33,
   "last_manual_restored": []
 }
