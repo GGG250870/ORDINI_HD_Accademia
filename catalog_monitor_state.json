@@ -665,7 +665,6 @@
     "smalto-semipermanente-gelac-pigment-white",
     "smalto-semipermanente-gelac-platinum-05",
     "smalto-semipermanente-gelac-platinum-10",
-    "smalto-semipermanente-gelac-platinum-14",
     "smalto-semipermanente-gelac-platinum-champagne-11",
     "smalto-semipermanente-gelac-platinum-oro-03",
     "smalto-semipermanente-gelac-red-passion-211",
@@ -843,6 +842,7 @@
     "smalto-semipermanente-gelac-color-349",
     "smalto-semipermanente-gelac-glitter-color-122",
     "smalto-semipermanente-gelac-glitter-color-351",
+    "smalto-semipermanente-gelac-platinum-14",
     "smalto-semipermanente-gelac-platinum-prosecco-02",
     "smalto-semipermanente-neon-cat-eye-7",
     "smalto-semipermanente-pastel-cat-eye-1",
@@ -881,13 +881,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-09-22T09:21:59.539749+00:00",
+  "last_checked": "2026-09-23T09:22:05.099592+00:00",
   "last_added": [],
   "last_removed": [
-    "hd-polygel-6-acrigel-costruttore",
-    "olio-cuticle-bergamotto",
-    "silky-touch-velo-di-dolcezza-spray-idratante"
+    "smalto-semipermanente-gelac-platinum-14"
   ],
-  "last_version": 33,
+  "last_version": 34,
   "last_manual_restored": []
 }
