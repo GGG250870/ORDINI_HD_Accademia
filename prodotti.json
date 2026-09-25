@@ -8022,20 +8022,6 @@
     "url": "https://www.hdnails.it/scrub-rigenerante"
   },
   {
-    "id": "63176f4968598f42",
-    "sku": "Codice: set-lime-adesive-120",
-    "nome": "Set Lime adesive 120",
-    "categoria": "Altri prodotti",
-    "prezzo": 19.9,
-    "prezzo_str": "19,90 €",
-    "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_696094d718041.png",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/set-lime-adesive-120"
-  },
-  {
     "id": "0d7a62ecbb6c1203",
     "sku": "Codice: set-lime-adesive-120-2",
     "nome": "Set Lime adesive 120",
@@ -8048,6 +8034,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
     "specifiche": "",
     "url": "https://www.hdnails.it/set-lime-adesive-120-2"
+  },
+  {
+    "id": "63176f4968598f42",
+    "sku": "Codice: set-lime-adesive-120",
+    "nome": "Set Lime adesive 120",
+    "categoria": "Altri prodotti",
+    "prezzo": 19.9,
+    "prezzo_str": "19,90 €",
+    "prezzo_listino": null,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_696094d718041.png",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/set-lime-adesive-120"
   },
   {
     "id": "4946c07db2399928",
@@ -11095,7 +11095,7 @@
     "prezzo": 12.2,
     "prezzo_str": "12,20 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960d6e6a5a22.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down ✨ VELVET CAT EYE 03 Una tonalità taupe bronzata profonda e sofisticata, con riflessi metallici vellutati che catturano la luce con eleganza. La sua texture ultra-pigmentata e fluida garantisce una coprenza intensa già alla prima passata , donando un effetto luminoso e avvolgente. Può essere utilizzato senza calamita , per un effetto metallizzato uniforme , oppure con calamita , per creare riflessi dinamici e giochi di luce unici. Applicato in uno strato dona un effetto intenso e raffinato, mentre con due strati si ottiene una profondità tridimensionale ancora più avvolgente. 💎 Formula HEMA & TPO Free — sicura anche per le pelli più sensibili. ✨ Autolivellante e stabile, non cola. ⚡ Polimerizza in 60 secondi in lampada LED . 💅 Sigillare con Top Coat per un risultato impeccabile e duraturo. 📦 Formato professionale da 10 ml.",
     "specifiche": "",
