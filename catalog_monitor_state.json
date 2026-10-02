@@ -620,7 +620,6 @@
     "smalto-semipermanente-gelac-color-175",
     "smalto-semipermanente-gelac-color-203",
     "smalto-semipermanente-gelac-color-42",
-    "smalto-semipermanente-gelac-color-44",
     "smalto-semipermanente-gelac-color-82",
     "smalto-semipermanente-gelac-color-viola-fango-161",
     "smalto-semipermanente-gelac-dark-green-175",
@@ -840,6 +839,7 @@
     "smalto-semipermanente-gelac-color-16",
     "smalto-semipermanente-gelac-color-238",
     "smalto-semipermanente-gelac-color-349",
+    "smalto-semipermanente-gelac-color-44",
     "smalto-semipermanente-gelac-glitter-color-122",
     "smalto-semipermanente-gelac-glitter-color-351",
     "smalto-semipermanente-gelac-platinum-14",
@@ -881,11 +881,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-09-23T09:22:05.099592+00:00",
+  "last_checked": "2026-10-02T10:31:38.464760+00:00",
   "last_added": [],
   "last_removed": [
-    "smalto-semipermanente-gelac-platinum-14"
+    "smalto-semipermanente-gelac-color-44"
   ],
-  "last_version": 34,
+  "last_version": 35,
   "last_manual_restored": []
 }
