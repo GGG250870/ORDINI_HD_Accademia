@@ -2737,7 +2737,7 @@
     "prezzo": 12.2,
     "prezzo_str": "12,20 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960df58d9b26.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Gelac Rouge Noir Collection 127 Una collezione che porta in cabina i classici Rouge Noir che tutte le clienti chiedono ogni inverno. Otto tonalità profonde, ricche e avvolgenti: si parte dai rossi più intensi e vellutati fino ad arrivare ai piu scuri, eleganti e misteriosi. Una palette pensata per chi ama manicure che non passano inosservate. La texture cremosa e la coprenza elevata fin dalla prima passata rendono ogni colore una scelta strategica per lavori rapidi e di altissima resa, perfetti per la stagione fredda dove i toni scuri diventano protagonisti. La formula HEMA & TPO Free garantisce massima tollerabilità, mentre la poca dispersione assicura una stesura del top coat pulita e precisa,e una facilità nella creazione di nail art. Il pennello con setola tonda facilita il lavoro dal giro cuticola, aiutandoti a ottenere linee morbide, definite e un risultato estremamente professionale. Ogni colore è progettato per essere utilizzato da solo oppure come base ideale per nail art invernali, giochi di luce o dettagli minimal. Una collezione iconica, intensa e sofisticata: i Rouge Noir non stancano mai e continuano a essere un must assoluto per i mesi più freddi. Formato 12 g . Polimerizza in 60 secondi in lampada LED . Sigillare con Top Coat .",
     "specifiche": "",
@@ -6979,7 +6979,7 @@
     "prezzo": 4.1,
     "prezzo_str": "4,10 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_69608f1750918_1.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Glitter shimmer white Ultrasottile Glitter shimmer white Ultrasottile - Polvere effetto sirena molto fine.",
     "specifiche": "",
@@ -7040,6 +7040,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Porta Pennelli da Tavolo HDNails®",
     "specifiche": "",
     "url": "https://www.hdnails.it/porta-pennelli-da-tavolo"
+  },
+  {
+    "id": "aab818e403ef91b7",
+    "sku": "Codice: porta-pennelli-hdnails",
+    "nome": "Porta Pennelli HDNails",
+    "categoria": "Altri prodotti",
+    "prezzo": 8.9,
+    "prezzo_str": "8,90 €",
+    "prezzo_listino": null,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960955b9bf63_1.jpg",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down PORTA PENNELLO HD NAILS",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/porta-pennelli-hdnails"
   },
   {
     "id": "583f1897dad5897d",
