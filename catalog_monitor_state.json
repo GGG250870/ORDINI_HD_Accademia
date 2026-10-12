@@ -506,6 +506,7 @@
     "polvere-specchio-fuxia-16",
     "polvere-specchio-rosa-14",
     "porta-pennelli-da-tavolo",
+    "porta-pennelli-hdnails",
     "porta-punte-bianco",
     "porta-punte-lilla",
     "porta-punte-pink",
@@ -618,7 +619,6 @@
     "smalto-semipermanente-gelac-color-153",
     "smalto-semipermanente-gelac-color-156",
     "smalto-semipermanente-gelac-color-175",
-    "smalto-semipermanente-gelac-color-203",
     "smalto-semipermanente-gelac-color-42",
     "smalto-semipermanente-gelac-color-82",
     "smalto-semipermanente-gelac-color-viola-fango-161",
@@ -837,6 +837,7 @@
     "smalto-semipermanente-gelac-color-102",
     "smalto-semipermanente-gelac-color-144",
     "smalto-semipermanente-gelac-color-16",
+    "smalto-semipermanente-gelac-color-203",
     "smalto-semipermanente-gelac-color-238",
     "smalto-semipermanente-gelac-color-349",
     "smalto-semipermanente-gelac-color-44",
@@ -881,11 +882,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-02T10:31:38.464760+00:00",
+  "last_checked": "2026-10-12T11:56:03.426638+00:00",
   "last_added": [],
   "last_removed": [
-    "smalto-semipermanente-gelac-color-44"
+    "smalto-semipermanente-gelac-color-203"
   ],
-  "last_version": 35,
+  "last_version": 36,
   "last_manual_restored": []
 }
