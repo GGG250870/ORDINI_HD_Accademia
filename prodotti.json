@@ -4950,7 +4950,7 @@
     "prezzo_str": "22,40 €",
     "prezzo_listino": null,
     "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/m/o/monofase_milkpink_baby_boomer.jpg",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/m/i/milk_pink_a.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Monofase Milk Pink Gel monofasico autolivellante facile da modellare. La sua elegante colorazione rosa lattiginoso semi coprente è pensata per uniformare perfettamente la sfumatura del baby boomer, regalando un effetto naturale e sofisticato. Perfetto per refill, coperture e ricostruzioni, può essere utilizzato anche senza base. Per una massima aderenza e durata, si consiglia l’abbinamento con Base Fiber . Formula HEMA-free , delicata sull’unghia naturale e ideale anche per clienti più sensibili. Il gel indispensabile per chi ama il baby boomer impeccabile e uno stile sempre elegante.",
     "specifiche": "",
     "url": "https://www.hdnails.it/monofase-milk-pink"
@@ -8036,20 +8036,6 @@
     "url": "https://www.hdnails.it/scrub-rigenerante"
   },
   {
-    "id": "0d7a62ecbb6c1203",
-    "sku": "Codice: set-lime-adesive-120-2",
-    "nome": "Set Lime adesive 120",
-    "categoria": "Altri prodotti",
-    "prezzo": 32.98,
-    "prezzo_str": "32,98 €",
-    "prezzo_listino": 32.98,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
-  },
-  {
     "id": "63176f4968598f42",
     "sku": "Codice: set-lime-adesive-120",
     "nome": "Set Lime adesive 120",
@@ -8062,6 +8048,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
     "specifiche": "",
     "url": "https://www.hdnails.it/set-lime-adesive-120"
+  },
+  {
+    "id": "0d7a62ecbb6c1203",
+    "sku": "Codice: set-lime-adesive-120-2",
+    "nome": "Set Lime adesive 120",
+    "categoria": "Altri prodotti",
+    "prezzo": 32.98,
+    "prezzo_str": "32,98 €",
+    "prezzo_listino": 32.98,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
   },
   {
     "id": "4946c07db2399928",
