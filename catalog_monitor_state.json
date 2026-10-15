@@ -723,7 +723,6 @@
     "spider-gel-gold-gel-da-decorazione",
     "spider-gel-rosso-gel-da-decorazione",
     "spider-gel-silver-gel-da-decorazione",
-    "spider-gel-white-gel-da-decorazione",
     "spingi-cuticole-bastoncino-d-arancio-spingipelle",
     "spingi-cuticole-spingipelle",
     "spingipelle-lama-a-punta",
@@ -847,6 +846,7 @@
     "smalto-semipermanente-gelac-platinum-prosecco-02",
     "smalto-semipermanente-neon-cat-eye-7",
     "smalto-semipermanente-pastel-cat-eye-1",
+    "spider-gel-white-gel-da-decorazione",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
     "tips-in-gel-forma-mandorla-a-punta",
@@ -882,11 +882,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-12T11:56:03.426638+00:00",
+  "last_checked": "2026-10-15T09:09:01.089803+00:00",
   "last_added": [],
   "last_removed": [
-    "smalto-semipermanente-gelac-color-203"
+    "spider-gel-white-gel-da-decorazione"
   ],
-  "last_version": 36,
+  "last_version": 37,
   "last_manual_restored": []
 }
