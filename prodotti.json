@@ -2737,7 +2737,7 @@
     "prezzo": 12.2,
     "prezzo_str": "12,20 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960df58d9b26.png",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Gelac Rouge Noir Collection 127 Una collezione che porta in cabina i classici Rouge Noir che tutte le clienti chiedono ogni inverno. Otto tonalità profonde, ricche e avvolgenti: si parte dai rossi più intensi e vellutati fino ad arrivare ai piu scuri, eleganti e misteriosi. Una palette pensata per chi ama manicure che non passano inosservate. La texture cremosa e la coprenza elevata fin dalla prima passata rendono ogni colore una scelta strategica per lavori rapidi e di altissima resa, perfetti per la stagione fredda dove i toni scuri diventano protagonisti. La formula HEMA & TPO Free garantisce massima tollerabilità, mentre la poca dispersione assicura una stesura del top coat pulita e precisa,e una facilità nella creazione di nail art. Il pennello con setola tonda facilita il lavoro dal giro cuticola, aiutandoti a ottenere linee morbide, definite e un risultato estremamente professionale. Ogni colore è progettato per essere utilizzato da solo oppure come base ideale per nail art invernali, giochi di luce o dettagli minimal. Una collezione iconica, intensa e sofisticata: i Rouge Noir non stancano mai e continuano a essere un must assoluto per i mesi più freddi. Formato 12 g . Polimerizza in 60 secondi in lampada LED . Sigillare con Top Coat .",
     "specifiche": "",
@@ -6923,7 +6923,7 @@
     "prezzo": 3.95,
     "prezzo_str": "3,95 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960aa6d3b4f7_1.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Glitter Paillettes Oro 19 Glitter Paillettes Oro 19 - Polvere Glitter Paillettes Riflesso Oro per la Nail Art. Questa Paillettes sono molto fini. Se si vuole ottenere l'effetto in rilievo, utilizzate uno stratto di Gleam top , base senza dispersione, utilizzata anche per polvere cromata a effetto a specchio. Modalità di applicazione: Stendere la base senza dispersione Gleam top (consigliamo questa base perché catalizza in lampada lentamente) E versate la polvere sul prodotto non polimerizzato. Dopodiché far polimerizzare 60 sec. in lampada a Led uv. E' importante utilizzare un prodotto senza dispersione se si vuole avere l'effetto 3D Altrimenti potete chiudere con un gel o gloss denso. Limate leggermente tutto il bordo libero dell'unghia, In modo che il gel lucido che avete scelto si aggrappi bene alla base. Se siete abituate a chiudere con un gel, vi consiglio il Monofasico Master o Monofasico Unifast. Noi consigliamo sempre di chiudere con un gel per avere maggiore durata. Già che facilmente si consumano le punte e si rischiano i sollevamenti. Invece se Preferite chiudere con un lucido a smalto potete utilizzare il Glossy top , lucido perfetto per la sua densità leggermente denso.",
     "specifiche": "",
@@ -7054,20 +7054,6 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down PRIMER ACIDO CHERATINA PRIMER ACIDO CHERATINA - Preparatore di adesione da utilizzare dopo la manicure e prima della Base gel ***ATTENZIONE*** Applicare solo su unghia naturale, stando attenti a non toccare la pelle.",
     "specifiche": "",
     "url": "https://www.hdnails.it/primer-acido-cheratina"
-  },
-  {
-    "id": "f10da655a5c81533",
-    "sku": "Codice: punta-carbide-new",
-    "nome": "Punta Carbide New",
-    "categoria": "Altri prodotti",
-    "prezzo": 17.9,
-    "prezzo_str": "17,90 €",
-    "prezzo_listino": null,
-    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ae1b525a8_1.jpg",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Punta Carbide New La punta Carbide New è una punta in carbide a forma cilindrica con estremità arrotondata , progettata per garantire una rimozione efficace del prodotto senza rischi, anche per chi è alle prime armi . La sua forma regolare e la testa tonda la rendono estremamente sicura da utilizzare, specialmente nella zona del giro cuticola , dove il rischio di ferire la cliente è più alto. Perfetta per chi sta imparando ad usare la fresa o per chi desidera lavorare con maggiore tranquillità. Caratteristiche principali: Forma cilindrica con punta arrotondata , ideale per una rimozione uniforme e controllata. Materiale in carbide : durevole, performante e adatto a tutti i tipi di prodotto (gel, acrigel, semipermanente). Fascia abrasiva media (blu) , abbastanza potente da rimuovere il materiale ma delicata nel contatto con la pelle. Funzione: Rimozione sicura del prodotto , anche vicino alla zona cuticolare. Livellamento della struttura nei refill o prima della nuova applicazione. Ideale per operatori alle prime armi , ma apprezzata anche dai professionisti Consigli d’uso: Utilizzare a velocità medio-bassa , specialmente nelle zone delicate. Evitare pressioni eccessive: la punta lavora in modo fluido ed efficace anche con movimenti leggeri. Pulire regolarmente per garantire performance costante nel tempo.",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/punta-carbide-new"
   },
   {
     "id": "62132ef245246786",
@@ -7264,20 +7250,6 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Punta diamantata sfera 5mm Punta diamantata sfera per cuticole. Adatto per uso professionale.",
     "specifiche": "",
     "url": "https://www.hdnails.it/punta-diamantata-sfera-5mm"
-  },
-  {
-    "id": "2fd94641e312fc5f",
-    "sku": "Codice: punta-fiamma-big-blu",
-    "nome": "punta fiamma Big Blu",
-    "categoria": "Altri prodotti",
-    "prezzo": 6.9,
-    "prezzo_str": "6,90 €",
-    "prezzo_listino": null,
-    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ae288471e_1.jpg",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Punta Fiamma Big Blu La punta Fiamma Big a fascia blu è pensata per le onicotecniche che desiderano massima efficacia nella rimozione delle cuticole e nella preparazione della piega prossimale per un effetto “colore sotto cuticola” perfetto. Rispetto alle fiamme classiche, la sua dimensione maggiorata consente di lavorare più rapidamente e in modo più profondo, alzando delicatamente la piega cuticolare per creare lo spazio necessario a una stesura del colore pulita, precisa e duratura. Caratteristiche principali: 🔵 Fascia blu : abrasività media per una rimozione decisa ma controllata 🔥 Forma a fiamma oversize , ideale per sollevare la piega prossimale e accedere facilmente alla zona sotto cuticola 💎 Taglio fine e fluido , perfetto per eliminare pellicine secche senza irritare la pelle 🧠 Ottima per manicure dry e tecniche combinate ad alta definizione Funzione: Rimuove efficacemente le cuticole aderenti Solleva e apre delicatamente la piega prossimale Prepara l’unghia per una stesura del colore estremamente ravvicinata , con effetto \"wow\" Riduce i tempi di lavoro grazie alla sua dimensione più ampia Consigli d’uso: Utilizzare a velocità medio-bassa , senza pressione",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/punta-fiamma-big-blu"
   },
   {
     "id": "317c838790fe9e4c",
@@ -7628,20 +7600,6 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down La punta Sotto Scalino Big è studiata per offrire massima efficacia e velocità nelle fasi di refill correttivo o rimozione dello scalino tipico delle tecniche con dual form . Grazie alla sua dimensione maggiorata rispetto alle punte standard e alla fascia abrasiva verde , questa punta consente una lavorazione sicura, fluida e senza sforzo anche in presenza di grosse quantità di prodotto o dislivelli marcati. Caratteristiche principali: Diametro più grande , ideale per coprire superfici ampie in meno passaggi, risparmiando tempo e riducendo l’affaticamento della mano. Fascia verde : abrasività alta, perfetta per eliminare grandi quantita di prodotto Forma a cono , studiata per adattarsi alla curva dell’unghia e lavorare agevolmente sia sulla superficie centrale che nei punti critici dello scalino. Taglio incrociato per una rimozione decisa ma fluida, con scarico ottimale della polvere. Funzione: Perfetta per: Uniformare lo scalino tra prodotto vecchio e nuovo nella fase di refill correttivo. Rimuovere velocemente l’eccesso di prodotto nelle ricostruzioni con dual form, soprattutto quando il materiale è abbondante o troppo spesso. Pre-limatura veloce prima della definizione con punte più sottili. Consigli d’uso: Utilizzare a velocità media/alta su gel, acrigel o cover induriti. Procedere con movimenti fluidi e senza pressione, lasciando che sia la punta a fare il lavoro.",
     "specifiche": "",
     "url": "https://www.hdnails.it/punta-sotto-scalino-big-fascia-verde"
-  },
-  {
-    "id": "77f5f35d2f230aa8",
-    "sku": "Codice: punta-sottoscalino-fascia-blu",
-    "nome": "Punta Sottoscalino Fascia Blu",
-    "categoria": "Altri prodotti",
-    "prezzo": 13.9,
-    "prezzo_str": "13,90 €",
-    "prezzo_listino": null,
-    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ac3591d9e_1.jpg",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down La punta fresa sottoscalino con fascia blu è lo strumento ideale per eseguire refill correttivi con precisione e facilità. Grazie alla sua grana media e alla forma specifica , questa punta permette di lavorare con controllo totale, uniformando perfettamente la superficie dell'unghia e garantendo un risultato pulito e omogeneo . La sua forma ergonomica è studiata per arrivare facilmente anche nelle zone più vicine alla pelle , assicurando una rifinitura precisa e sicura senza rischio di danneggiare la pelle o l’unghia naturale. Realizzata con materiali di alta qualità , offre durata e resistenza anche con un uso intensivo, garantendo risultati professionali e impeccabili. La soluzione perfetta per rimuovere lo scalino e perfezionare refill correttivi, con precisione assoluta anche nelle zone più delicate!",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/punta-sottoscalino-fascia-blu"
   },
   {
     "id": "cb83d6e5236310bf",

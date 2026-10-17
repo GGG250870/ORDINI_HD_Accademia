@@ -507,7 +507,6 @@
     "porta-punte-lilla",
     "porta-punte-pink",
     "primer-acido-cheratina",
-    "punta-carbide-new",
     "punta-cono-2-in-1-fascia-blu",
     "punta-cono-2-in-1-fascia-verde",
     "punta-cono-a-punta",
@@ -522,7 +521,6 @@
     "punta-da-rifinitura",
     "punta-definizione-muretto-carbide",
     "punta-diamantata-sfera-5mm",
-    "punta-fiamma-big-blu",
     "punta-fiamma-big-red",
     "punta-fiamma-blu-1-5mm",
     "punta-fiamma-blu-1-mm",
@@ -548,7 +546,6 @@
     "punta-sfera-rossa-3mm",
     "punta-sotto-scalino-big-fascia-blu",
     "punta-sotto-scalino-big-fascia-verde",
-    "punta-sottoscalino-fascia-blu",
     "raspa-per-pedicure",
     "red-cat-eye-01",
     "red-cat-eye-02",
@@ -826,6 +823,9 @@
     "poggiamano-con-supporto-smartphone-hd-nails-pink",
     "porta-pennelli-hdnails",
     "punta-carbide-cono",
+    "punta-carbide-new",
+    "punta-fiamma-big-blu",
+    "punta-sottoscalino-fascia-blu",
     "silky-touch-velo-di-dolcezza-spray-idratante",
     "smalto-semipermanente-cat-eye-03",
     "smalto-semipermanente-cat-eye-26",
@@ -881,18 +881,13 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-16T09:01:18.875574+00:00",
+  "last_checked": "2026-10-17T08:35:14.034016+00:00",
   "last_added": [],
   "last_removed": [
-    "glass-top-26-top-coat-semipermanente",
-    "jelly-soft-4-gel-costruttore",
-    "kit-spider-gel-set-di-5-gel-per-decorazioni",
-    "porta-pennelli-hdnails",
-    "smalto-semipermanente-cat-eye-26",
-    "smalto-semipermanente-gelac-color-129",
-    "smalto-semipermanente-gelac-platinum-oro-03",
-    "smalto-semipermanente-neon-cat-eye-4"
+    "punta-carbide-new",
+    "punta-fiamma-big-blu",
+    "punta-sottoscalino-fascia-blu"
   ],
-  "last_version": 38,
+  "last_version": 39,
   "last_manual_restored": []
 }
