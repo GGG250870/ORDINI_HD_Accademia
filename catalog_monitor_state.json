@@ -97,7 +97,6 @@
     "calamita-cat-eye",
     "calamita-strong-5-in-1",
     "callus-remover",
-    "candela-per-massaggio-spa-te-bianco",
     "cappucci-fresa-sanding-100pz",
     "cartella-colori-gelac-burgundy-butter-me-up-collection",
     "cartella-colori-gelac-ice-cream",
@@ -125,7 +124,6 @@
     "dispenser-liquid",
     "double-dual-form-ballerina-square-salon-style",
     "dual-form-12-forme",
-    "dual-form-12-forme-pro",
     "dual-form-4-forme-siliconi",
     "dual-form-ballerina-slim",
     "dual-form-butterfly",
@@ -159,7 +157,6 @@
     "easy-cover-19-gel-costruttore",
     "easy-cover-20-gel-costruttore",
     "easy-cover-21-gel-costruttore",
-    "easy-cover-22-gel-costruttore",
     "easy-cover-23-gel-costruttore",
     "easy-cover-26-gel-costruttore-autolivellante-limited-edition",
     "easy-cover-8-gel-costruttore",
@@ -196,7 +193,6 @@
     "gelac-color-09",
     "gelac-flexy-base-hema-free",
     "gelac-milk-top-top-coat",
-    "gelac-rouge-noir-collection-127",
     "gelac-rouge-noir-collection-128",
     "gelac-rouge-noir-collection-129",
     "gelac-rouge-noir-collection-130",
@@ -552,7 +548,6 @@
     "red-cat-eye-03",
     "red-cat-eye-04",
     "red-cat-eye-05",
-    "red-cat-eye-06",
     "remover-smalto-semipermanente",
     "ricambi-punta-mandrino-piccola",
     "riparatore-unghie-naturali",
@@ -569,7 +564,6 @@
     "russian-builder-souffle-nude-4",
     "russian-builder-souffle-nude-5",
     "russian-mandorla-gel-tips",
-    "scrub-rigenerante",
     "set-lime-adesive-120",
     "set-lime-adesive-120-2",
     "set-lime-adesive-150",
@@ -781,7 +775,6 @@
     "unicorn-liquid-polygel-04",
     "velvet-cat-eye-01",
     "velvet-cat-eye-02",
-    "velvet-cat-eye-03",
     "velvet-cat-eye-04",
     "velvet-cat-eye-05",
     "velvet-cat-eye-06",
@@ -806,11 +799,15 @@
   "removed_keys": [
     "aspiratore-professionale-da-tavolo-new",
     "calamita-cat-eye-double",
+    "candela-per-massaggio-spa-te-bianco",
+    "dual-form-12-forme-pro",
+    "easy-cover-22-gel-costruttore",
     "easy-cover-24-gel-costruttore-autolivellante-limited-edition",
     "easy-cover-25-gel-costruttore-autolivellante-limited-edition",
     "forbicina-comfort-cut-pro",
     "full-sculpt-dual-form-mandorla",
     "gelac-burgundy-collection-1",
+    "gelac-rouge-noir-collection-127",
     "glass-top-26-top-coat-semipermanente",
     "hd-polygel-6-acrigel-costruttore",
     "jelly-soft-4-gel-costruttore",
@@ -826,6 +823,8 @@
     "punta-carbide-new",
     "punta-fiamma-big-blu",
     "punta-sottoscalino-fascia-blu",
+    "red-cat-eye-06",
+    "scrub-rigenerante",
     "silky-touch-velo-di-dolcezza-spray-idratante",
     "smalto-semipermanente-cat-eye-03",
     "smalto-semipermanente-cat-eye-26",
@@ -849,7 +848,8 @@
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
     "tips-in-gel-forma-mandorla-a-punta",
-    "top-coat-gelac-glitter-gloss-rose"
+    "top-coat-gelac-glitter-gloss-rose",
+    "velvet-cat-eye-03"
   ],
   "last_news": [
     {
@@ -881,13 +881,17 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-17T08:35:14.034016+00:00",
+  "last_checked": "2026-10-20T09:26:02.271511+00:00",
   "last_added": [],
   "last_removed": [
-    "punta-carbide-new",
-    "punta-fiamma-big-blu",
-    "punta-sottoscalino-fascia-blu"
+    "candela-per-massaggio-spa-te-bianco",
+    "dual-form-12-forme-pro",
+    "easy-cover-22-gel-costruttore",
+    "gelac-rouge-noir-collection-127",
+    "red-cat-eye-06",
+    "scrub-rigenerante",
+    "velvet-cat-eye-03"
   ],
-  "last_version": 39,
+  "last_version": 40,
   "last_manual_restored": []
 }
