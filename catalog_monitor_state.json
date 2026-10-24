@@ -107,7 +107,6 @@
     "cleanser-rosa-fragola",
     "cleanser-viola-bergamotto",
     "competition-clear-base-builder",
-    "cover-up-base-builder",
     "creamy-cover-1",
     "creamy-cover-10",
     "creamy-cover-11",
@@ -545,6 +544,7 @@
     "red-cat-eye-03",
     "red-cat-eye-04",
     "red-cat-eye-05",
+    "red-cat-eye-06",
     "remover-smalto-semipermanente",
     "ricambi-punta-mandrino-piccola",
     "riparatore-unghie-naturali",
@@ -772,6 +772,7 @@
     "unicorn-liquid-polygel-04",
     "velvet-cat-eye-01",
     "velvet-cat-eye-02",
+    "velvet-cat-eye-03",
     "velvet-cat-eye-04",
     "velvet-cat-eye-05",
     "velvet-cat-eye-06",
@@ -797,6 +798,7 @@
     "aspiratore-professionale-da-tavolo-new",
     "calamita-cat-eye-double",
     "candela-per-massaggio-spa-te-bianco",
+    "cover-up-base-builder",
     "dual-form-12-forme-pro",
     "easy-cover-22-gel-costruttore",
     "easy-cover-24-gel-costruttore-autolivellante-limited-edition",
@@ -882,14 +884,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-21T09:26:06.719338+00:00",
+  "last_checked": "2026-10-24T08:54:12.010713+00:00",
   "last_added": [],
   "last_removed": [
-    "gelac-burgundy-collection-5",
-    "piastra-stamping-hdnailsr-35",
-    "polvere-glitter-paillettes-oro-19",
-    "polvere-specchio-rosa-14"
+    "cover-up-base-builder"
   ],
-  "last_version": 41,
+  "last_version": 42,
   "last_manual_restored": []
 }
