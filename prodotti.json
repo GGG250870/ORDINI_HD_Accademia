@@ -4025,7 +4025,7 @@
     "prezzo": 1.0,
     "prezzo_str": "1,00 €",
     "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6967705629557_1.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Lima Buffer 150/180 Lima Buffer 150/180 - Buffer Mezzaluna grana 150/180, Indispensabile per una Onicotecnica. Ottima per la ricostruzione unghie in gel e acrilico, perfetta per lo smalto semipermanente, in quanto ha due tipi di grana. Ha un'ottima durata! Questa Lima Buffer è perfetta per opacizzare l'unghia naturale. Elimina perfettamente le righe della limatura. E' importante averla anche per la Nail Art. In quanto rimuove perfettamente le righe che lascia la lima.",
     "specifiche": "",
@@ -7826,20 +7826,6 @@
     "url": "https://www.hdnails.it/russian-mandorla-gel-tips"
   },
   {
-    "id": "0d7a62ecbb6c1203",
-    "sku": "Codice: set-lime-adesive-120-2",
-    "nome": "Set Lime adesive 120",
-    "categoria": "Altri prodotti",
-    "prezzo": 32.98,
-    "prezzo_str": "32,98 €",
-    "prezzo_listino": null,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
-  },
-  {
     "id": "63176f4968598f42",
     "sku": "Codice: set-lime-adesive-120",
     "nome": "Set Lime adesive 120",
@@ -7852,6 +7838,20 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Lime adesive 120 (senza supporto) Lime adesive 120 (senza supporto) - KIT LimE monouso grana 120. 50 PZ Grazie alla colla di ottima qualità si attacca perfettamente al supporto, diventando una perfetta lima. Ottima per ricostruzione unghie o pedicure. Lunga durata",
     "specifiche": "",
     "url": "https://www.hdnails.it/set-lime-adesive-120"
+  },
+  {
+    "id": "0d7a62ecbb6c1203",
+    "sku": "Codice: set-lime-adesive-120-2",
+    "nome": "Set Lime adesive 120",
+    "categoria": "Altri prodotti",
+    "prezzo": 32.98,
+    "prezzo_str": "32,98 €",
+    "prezzo_listino": null,
+    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ab2015133.png",
+    "descrizione": "plus minus Descrizione del prodotto chevron-down Set Lime adesive 120",
+    "specifiche": "",
+    "url": "https://www.hdnails.it/set-lime-adesive-120-2"
   },
   {
     "id": "4946c07db2399928",
