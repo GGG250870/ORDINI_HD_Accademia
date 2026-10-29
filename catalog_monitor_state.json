@@ -192,6 +192,7 @@
     "gelac-color-09",
     "gelac-flexy-base-hema-free",
     "gelac-milk-top-top-coat",
+    "gelac-rouge-noir-collection-127",
     "gelac-rouge-noir-collection-128",
     "gelac-rouge-noir-collection-129",
     "gelac-rouge-noir-collection-130",
@@ -226,6 +227,7 @@
     "jelly-cover-8",
     "jelly-cover-9",
     "jelly-glitter-pink-gel-costruttore",
+    "jelly-soft-4-gel-costruttore",
     "jelly-soft-perfect-nude",
     "jelly-ultra-glass",
     "jelly-white-perfect-french-gel-costruttore",
@@ -520,7 +522,6 @@
     "punta-fiamma-blu-2mm",
     "punta-fiamma-rossa-1-5mm",
     "punta-fiamma-rossa-1-mm",
-    "punta-flame-fascia-blu",
     "punta-flame-fascia-nera",
     "punta-flame-fascia-verde",
     "punta-fresa-mandrino",
@@ -825,6 +826,7 @@
     "punta-carbide-cono",
     "punta-carbide-new",
     "punta-fiamma-big-blu",
+    "punta-flame-fascia-blu",
     "punta-sottoscalino-fascia-blu",
     "red-cat-eye-06",
     "scrub-rigenerante",
@@ -884,11 +886,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-24T08:54:12.010713+00:00",
+  "last_checked": "2026-10-29T10:55:42.938245+00:00",
   "last_added": [],
   "last_removed": [
-    "cover-up-base-builder"
+    "punta-flame-fascia-blu"
   ],
-  "last_version": 42,
+  "last_version": 43,
   "last_manual_restored": []
 }
