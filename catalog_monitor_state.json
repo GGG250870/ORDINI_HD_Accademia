@@ -176,7 +176,6 @@
     "gel-monofasico-transparent-blue-kit-3pz-gel-costruttore",
     "gel-monofasico-unifast",
     "gel-paint-blue-gel-da-decorazione",
-    "gel-paint-corallo-gel-colorato",
     "gel-polish-remover",
     "gelac-burgundy-collection-1",
     "gelac-burgundy-collection-2",
@@ -472,6 +471,7 @@
     "plastilina-05-gel-da-decorazione",
     "plastilina-06-gel-da-decorazione",
     "poggiamani",
+    "poggiamano-con-supporto-smartphone-hd-nails-pink",
     "poggiamano-hd-nails-pink",
     "poggiamano-hd-nails-white",
     "polvere-chrome-1-new",
@@ -797,6 +797,7 @@
     "easy-cover-25-gel-costruttore-autolivellante-limited-edition",
     "forbicina-comfort-cut-pro",
     "full-sculpt-dual-form-mandorla",
+    "gel-paint-corallo-gel-colorato",
     "gelac-burgundy-collection-1",
     "gelac-burgundy-collection-5",
     "gelac-rouge-noir-collection-127",
@@ -886,19 +887,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-10-30T10:54:27.731194+00:00",
+  "last_checked": "2026-11-02T12:20:06.321348+00:00",
   "last_added": [],
   "last_removed": [
-    "hd-polygel-8-acrigel-costruttore",
-    "smalto-semipermanente-neon-cat-eye-1",
-    "smalto-semipermanente-neon-cat-eye-3",
-    "smalto-semipermanente-neon-cat-eye-6",
-    "smalto-semipermanente-neon-cat-eye-8",
-    "smalto-semipermanente-pastel-cat-eye-2",
-    "smalto-semipermanente-pastel-cat-eye-3",
-    "smalto-semipermanente-pastel-cat-eye-4",
-    "smalto-semipermanente-pastel-cat-eye-5"
+    "gel-paint-corallo-gel-colorato"
   ],
-  "last_version": 44,
+  "last_version": 45,
   "last_manual_restored": []
 }
