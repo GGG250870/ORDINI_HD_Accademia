@@ -1,12 +1,12 @@
-const CACHE_NAME='ordini-hd-accademia-v45';
-const FILES=['./style.css?v=45','./v4.css?v=45','./app.js?v=45','./catalog_patch.js?v=45','./danea_patch.js?v=45','./HDNails_Catalogo_Facebook_Commerce.csv?v=45','./app.webmanifest?v=45','./apri.html?v=45','./icon.svg'];
+const CACHE_NAME='ordini-hd-accademia-v46';
+const FILES=['./style.css?v=46','./v4.css?v=46','./app.js?v=46','./catalog_patch.js?v=46','./danea_patch.js?v=46','./HDNails_Catalogo_Facebook_Commerce.csv?v=46','./app.webmanifest?v=46','./apri.html?v=46','./icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(FILES)).catch(()=>null));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING')self.skipWaiting();});
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET')return;
   if(e.request.mode==='navigate'){
-    e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match('./index.html?v=45')));
+    e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match('./index.html?v=46')));
     return;
   }
   e.respondWith(fetch(e.request).then(r=>{let copy=r.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,copy)).catch(()=>{});return r;}).catch(()=>caches.match(e.request)));
