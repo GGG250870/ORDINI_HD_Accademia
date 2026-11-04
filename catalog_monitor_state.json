@@ -106,7 +106,6 @@
     "cleanser-inodore-the-verde",
     "cleanser-rosa-fragola",
     "cleanser-viola-bergamotto",
-    "competition-clear-base-builder",
     "creamy-cover-1",
     "creamy-cover-10",
     "creamy-cover-11",
@@ -255,7 +254,6 @@
     "kit-foil-metallic-set-pellicole-per-decorazione-unghie",
     "kit-fresa-lampada-poggiamano-gratis",
     "kit-gel-tips-lampada-mini",
-    "kit-gelac-colori-autumn-collection-set-di-12-smalti-semipermanente-2-omaggio",
     "kit-gelac-colori-nude-collection-set-di-6-smalti-semipermanente-1-omaggio",
     "kit-gelac-fluo-17-smalti-semipermanente-cartella-in-omaggio",
     "kit-lampada-poggiamano",
@@ -783,6 +781,7 @@
     "aspiratore-professionale-da-tavolo-new",
     "calamita-cat-eye-double",
     "candela-per-massaggio-spa-te-bianco",
+    "competition-clear-base-builder",
     "cover-up-base-builder",
     "dual-form-12-forme-pro",
     "easy-cover-22-gel-costruttore",
@@ -798,6 +797,7 @@
     "hd-polygel-6-acrigel-costruttore",
     "hd-polygel-8-acrigel-costruttore",
     "jelly-soft-4-gel-costruttore",
+    "kit-gelac-colori-autumn-collection-set-di-12-smalti-semipermanente-2-omaggio",
     "kit-gelac-componibile-10pz",
     "kit-gelac-componibile-12pz",
     "kit-gelac-componibile-16pz",
@@ -887,18 +887,12 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-03T11:54:04.431992+00:00",
+  "last_checked": "2026-11-04T12:05:55.740765+00:00",
   "last_added": [],
   "last_removed": [
-    "jelly-soft-4-gel-costruttore",
-    "kit-gelac-componibile-10pz",
-    "kit-gelac-componibile-12pz",
-    "kit-gelac-componibile-16pz",
-    "kit-gelac-misto",
-    "kit-promo-cat-eye",
-    "kit-unicorn-10pz",
-    "kit-unicorn-8pz"
+    "competition-clear-base-builder",
+    "kit-gelac-colori-autumn-collection-set-di-12-smalti-semipermanente-2-omaggio"
   ],
-  "last_version": 46,
+  "last_version": 47,
   "last_manual_restored": []
 }
