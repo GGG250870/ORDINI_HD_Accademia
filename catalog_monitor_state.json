@@ -513,7 +513,6 @@
     "punta-flame-fascia-nera",
     "punta-flame-fascia-verde",
     "punta-fresa-mandrino",
-    "punta-goccia-blu",
     "punta-goccia-diamantata",
     "punta-goccia-mini",
     "punta-mandrino-piccolo",
@@ -654,6 +653,14 @@
     "smalto-semipermanente-gelac-white-cloud-1",
     "smalto-semipermanente-gelac-white-cloud-2",
     "smalto-semipermanente-gelac-white-cloud-3",
+    "smalto-semipermanente-neon-cat-eye-1",
+    "smalto-semipermanente-neon-cat-eye-3",
+    "smalto-semipermanente-neon-cat-eye-6",
+    "smalto-semipermanente-neon-cat-eye-8",
+    "smalto-semipermanente-pastel-cat-eye-2",
+    "smalto-semipermanente-pastel-cat-eye-3",
+    "smalto-semipermanente-pastel-cat-eye-4",
+    "smalto-semipermanente-pastel-cat-eye-5",
     "smalto-semipermanente-super-lac-nude-185-semicoprente",
     "soft-acrigel-01-glitter-light-nude",
     "soft-acrigel-02-glitter-light-pink",
@@ -702,7 +709,6 @@
     "supporto-cellulare-con-ring-light",
     "supporto-lima-metallo",
     "supporto-plastica-lima-adesiva-flexy",
-    "tip-dimostrative-rotonde",
     "tips-anello-clear",
     "tips-anello-natural",
     "tips-cuore",
@@ -816,6 +822,7 @@
     "punta-carbide-new",
     "punta-fiamma-big-blu",
     "punta-flame-fascia-blu",
+    "punta-goccia-blu",
     "punta-sottoscalino-fascia-blu",
     "red-cat-eye-06",
     "scrub-rigenerante",
@@ -852,6 +859,7 @@
     "spider-gel-white-gel-da-decorazione",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
+    "tip-dimostrative-rotonde",
     "tips-in-gel-forma-mandorla-a-punta",
     "top-coat-gelac-glitter-gloss-rose",
     "velvet-cat-eye-03"
@@ -886,15 +894,12 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-12T12:34:37.472041+00:00",
+  "last_checked": "2026-11-16T12:41:46.833260+00:00",
   "last_added": [],
   "last_removed": [
-    "kit-easy-cover-4-1-omaggio",
-    "smalto-semipermanente-cat-eye-26",
-    "smalto-semipermanente-gelac-color-viola-fango-161",
-    "smalto-semipermanente-gelac-platinum-05",
-    "smalto-semipermanente-gelac-platinum-champagne-11"
+    "punta-goccia-blu",
+    "tip-dimostrative-rotonde"
   ],
-  "last_version": 48,
+  "last_version": 49,
   "last_manual_restored": []
 }
