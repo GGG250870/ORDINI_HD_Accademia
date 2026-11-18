@@ -563,7 +563,6 @@
     "silky-mousse-coconut-clean-mani-cuticole",
     "silky-mousse-vitamina-c-clean-mani-cuticole",
     "silky-touch-4-1-omaggio",
-    "silky-touch-bianco-latte-spray-idratante",
     "silky-touch-flower-spray-idratante",
     "silky-touch-pera-vaniglia-spray-idratante",
     "silky-touch-sweet-cream-spray-idratante",
@@ -826,6 +825,7 @@
     "punta-sottoscalino-fascia-blu",
     "red-cat-eye-06",
     "scrub-rigenerante",
+    "silky-touch-bianco-latte-spray-idratante",
     "silky-touch-velo-di-dolcezza-spray-idratante",
     "smalto-semipermanente-cat-eye-03",
     "smalto-semipermanente-cat-eye-26",
@@ -894,12 +894,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-16T12:41:46.833260+00:00",
+  "last_checked": "2026-11-18T12:59:52.045009+00:00",
   "last_added": [],
   "last_removed": [
-    "punta-goccia-blu",
-    "tip-dimostrative-rotonde"
+    "silky-touch-bianco-latte-spray-idratante"
   ],
-  "last_version": 49,
+  "last_version": 50,
   "last_manual_restored": []
 }
