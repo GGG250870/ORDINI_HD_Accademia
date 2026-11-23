@@ -224,6 +224,7 @@
     "jelly-cover-8",
     "jelly-cover-9",
     "jelly-glitter-pink-gel-costruttore",
+    "jelly-soft-4-gel-costruttore",
     "jelly-soft-perfect-nude",
     "jelly-ultra-glass",
     "jelly-white-perfect-french-gel-costruttore",
@@ -425,6 +426,7 @@
     "piastra-stamping-hdnailsr-14",
     "piastra-stamping-hdnailsr-15",
     "piastra-stamping-hdnailsr-16",
+    "piastra-stamping-hdnailsr-17",
     "piastra-stamping-hdnailsr-18",
     "piastra-stamping-hdnailsr-19",
     "piastra-stamping-hdnailsr-2",
@@ -444,11 +446,13 @@
     "piastra-stamping-hdnailsr-32",
     "piastra-stamping-hdnailsr-33",
     "piastra-stamping-hdnailsr-34",
+    "piastra-stamping-hdnailsr-35",
     "piastra-stamping-hdnailsr-36",
     "piastra-stamping-hdnailsr-37",
     "piastra-stamping-hdnailsr-38",
     "piastra-stamping-hdnailsr-39",
     "piastra-stamping-hdnailsr-4",
+    "piastra-stamping-hdnailsr-5",
     "piastra-stamping-hdnailsr-6",
     "piastra-stamping-hdnailsr-7",
     "piastra-stamping-hdnailsr-8",
@@ -689,7 +693,6 @@
     "spider-gel-silver-gel-da-decorazione",
     "spingi-cuticole-bastoncino-d-arancio-spingipelle",
     "spingi-cuticole-spingipelle",
-    "spingipelle-lama-a-punta",
     "strong-acrigel-1-clear",
     "strong-acrigel-10-dirty-nude",
     "strong-acrigel-11-lilla",
@@ -857,6 +860,7 @@
     "smalto-semipermanente-pastel-cat-eye-4",
     "smalto-semipermanente-pastel-cat-eye-5",
     "spider-gel-white-gel-da-decorazione",
+    "spingipelle-lama-a-punta",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
     "tip-dimostrative-rotonde",
@@ -894,11 +898,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-18T12:59:52.045009+00:00",
+  "last_checked": "2026-11-23T14:26:15.119760+00:00",
   "last_added": [],
   "last_removed": [
-    "silky-touch-bianco-latte-spray-idratante"
+    "spingipelle-lama-a-punta"
   ],
-  "last_version": 50,
+  "last_version": 51,
   "last_manual_restored": []
 }

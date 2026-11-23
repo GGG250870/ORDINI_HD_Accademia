@@ -2793,7 +2793,7 @@
     "prezzo": 7.95,
     "prezzo_str": "7,95 €",
     "prezzo_listino": 15.9,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_6960ad7074e0b_1.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down ✨ Glass Top 21 ✨ !!HEMA FREE!! Un top coat senza dispersione dal finish ultra-luminoso arricchito da una sfumatura rossa , perfetto per esaltare ogni dettaglio delle tue nail art. Ideale per creare effetti con polveri cromate, pigmenti specchiati o Cat Eye , donando profondità e brillantezza con un sofisticato effetto vetro colorato . Perfetto sopra decorazioni artistiche. Non crea spessore e garantisce una brillantezza estrema a lunga durata . 💎 Per un finish professionale, elegante e ricercato, con un tocco di colore in più. Polimerizza in 60 secondi in Lampada led .",
     "specifiche": "",
@@ -5565,7 +5565,7 @@
     "prezzo": 9.6,
     "prezzo_str": "9,60 €",
     "prezzo_listino": 12.0,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
+    "disponibilita": "Non disponibile Aggiungi alla lista desideri",
     "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/n/_/n_3_a.jpg",
     "descrizione": "plus minus Descrizione del prodotto chevron-down Pennello Acrilico N.3 – L'equilibrio perfetto tra controllo e versatilità. Se cerchi un pennello per acrilico che ti accompagni in ogni fase del lavoro, il Pennello Acrilico N.3 è la scelta giusta. La sua setola naturale da 3 mm di larghezza e 9 mm di lunghezza offre il perfetto equilibrio. La setola più lunga rispetto ai pennelli di precisione ti permette di prelevare la giusta quantità di prodotto e distribuirla in modo uniforme. Perché sceglierlo: Setola naturale versatile: 3 mm di larghezza, 9 mm di lunghezza Equilibrio ideale tra precisione e capacità di prodotto Perfetto per ricostruzione, modellazione e lavoro quotidiano",
     "specifiche": "",
@@ -9658,20 +9658,6 @@
     "descrizione": "plus minus Descrizione del prodotto chevron-down Spingi Cuticole bastoncino d'arancio - Spingi pelle. In acciaio inox - Questo nuovo spingipelle con la sua punta a bastoncino d'arancio ti permette di sollevare e staccare le cuticole ruvide e fortemente attaccati all'unghia. Grazie anche alle mini lime adesive che abbiamo creato apposta. Potrai finalmente opocizzare bene vicino alle cuticole.",
     "specifiche": "",
     "url": "https://www.hdnails.it/spingi-cuticole-bastoncino-d-arancio-spingipelle"
-  },
-  {
-    "id": "e571622866f8d153",
-    "sku": "Codice: spingipelle-lama-a-punta",
-    "nome": "Spingipelle lama a punta",
-    "categoria": "Altri prodotti",
-    "prezzo": 7.95,
-    "prezzo_str": "7,95 €",
-    "prezzo_listino": 15.9,
-    "disponibilita": "Disponibile Aggiungi alla lista desideri",
-    "immagine": "https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/w/o/woo_img_69608fd819df3_1.jpg",
-    "descrizione": "plus minus Descrizione del prodotto chevron-down Spingi pelle in acciaio inox con lama a punta",
-    "specifiche": "",
-    "url": "https://www.hdnails.it/spingipelle-lama-a-punta"
   },
   {
     "id": "b03c6fa398db57ef",
