@@ -88,8 +88,7 @@ function patchMail(){
 function patchWa(){
   if(!req())return;
   saveOrder();
-  patchDaneaCsv();
-  setTimeout(()=>{location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text())},300);
+  location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text());
 }
 function patchPrintOrder(){
   if(!req())return;
@@ -175,5 +174,6 @@ filter=function(){
 load();
 $('#mail').onclick=mail;
 $('#mailEml').onclick=patchMail;
+$('#downloadCsv').onclick=()=>{if(req())patchDaneaCsv()};
 $('#wa').onclick=patchWa;
 $('#print').onclick=patchPrintOrder;

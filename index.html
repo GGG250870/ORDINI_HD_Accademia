@@ -9,9 +9,9 @@
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="app.webmanifest?v=53">
-<link rel="stylesheet" href="style.css?v=53">
-<link rel="stylesheet" href="v4.css?v=53">
+<link rel="manifest" href="app.webmanifest?v=54">
+<link rel="stylesheet" href="style.css?v=54">
+<link rel="stylesheet" href="v4.css?v=54">
 <title>ORDINI_HD_ACCADEMIA</title>
 <style>
 #updateNotice{display:none;position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top));z-index:9999;background:linear-gradient(135deg,#e4007f,#b40065);color:#fff;border-radius:16px;padding:11px 12px;box-shadow:0 8px 26px #0004;align-items:center;gap:10px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif}
@@ -39,12 +39,12 @@
 <footer id="bottom" class="bottom"><div><b id="bt">€0,00</b><br><span id="bi">0 articoli</span></div><button id="bottomOpen" type="button">Vedi ordine</button></footer>
 <div id="overlay" class="overlay"></div>
 <aside id="detail" class="sheet"><div class="head"><h2>Dettaglio prodotto</h2><button id="closeD">×</button></div><div class="sheetBody"><div id="dImg" class="detailBox"></div><h2 id="dTitle"></h2><div id="dCat" class="cat"></div><div id="dPrice" class="price"></div><div id="dAvail" class="avail"></div><button id="favDetail" class="full softBtn" type="button">⭐ Aggiungi ai preferiti</button><h3>Descrizione</h3><div id="dDesc" class="desc"></div><div id="specWrap"><h3>Specifiche</h3><div id="dSpec" class="desc"></div></div><button id="addD" class="primary full">Aggiungi al carrello</button></div></aside>
-<aside id="cart" class="sheet"><div class="head"><h2>Il tuo ordine</h2><button id="closeC">×</button></div><div id="cartItems" class="sheetBody"></div><div class="sheetBody"><div id="totals" class="totals"></div><input id="cust" class="field" placeholder="Ragione sociale o dati spedizione *"><textarea id="note" class="field" placeholder="Note ordine"></textarea><button id="wa" class="primary full">Invia WhatsApp</button><button id="mail" class="primary full">Apri email</button><button id="mailEml" class="full softBtn" type="button">Scarica email con allegato Danea</button><button id="print" class="primary full">Stampa / PDF</button><button id="clearCart" class="full">Svuota carrello</button></div></aside>
+<aside id="cart" class="sheet"><div class="head"><h2>Il tuo ordine</h2><button id="closeC">×</button></div><div id="cartItems" class="sheetBody"></div><div class="sheetBody"><div id="totals" class="totals"></div><input id="cust" class="field" placeholder="Ragione sociale o dati spedizione *"><textarea id="note" class="field" placeholder="Note ordine"></textarea><button id="wa" class="primary full">Invia WhatsApp</button><button id="mail" class="primary full">Apri email</button><button id="mailEml" class="full softBtn" type="button">Scarica email con allegato Danea</button><button id="downloadCsv" class="full softBtn" type="button">Scarica CSV Danea</button><button id="print" class="primary full">Stampa / PDF</button><button id="clearCart" class="full">Svuota carrello</button></div></aside>
 <aside id="profile" class="sheet"><div class="head"><h2>Scheda cliente</h2><button id="closeP">×</button></div><div class="sheetBody"><p class="mutedText">Compilala una volta: l'app userà questi dati per WhatsApp, email e PDF.</p><input id="cl_nome" class="field" placeholder="Ragione sociale / Nome e Cognome"><input id="cl_piva" class="field" placeholder="Partita IVA / Codice fiscale"><input id="cl_indirizzo" class="field" placeholder="Indirizzo"><input id="cl_cap" class="field" placeholder="CAP"><input id="cl_citta" class="field" placeholder="Città"><input id="cl_prov" class="field" placeholder="Provincia"><input id="cl_tel" class="field" placeholder="Telefono"><input id="cl_email" class="field" placeholder="Email"><button id="saveProfile" class="primary full">Salva dati cliente</button><button id="clearProfile" class="full">Cancella dati cliente</button></div></aside>
 <section id="printArea" class="printArea"></section>
 <script>
 (function(){
-  const APP_VERSION='53';
+  const APP_VERSION='54';
   const updateKey='hd_app_version';
   const reloadKey='hd_auto_reload_'+APP_VERSION;
   const newsKey='hd_news_seen_'+APP_VERSION;
@@ -91,8 +91,8 @@
   autoUpdate();
 })();
 </script>
-<script src="app.js?v=53"></script>
-<script src="catalog_patch.js?v=53"></script>
-<script src="danea_patch.js?v=53"></script>
+<script src="app.js?v=54"></script>
+<script src="catalog_patch.js?v=54"></script>
+<script src="danea_patch.js?v=54"></script>
 </body>
 </html>

@@ -36,3 +36,13 @@
 }
 
 @media (max-width:380px){.brand b{font-size:11px}.cartBtn,.secondaryMini{padding:0 8px;font-size:11px}.hero h1{font-size:17px}.quickGrid button{min-height:56px}.card{grid-template-columns:102px minmax(0,1fr)}.thumb{height:120px}.foot{grid-template-columns:44px 32px 44px minmax(86px,1fr)}.minus,.plus{width:44px}}
+
+
+/* I pannelli devono ricevere i tocchi sopra le barre fisse del catalogo. */
+.overlay{z-index:40}
+.sheet{z-index:41;overscroll-behavior:contain}
+body:has(.overlay.on){overflow:hidden}
+@media (max-width:640px){
+  #newsPopup{max-height:calc(100dvh - 24px - env(safe-area-inset-bottom));overflow-y:auto;margin-bottom:env(safe-area-inset-bottom)}
+  .foot>.avail{grid-column:1/-1}
+}
