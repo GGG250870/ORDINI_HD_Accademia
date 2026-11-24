@@ -1,5 +1,3 @@
-const PATCH_ORDER_EMAIL='ordiniaccademiasavona@gmail.com';
-const PATCH_ORDER_WA='393924983127';
 function patchCsvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"'}
 function patchOrderStamp(){
   let now=new Date();
@@ -43,7 +41,7 @@ function patchBuildEmailWithCsv(){
   let boundary='----ORDINI_HD_ACCADEMIA_'+Date.now();
   let body=text();
   let eml=[
-    'To: '+PATCH_ORDER_EMAIL,
+    'To: '+ORDER_EMAIL,
     'Subject: '+patchMimeHeader(subj),
     'MIME-Version: 1.0',
     'Content-Type: multipart/mixed; boundary="'+boundary+'"',
@@ -80,18 +78,18 @@ function patchMail(){
     let mail=patchBuildEmailWithCsv();
     if(!mail)return;
     patchDownloadBlob(new Blob([mail.eml],{type:'message/rfc822;charset=utf-8'}),mail.filename);
-    setTimeout(()=>alert('Ho scaricato una email pronta (.eml) gia indirizzata a '+PATCH_ORDER_EMAIL+' con il CSV Danea allegato. Apri il file scaricato e premi Invia.'),400);
+    setTimeout(()=>alert('Ho scaricato una email pronta (.eml) gia indirizzata a '+ORDER_EMAIL+' con il CSV Danea allegato. Apri il file scaricato e premi Invia.'),400);
   }catch(e){
     console.warn('Email con allegato non generata',e);
     patchDaneaCsv();
-    alert('Non riesco a creare automaticamente la mail con allegato su questo dispositivo. Ho scaricato il CSV Danea: allegalo manualmente a una mail per '+PATCH_ORDER_EMAIL+'.');
+    alert('Non riesco a creare automaticamente la mail con allegato su questo dispositivo. Ho scaricato il CSV Danea: allegalo manualmente a una mail per '+ORDER_EMAIL+'.');
   }
 }
 function patchWa(){
   if(!req())return;
   saveOrder();
   patchDaneaCsv();
-  setTimeout(()=>{location.href='https://wa.me/'+PATCH_ORDER_WA+'?text='+encodeURIComponent(text())},300);
+  setTimeout(()=>{location.href='https://wa.me/'+ORDER_WA+'?text='+encodeURIComponent(text())},300);
 }
 function patchPrintOrder(){
   if(!req())return;
@@ -133,11 +131,11 @@ function hdGroup(x){
   if(/top|gloss|lucid|sigillant|finish/.test(t)) return 'Top / Lucidi';
   if(/base gel|base rubber|flexy base|fiber base|base extra|gelac base|\bbase\b/.test(t)) return 'Basi';
   if(/gel in bottiglia/.test(c)) return 'Gel in bottiglia';
-  if(/acrygel|polygel|poly gel/.test(t)) return 'Acrygel / Polygel';
+  if(/acrygel|polygel|poly gel|polvere acrilica/.test(t)) return 'Acrygel / Polygel';
   if(/costrutt|builder|monofas|monofase|jelly cover|creamy cover|easy cover|gel da ricostruzione/.test(t)) return 'Costruttori';
   if(/semipermanent|gelac color|color gel|colore|smalt/.test(t)) return 'Colori';
   if(/primer|prep|deidrat|cleaner|remover|liquid|liquidi/.test(t)) return 'Preparatori e Liquidi';
-  if(/nail art|decoraz|glitter|cromat|pigment|foil|sticker|strass|paint/.test(t)) return 'Nail Art / Decorazioni';
+  if(/nail art|decoraz|glitter|cromat|chrome|rhinestone|pigment|foil|sticker|strass|paint/.test(t)) return 'Nail Art / Decorazioni';
   if(/dual form|\btip\b|nail form|cartin/.test(t)) return 'Dual Form / Tip';
   if(/lime|lima|buffer/.test(t)) return 'Lime / Buffer';
   if(/pennell/.test(t)) return 'Pennelli';
@@ -162,7 +160,7 @@ chips=function(){
 filter=function(){
   let arr=hdVisibleProducts();
   if(S.mode==='FAV')arr=arr.filter(x=>S.fav.includes(x.id));
-  if(S.mode==='NEWS')arr=arr.slice(-60).reverse();
+  if(S.mode==='NEWS')arr=arr.filter(isNews);
   S.f=arr.filter(x=>
     (S.cat==='ALL'||hdGroup(x)===S.cat) &&
     (!S.q||(x.nome+' '+x.categoria+' '+hdGroup(x)+' '+x.descrizione+' '+x.sku).toLowerCase().includes(S.q))
@@ -174,20 +172,8 @@ filter=function(){
   more();
 };
 
-setTimeout(()=>{
-  if(document.querySelector('#mail'))document.querySelector('#mail').onclick=patchMail;
-  if(document.querySelector('#wa'))document.querySelector('#wa').onclick=patchWa;
-  if(document.querySelector('#print'))document.querySelector('#print').onclick=patchPrintOrder;
-
-  let tries=0;
-  const refreshGroups=()=>{
-    tries++;
-    if(typeof S!=='undefined'&&Array.isArray(S.p)&&S.p.length){
-      chips();
-      filter();
-      return;
-    }
-    if(tries<40)setTimeout(refreshGroups,250);
-  };
-  refreshGroups();
-},300);
+load();
+$('#mail').onclick=mail;
+$('#mailEml').onclick=patchMail;
+$('#wa').onclick=patchWa;
+$('#print').onclick=patchPrintOrder;

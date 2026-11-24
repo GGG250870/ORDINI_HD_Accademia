@@ -1,4 +1,4 @@
-const CATALOG_PATCH_VERSION='52';
+const CATALOG_PATCH_VERSION='53';
 function cpCsvRows(txt){let rows=[],row=[],cell='',q=false;for(let i=0;i<txt.length;i++){let ch=txt[i],nx=txt[i+1];if(ch==='"'&&q&&nx==='"'){cell+='"';i++;continue}if(ch==='"'){q=!q;continue}if(ch===','&&!q){row.push(cell);cell='';continue}if((ch==='\n'||ch==='\r')&&!q){if(ch==='\r'&&nx==='\n')i++;row.push(cell);if(row.some(v=>v!==''))rows.push(row);row=[];cell='';continue}cell+=ch}row.push(cell);if(row.some(v=>v!==''))rows.push(row);return rows}
 function cpCsvObjects(txt){let rows=cpCsvRows(txt),head=rows.shift()||[];return rows.map(r=>Object.fromEntries(head.map((h,i)=>[h,r[i]||''])))}
 function cpPriceNum(s){let m=String(s||'').replace(',','.').match(/[-+]?\d*\.?\d+/);return m?Number(m[0]):0}
@@ -6,11 +6,116 @@ function cpPriceLabel(n){return new Intl.NumberFormat('it-IT',{style:'currency',
 function cpCat(title,desc){let t=((title||'')+' '+(desc||'')).toLowerCase();if(t.includes('kit'))return'Kit';if(/builder|costrutt|ricostruzione|monofas|monofase|cover/.test(t))return'Gel da Ricostruzione';if(/base gel|rubber base|fiber base|\bbase\b/.test(t))return'Base Gel';if(/semipermanent|gelac|smalto|color gel|colore|colors/.test(t))return'Smalti Semipermanenti';if(/acrygel|polygel|poly gel/.test(t))return'Acrygel';if(/top|gloss|lucid|sigillant/.test(t))return'Lucidi Top Gloss';if(/primer|cleaner|remover|prep|liquid|liquido/.test(t))return'Preparatori & Liquidi';if(/glitter|nail art|decor|strass|foil|pigment|cromo/.test(t))return'Nail Art & Decorazioni';if(/dual form|\btip\b|cartin/.test(t))return'Dual Form & Tip';if(/lima|lime|buffer/.test(t))return'Lime & Buffer';if(/pennell/.test(t))return'Pennelli';if(/lampada|fresa|attrezz/.test(t))return'Attrezzature';if(/pedicure|mani|mano|piede|cuticol/.test(t))return'Trattamento Mani';return'Altri prodotti'}
 function cpKey(x){return String((x&&x.link)||'').toLowerCase().replace(/^https?:\/\/(www\.)?hdnails\.it\/?/,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||String((x&&x.nome)||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 function cpMapProduct(r,i){let nome=(r.title||'').trim(),descr=(r.description||nome).trim(),prezzo=cpPriceNum(r.price),id=(r.id||('HDN-'+String(i+1).padStart(4,'0'))).trim();return{id,sku:id,nome,categoria:cpCat(nome,descr),descrizione:descr,specifiche:'',disponibilita:(r.availability||'').trim(),prezzo,prezzo_str:cpPriceLabel(prezzo),immagine:(r.image_link||'').trim(),link:(r.link||'').trim(),brand:(r.brand||'HDNails').trim()}}
-function cpExtraProducts(){return [{id:"HDN-0966",sku:"HDN-0966",nome:"HEXA Lampada Unghie",categoria:"Attrezzature",descrizione:"HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.",specifiche:"80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat",disponibilita:"Disponibile",prezzo:79,prezzo_str:"79,00 EUR",immagine:"https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png",link:"https://www.hdnails.it/hexa-lampada-uv-led-unghie",brand:"HDNails"},{id:"HDN-TEDDY-BEAR-8",sku:"Smalto Semipermanente Gelac Teddy Bear 8",nome:"Smalto Semipermanente Gelac Teddy Bear 8",categoria:"Smalti Semipermanenti",descrizione:"Teddy Bear n.8 della Teddy Bear Collection, gel color nei toni del marrone, ultra pigmentato e coprente.",specifiche:"10 ml, tenuta fino a 4 settimane",disponibilita:"Disponibile",prezzo:12.2,prezzo_str:"12,20 EUR",immagine:"",link:"https://www.hdnails.it/smalto-semipermanente-gelac-teddy-bear-8",brand:"HDNails"}]}
-function cpNewsProducts(){return [{id:"HDN-0966",sku:"HDN-0966",nome:"HEXA Lampada Unghie",categoria:"Attrezzature",descrizione:"HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.",specifiche:"80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat",disponibilita:"Disponibile",prezzo:79,prezzo_str:"79,00 EUR",immagine:"https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png",link:"https://www.hdnails.it/hexa-lampada-uv-led-unghie",brand:"HDNails"},{id:"HDN-TEDDY-BEAR-8",sku:"Smalto Semipermanente Gelac Teddy Bear 8",nome:"Smalto Semipermanente Gelac Teddy Bear 8",categoria:"Smalti Semipermanenti",descrizione:"Teddy Bear n.8 della Teddy Bear Collection, gel color nei toni del marrone, ultra pigmentato e coprente.",specifiche:"10 ml, tenuta fino a 4 settimane",disponibilita:"Disponibile",prezzo:12.2,prezzo_str:"12,20 EUR",immagine:"",link:"https://www.hdnails.it/smalto-semipermanente-gelac-teddy-bear-8",brand:"HDNails"}]}
+function cpExtraProducts(){return [...cpVerifiedNovelties(),{id:"HDN-0966",sku:"HDN-0966",nome:"HEXA Lampada Unghie",categoria:"Attrezzature",descrizione:"HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.",specifiche:"80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat",disponibilita:"Disponibile",prezzo:79,prezzo_str:"79,00 EUR",immagine:"https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png",link:"https://www.hdnails.it/hexa-lampada-uv-led-unghie",brand:"HDNails"},{id:"HDN-TEDDY-BEAR-8",sku:"Smalto Semipermanente Gelac Teddy Bear 8",nome:"Smalto Semipermanente Gelac Teddy Bear 8",categoria:"Smalti Semipermanenti",descrizione:"Teddy Bear n.8 della Teddy Bear Collection, gel color nei toni del marrone, ultra pigmentato e coprente.",specifiche:"10 ml, tenuta fino a 4 settimane",disponibilita:"Disponibile",prezzo:12.2,prezzo_str:"12,20 EUR",immagine:"",link:"https://www.hdnails.it/smalto-semipermanente-gelac-teddy-bear-8",brand:"HDNails"}]}
+function cpNewsProducts(){return [...cpVerifiedNovelties(),{id:"HDN-0966",sku:"HDN-0966",nome:"HEXA Lampada Unghie",categoria:"Attrezzature",descrizione:"HEXA Smart Lamp: lampada UV/LED professionale 71+7 LED con sensore a infrarossi, 4 timer e modalita low heat. Polimerizzazione perfetta anche sui pollici.",specifiche:"80 W, 71 + 7 LED dedicati al pollice, 4 timer, modalita low heat",disponibilita:"Disponibile",prezzo:79,prezzo_str:"79,00 EUR",immagine:"https://www.hdnails.it/media/catalog/product/cache/37a89782ee5d75b828ffe183f5318d59/h/e/hexa1.png",link:"https://www.hdnails.it/hexa-lampada-uv-led-unghie",brand:"HDNails"},{id:"HDN-TEDDY-BEAR-8",sku:"Smalto Semipermanente Gelac Teddy Bear 8",nome:"Smalto Semipermanente Gelac Teddy Bear 8",categoria:"Smalti Semipermanenti",descrizione:"Teddy Bear n.8 della Teddy Bear Collection, gel color nei toni del marrone, ultra pigmentato e coprente.",specifiche:"10 ml, tenuta fino a 4 settimane",disponibilita:"Disponibile",prezzo:12.2,prezzo_str:"12,20 EUR",immagine:"",link:"https://www.hdnails.it/smalto-semipermanente-gelac-teddy-bear-8",brand:"HDNails"}]}
 function cpRemovedProducts(){return ["aspiratore-professionale-da-tavolo-new", "calamita-cat-eye-double", "candela-per-massaggio-spa-te-bianco", "competition-clear-base-builder", "cover-up-base-builder", "dual-form-12-forme-pro", "easy-cover-22-gel-costruttore", "easy-cover-24-gel-costruttore-autolivellante-limited-edition", "easy-cover-25-gel-costruttore-autolivellante-limited-edition", "forbicina-comfort-cut-pro", "full-sculpt-dual-form-mandorla", "gel-paint-corallo-gel-colorato", "gelac-burgundy-collection-1", "gelac-burgundy-collection-5", "gelac-rouge-noir-collection-127", "glass-top-26-top-coat-semipermanente", "hd-polygel-6-acrigel-costruttore", "hd-polygel-8-acrigel-costruttore", "jelly-soft-4-gel-costruttore", "kit-easy-cover-4-1-omaggio", "kit-gelac-colori-autumn-collection-set-di-12-smalti-semipermanente-2-omaggio", "kit-gelac-componibile-10pz", "kit-gelac-componibile-12pz", "kit-gelac-componibile-16pz", "kit-gelac-misto", "kit-promo-cat-eye", "kit-spider-gel-set-di-5-gel-per-decorazioni", "kit-unicorn-10pz", "kit-unicorn-8pz", "luce-led-pieghevole-con-supporto-per-cellulare", "olio-cuticole-glitter-sweet-gummy", "pennello-liner-1", "pennello-liner-3", "piastra-stamping-hdnailsr-17", "piastra-stamping-hdnailsr-35", "piastra-stamping-hdnailsr-5", "poggiamano-con-supporto-smartphone-hd-nails-pink", "polvere-glitter-paillettes-oro-19", "polvere-specchio-rosa-14", "porta-pennelli-hdnails", "punta-carbide-cono", "punta-carbide-new", "punta-fiamma-big-blu", "punta-flame-fascia-blu", "punta-goccia-blu", "punta-sottoscalino-fascia-blu", "red-cat-eye-06", "scrub-rigenerante", "silky-touch-bianco-latte-spray-idratante", "silky-touch-velo-di-dolcezza-spray-idratante", "smalto-semipermanente-cat-eye-03", "smalto-semipermanente-cat-eye-26", "smalto-semipermanente-gelac-color-102", "smalto-semipermanente-gelac-color-129", "smalto-semipermanente-gelac-color-144", "smalto-semipermanente-gelac-color-16", "smalto-semipermanente-gelac-color-203", "smalto-semipermanente-gelac-color-238", "smalto-semipermanente-gelac-color-349", "smalto-semipermanente-gelac-color-44", "smalto-semipermanente-gelac-color-viola-fango-161", "smalto-semipermanente-gelac-glitter-color-122", "smalto-semipermanente-gelac-glitter-color-351", "smalto-semipermanente-gelac-platinum-05", "smalto-semipermanente-gelac-platinum-14", "smalto-semipermanente-gelac-platinum-champagne-11", "smalto-semipermanente-gelac-platinum-oro-03", "smalto-semipermanente-gelac-platinum-prosecco-02", "smalto-semipermanente-neon-cat-eye-1", "smalto-semipermanente-neon-cat-eye-3", "smalto-semipermanente-neon-cat-eye-4", "smalto-semipermanente-neon-cat-eye-6", "smalto-semipermanente-neon-cat-eye-7", "smalto-semipermanente-neon-cat-eye-8", "smalto-semipermanente-pastel-cat-eye-1", "smalto-semipermanente-pastel-cat-eye-2", "smalto-semipermanente-pastel-cat-eye-3", "smalto-semipermanente-pastel-cat-eye-4", "smalto-semipermanente-pastel-cat-eye-5", "spider-gel-white-gel-da-decorazione", "spingipelle-lama-a-punta", "strong-acrigel-5-bianco-latte", "super-paint-blu-9-gel-da-decorazione", "tip-dimostrative-rotonde", "tips-in-gel-forma-mandorla-a-punta", "top-coat-gelac-glitter-gloss-rose", "velvet-cat-eye-03"]}
 function cpEsc(s){return String(s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
 function cpRenderNews(list){let box=document.getElementById('newsList');if(!box)return;let news=(list&&list.length?list:cpNewsProducts()).slice(0,6);box.innerHTML=news.map(x=>'<article class="newsItem">'+(x.immagine?'<img src="'+cpEsc(x.immagine)+'" alt="">':'')+'<div><b>'+cpEsc(x.nome)+'</b><span>'+cpEsc(x.categoria||'Novita')+'</span><strong>'+cpEsc(x.prezzo_str||cpPriceLabel(x.prezzo))+'</strong></div></article>').join('')}
-function cpMergeExtras(prodotti){let removed=new Set(cpRemovedProducts()),ids=new Set(prodotti.map(x=>String(x.id).toLowerCase())),names=new Set(prodotti.map(x=>String(x.nome).toLowerCase()));prodotti=prodotti.filter(x=>!removed.has(cpKey(x)));cpExtraProducts().forEach(x=>{if(!removed.has(cpKey(x))&&!ids.has(String(x.id).toLowerCase())&&!names.has(String(x.nome).toLowerCase()))prodotti.push(x)});window.HD_CATALOG_NEWS=cpNewsProducts();try{localStorage.hd_catalog_news_v52=JSON.stringify(window.HD_CATALOG_NEWS)}catch(e){}return prodotti}
-async function cpLoadCatalogFromCsv(){try{let r=await fetch('HDNails_Catalogo_Facebook_Commerce.csv?v='+CATALOG_PATCH_VERSION,{cache:'no-store'});let txt=await r.text();let prodotti=cpMergeExtras(cpCsvObjects(txt).map(cpMapProduct).filter(x=>x.nome));if(!prodotti.length)throw Error('catalogo vuoto');S.p=prodotti.map(x=>({...x,categoria:typeof normCat==='function'?normCat(x.categoria):x.categoria})).sort(typeof sortProducts==='function'?sortProducts:(a,b)=>String(a.nome).localeCompare(String(b.nome),'it'));localStorage.hd_products_v52=JSON.stringify(S.p);cpRenderNews(window.HD_CATALOG_NEWS);if(typeof chips==='function')chips();if(typeof filter==='function')filter();if(typeof cartUI==='function')cartUI();let st=document.querySelector('#status');if(st&&S.p.length)st.textContent='Tutti i prodotti ('+S.p.length+')'}catch(e){console.warn('Catalogo CSV non caricato',e);cpRenderNews(cpNewsProducts())}}
-setTimeout(cpLoadCatalogFromCsv,500);
+function cpMergeExtras(prodotti){
+  const removed=new Set(cpRemovedProducts());
+  const merged=prodotti.filter(x=>!removed.has(cpKey(x)));
+  const ids=new Set(merged.map(x=>x.id));
+  const names=new Set(merged.map(x=>x.nome.toLowerCase()));
+  for(const x of cpExtraProducts()){
+    if(removed.has(cpKey(x))||ids.has(x.id)||names.has(x.nome.toLowerCase()))continue;
+    merged.push({...x,prezzo_str:x.prezzo_str||cpPriceLabel(x.prezzo)});
+    ids.add(x.id);
+    names.add(x.nome.toLowerCase());
+  }
+  const latestSlugs=[
+    'liquid-polygel-super-lac-1-gel-costruttore-in-bottiglia',
+    'liquid-polygel-super-lac-5-gel-costruttore-in-bottiglia'
+  ];
+  const newsKeys=new Set([...latestSlugs,...cpNewsProducts().map(cpKey)]);
+  for(const x of merged)if(newsKeys.has(cpKey(x)))x.novita=true;
+  return merged;
+}
+async function cpLoadCatalogFromCsv(){
+  let prodotti=[];
+  try{
+    const response=await fetch('HDNails_Catalogo_Facebook_Commerce.csv?v='+CATALOG_PATCH_VERSION,{cache:'no-store'});
+    if(!response.ok)throw Error('Catalogo HTTP '+response.status);
+    prodotti=cpCsvObjects(await response.text()).map(cpMapProduct).filter(x=>x.nome);
+    if(!prodotti.length)throw Error('Catalogo vuoto');
+  }catch(error){
+    console.warn('Catalogo CSV non caricato',error);
+    try{prodotti=JSON.parse(localStorage.hd_products_v53||localStorage.hd_products_v52||'[]')}catch{}
+  }
+  if(!prodotti.length){
+    $('#status').textContent='Catalogo non disponibile. Controlla la connessione e ricarica.';
+    return;
+  }
+  S.p=cpMergeExtras(prodotti).map(x=>({...x,categoria:normCat(x.categoria)})).sort(sortProducts);
+  try{localStorage.hd_products_v53=JSON.stringify(S.p)}catch{}
+  const news=cpNewsProducts().map(x=>({...x,prezzo_str:x.prezzo_str||cpPriceLabel(x.prezzo)}));
+  cpRenderNews(news);
+  ready();
+  document.dispatchEvent(new Event('hd-catalog-ready'));
+}
+
+function cpVerifiedNovelties(){
+  return [
+  ...[4,5].map(number=>({
+    id:'HDN-CHROME-'+number,sku:'HDN-CHROME-'+number,
+    nome:'Polvere Specchio Chrome '+number,categoria:'Nail Art',
+    prezzo:6.90,link:'https://www.hdnails.it/polvere-specchio-chrome-'+number,
+    descrizione:'Polvere per effetto specchio sulle unghie.',
+    disponibilita:'Disponibile',novita:true
+  })),
+  {
+    "id": "HDN-ACRILICA-CLEAR",
+    "sku": "HDN-ACRILICA-CLEAR",
+    "nome": "Polvere Acrilica Trasparente",
+    "categoria": "Acrygel",
+    "prezzo": 21.96,
+    "link": "https://www.hdnails.it/polvere-acrilica-trasparente",
+    "descrizione": "Polvere acrilica trasparente per la ricostruzione delle unghie.",
+    "disponibilita": "Disponibile",
+    "novita": true
+  },
+  {
+    "id": "HDN-RHINESTONE-GEL",
+    "sku": "HDN-RHINESTONE-GEL",
+    "nome": "Rhinestone Gel - Colla Nails Swarovski",
+    "categoria": "Nail Art",
+    "prezzo": 15.9,
+    "link": "https://www.hdnails.it/rhinestone-gel-colla-nails-swarovski",
+    "descrizione": "Colla in gel trasparente senza dispersione per strass e cristalli. Applicatore di precisione, 7 ml.",
+    "disponibilita": "Disponibile",
+    "novita": true
+  },
+  {
+    "id": "HDN-CHERRY-GLITTER-1",
+    "sku": "HDN-CHERRY-GLITTER-1",
+    "nome": "Kit Cherry Red - Red Glitter n.1",
+    "categoria": "Kit",
+    "prezzo": 69,
+    "link": "https://www.hdnails.it/kit-cherry-red",
+    "descrizione": "Cinque smalti Cherry Red, Red Cat Eye, Red Glitter n.1 e cartella colori a tip.",
+    "disponibilita": "Disponibile",
+    "novita": true
+  },
+  {
+    "id": "HDN-CHERRY-GLITTER-2",
+    "sku": "HDN-CHERRY-GLITTER-2",
+    "nome": "Kit Cherry Red - Red Glitter n.2",
+    "categoria": "Kit",
+    "prezzo": 69,
+    "link": "https://www.hdnails.it/kit-cherry-red",
+    "descrizione": "Cinque smalti Cherry Red, Red Cat Eye, Red Glitter n.2 e cartella colori a tip.",
+    "disponibilita": "Disponibile",
+    "novita": true
+  },
+  {
+    "id": "HDN-KIT-CHROME",
+    "sku": "HDN-KIT-CHROME",
+    "nome": "Kit Polveri Specchio Chrome",
+    "categoria": "Kit",
+    "prezzo": 60,
+    "link": "https://www.hdnails.it/kit-polvere-specchio-chrome",
+    "descrizione": "Kit per effetto specchio con polveri Chrome, Gelac White Cat Eye, Liner Painting Gel e Crystal Gloss.",
+    "disponibilita": "Esaurito",
+    "novita": true
+  }
+];
+}

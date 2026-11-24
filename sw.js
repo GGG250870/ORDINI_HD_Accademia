@@ -1,13 +1,13 @@
-const CACHE_NAME='ordini-hd-accademia-v52';
-const FILES=['./style.css?v=52','./v4.css?v=52','./app.js?v=52','./catalog_patch.js?v=52','./danea_patch.js?v=52','./HDNails_Catalogo_Facebook_Commerce.csv?v=52','./app.webmanifest?v=52','./apri.html?v=52','./icon.svg'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>c.addAll(FILES)).catch(()=>null));self.skipWaiting();});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
+const CACHE_NAME='ordini-hd-accademia-v53';
+const FILES=['./index.html','./style.css?v=53','./v4.css?v=53','./app.js?v=53','./catalog_patch.js?v=53','./danea_patch.js?v=53','./HDNails_Catalogo_Facebook_Commerce.csv?v=53','./app.webmanifest?v=53','./apri.html?v=53','./icon.svg'];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>Promise.allSettled(FILES.map(file=>c.add(file)))).catch(()=>null));self.skipWaiting();});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('ordini-hd-accademia-')&&k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING')self.skipWaiting();});
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET')return;
   if(e.request.mode==='navigate'){
-    e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match('./index.html?v=52')));
+    e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match('./index.html')));
     return;
   }
-  e.respondWith(fetch(e.request).then(r=>{let copy=r.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,copy)).catch(()=>{});return r;}).catch(()=>caches.match(e.request)));
+  e.respondWith(fetch(e.request).then(r=>{if(!r.ok)return r;let copy=r.clone();caches.open(CACHE_NAME).then(c=>c.put(e.request,copy)).catch(()=>{});return r;}).catch(()=>caches.match(e.request)));
 });
