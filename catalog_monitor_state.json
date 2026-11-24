@@ -426,7 +426,6 @@
     "piastra-stamping-hdnailsr-14",
     "piastra-stamping-hdnailsr-15",
     "piastra-stamping-hdnailsr-16",
-    "piastra-stamping-hdnailsr-17",
     "piastra-stamping-hdnailsr-18",
     "piastra-stamping-hdnailsr-19",
     "piastra-stamping-hdnailsr-2",
@@ -814,6 +813,7 @@
     "olio-cuticole-glitter-sweet-gummy",
     "pennello-liner-1",
     "pennello-liner-3",
+    "piastra-stamping-hdnailsr-17",
     "piastra-stamping-hdnailsr-35",
     "piastra-stamping-hdnailsr-5",
     "poggiamano-con-supporto-smartphone-hd-nails-pink",
@@ -898,11 +898,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-23T14:26:15.119760+00:00",
+  "last_checked": "2026-11-24T14:48:37.978997+00:00",
   "last_added": [],
   "last_removed": [
-    "spingipelle-lama-a-punta"
+    "piastra-stamping-hdnailsr-17"
   ],
-  "last_version": 51,
+  "last_version": 52,
   "last_manual_restored": []
 }
