@@ -175,26 +175,31 @@ def js_product(product):
 
 
 def render_patch(version, extras, news, removed):
-    extras_js = '[' + ','.join(js_product(product) for product in extras) + ']'
-    news_js = '[' + ','.join(js_product(product) for product in news) + ']'
-    removed_js = json.dumps(sorted(removed), ensure_ascii=False)
-    return f"""const CATALOG_PATCH_VERSION='{version}';
-function cpCsvRows(txt){{let rows=[],row=[],cell='',q=false;for(let i=0;i<txt.length;i++){{let ch=txt[i],nx=txt[i+1];if(ch==='\"'&&q&&nx==='\"'){{cell+='\"';i++;continue}}if(ch==='\"'){{q=!q;continue}}if(ch===','&&!q){{row.push(cell);cell='';continue}}if((ch==='\\n'||ch==='\\r')&&!q){{if(ch==='\\r'&&nx==='\\n')i++;row.push(cell);if(row.some(v=>v!==''))rows.push(row);row=[];cell='';continue}}cell+=ch}}row.push(cell);if(row.some(v=>v!==''))rows.push(row);return rows}}
-function cpCsvObjects(txt){{let rows=cpCsvRows(txt),head=rows.shift()||[];return rows.map(r=>Object.fromEntries(head.map((h,i)=>[h,r[i]||''])))}}
-function cpPriceNum(s){{let m=String(s||'').replace(',','.').match(/[-+]?\\d*\\.?\\d+/);return m?Number(m[0]):0}}
-function cpPriceLabel(n){{return new Intl.NumberFormat('it-IT',{{style:'currency',currency:'EUR'}}).format(n||0)}}
-function cpCat(title,desc){{let t=((title||'')+' '+(desc||'')).toLowerCase();if(t.includes('kit'))return'Kit';if(/builder|costrutt|ricostruzione|monofas|monofase|cover/.test(t))return'Gel da Ricostruzione';if(/base gel|rubber base|fiber base|\\bbase\\b/.test(t))return'Base Gel';if(/semipermanent|gelac|smalto|color gel|colore|colors/.test(t))return'Smalti Semipermanenti';if(/acrygel|polygel|poly gel/.test(t))return'Acrygel';if(/top|gloss|lucid|sigillant/.test(t))return'Lucidi Top Gloss';if(/primer|cleaner|remover|prep|liquid|liquido/.test(t))return'Preparatori & Liquidi';if(/glitter|nail art|decor|strass|foil|pigment|cromo/.test(t))return'Nail Art & Decorazioni';if(/dual form|\\btip\\b|cartin/.test(t))return'Dual Form & Tip';if(/lima|lime|buffer/.test(t))return'Lime & Buffer';if(/pennell/.test(t))return'Pennelli';if(/lampada|fresa|attrezz/.test(t))return'Attrezzature';if(/pedicure|mani|mano|piede|cuticol/.test(t))return'Trattamento Mani';return'Altri prodotti'}}
-function cpKey(x){{return String((x&&x.link)||'').toLowerCase().replace(/^https?:\\/\\/(www\\.)?hdnails\\.it\\/?/,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||String((x&&x.nome)||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}}
-function cpMapProduct(r,i){{let nome=(r.title||'').trim(),descr=(r.description||nome).trim(),prezzo=cpPriceNum(r.price),id=(r.id||('HDN-'+String(i+1).padStart(4,'0'))).trim();return{{id,sku:id,nome,categoria:cpCat(nome,descr),descrizione:descr,specifiche:'',disponibilita:(r.availability||'').trim(),prezzo,prezzo_str:cpPriceLabel(prezzo),immagine:(r.image_link||'').trim(),link:(r.link||'').trim(),brand:(r.brand||'HDNails').trim()}}}}
-function cpExtraProducts(){{return {extras_js}}}
-function cpNewsProducts(){{return {news_js}}}
-function cpRemovedProducts(){{return {removed_js}}}
-function cpEsc(s){{return String(s||'').replace(/[&<>\"]/g,m=>({{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}}[m]))}}
-function cpRenderNews(list){{let box=document.getElementById('newsList');if(!box)return;let news=(list&&list.length?list:cpNewsProducts()).slice(0,6);box.innerHTML=news.map(x=>'<article class=\"newsItem\">'+(x.immagine?'<img src=\"'+cpEsc(x.immagine)+'\" alt=\"\">':'')+'<div><b>'+cpEsc(x.nome)+'</b><span>'+cpEsc(x.categoria||'Novita')+'</span><strong>'+cpEsc(x.prezzo_str||cpPriceLabel(x.prezzo))+'</strong></div></article>').join('')}}
-function cpMergeExtras(prodotti){{let removed=new Set(cpRemovedProducts()),ids=new Set(prodotti.map(x=>String(x.id).toLowerCase())),names=new Set(prodotti.map(x=>String(x.nome).toLowerCase()));prodotti=prodotti.filter(x=>!removed.has(cpKey(x)));cpExtraProducts().forEach(x=>{{if(!removed.has(cpKey(x))&&!ids.has(String(x.id).toLowerCase())&&!names.has(String(x.nome).toLowerCase()))prodotti.push(x)}});window.HD_CATALOG_NEWS=cpNewsProducts();try{{localStorage.hd_catalog_news_v{version}=JSON.stringify(window.HD_CATALOG_NEWS)}}catch(e){{}}return prodotti}}
-async function cpLoadCatalogFromCsv(){{try{{let r=await fetch('HDNails_Catalogo_Facebook_Commerce.csv?v='+CATALOG_PATCH_VERSION,{{cache:'no-store'}});let txt=await r.text();let prodotti=cpMergeExtras(cpCsvObjects(txt).map(cpMapProduct).filter(x=>x.nome));if(!prodotti.length)throw Error('catalogo vuoto');S.p=prodotti.map(x=>({{...x,categoria:typeof normCat==='function'?normCat(x.categoria):x.categoria}})).sort(typeof sortProducts==='function'?sortProducts:(a,b)=>String(a.nome).localeCompare(String(b.nome),'it'));localStorage.hd_products_v{version}=JSON.stringify(S.p);cpRenderNews(window.HD_CATALOG_NEWS);if(typeof chips==='function')chips();if(typeof filter==='function')filter();if(typeof cartUI==='function')cartUI();let st=document.querySelector('#status');if(st&&S.p.length)st.textContent='Tutti i prodotti ('+S.p.length+')'}}catch(e){{console.warn('Catalogo CSV non caricato',e);cpRenderNews(cpNewsProducts())}}}}
-setTimeout(cpLoadCatalogFromCsv,500);
-"""
+    # Aggiorna i dati generati mantenendo il codice di caricamento dell'app.
+    source = PATCH.read_text(encoding='utf-8')
+    source, count = re.subn(
+        r"^const CATALOG_PATCH_VERSION='\d+';$",
+        f"const CATALOG_PATCH_VERSION='{version}';",
+        source,
+        flags=re.MULTILINE,
+    )
+    if count != 1:
+        raise ValueError('Versione del catalogo non trovata')
+    definitions = {
+        'cpExtraProducts': '[...cpVerifiedNovelties(), ' + ','.join(js_product(p) for p in extras) + ']',
+        'cpNewsProducts': '[...cpVerifiedNovelties(), ' + ','.join(js_product(p) for p in news) + ']',
+        'cpRemovedProducts': json.dumps(sorted(removed), ensure_ascii=False),
+    }
+    for name, value in definitions.items():
+        source, count = re.subn(
+            r'^function ' + name + r'\(\)\{return .*\}$',
+            lambda _: f'function {name}(){{return {value}}}',
+            source,
+            flags=re.MULTILINE,
+        )
+        if count != 1:
+            raise ValueError(f'Definizione catalogo non trovata: {name}')
+    return source
 
 
 def bump_files(version):
