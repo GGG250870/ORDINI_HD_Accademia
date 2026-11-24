@@ -130,7 +130,7 @@ function hdGroup(x){
   if(/top|gloss|lucid|sigillant|finish/.test(t)) return 'Top / Lucidi';
   if(/base gel|base rubber|flexy base|fiber base|base extra|gelac base|\bbase\b/.test(t)) return 'Basi';
   if(/gel in bottiglia/.test(c)) return 'Gel in bottiglia';
-  if(/acrygel|polygel|poly gel|polvere acrilica/.test(t)) return 'Acrygel / Polygel';
+  if(/acrygel|polygel|poly gel|^(?:altri prodotti )?(?:acrilico|acrylic|acylic) |polvere acrilica/.test(t)) return 'Acrygel / Polygel';
   if(/costrutt|builder|monofas|monofase|jelly cover|creamy cover|easy cover|gel da ricostruzione/.test(t)) return 'Costruttori';
   if(/semipermanent|gelac color|color gel|colore|smalt/.test(t)) return 'Colori';
   if(/primer|prep|deidrat|cleaner|remover|liquid|liquidi/.test(t)) return 'Preparatori e Liquidi';
