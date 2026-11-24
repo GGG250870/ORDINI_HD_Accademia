@@ -1,5 +1,5 @@
-const CACHE_NAME='ordini-hd-accademia-v54';
-const FILES=['./index.html','./style.css?v=54','./v4.css?v=54','./app.js?v=54','./catalog_patch.js?v=54','./danea_patch.js?v=54','./HDNails_Catalogo_Facebook_Commerce.csv?v=54','./app.webmanifest?v=54','./apri.html?v=54','./icon.svg'];
+const CACHE_NAME='ordini-hd-accademia-v55';
+const FILES=['./index.html','./style.css?v=55','./v4.css?v=55','./app.js?v=55','./catalog_patch.js?v=55','./danea_patch.js?v=55','./HDNails_Catalogo_Facebook_Commerce.csv?v=55','./app.webmanifest?v=55','./apri.html?v=55','./icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE_NAME).then(c=>Promise.allSettled(FILES.map(file=>c.add(file)))).catch(()=>null));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('ordini-hd-accademia-')&&k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING')self.skipWaiting();});

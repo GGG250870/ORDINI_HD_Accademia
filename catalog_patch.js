@@ -1,4 +1,4 @@
-const CATALOG_PATCH_VERSION='54';
+const CATALOG_PATCH_VERSION='55';
 function cpCsvRows(txt){let rows=[],row=[],cell='',q=false;for(let i=0;i<txt.length;i++){let ch=txt[i],nx=txt[i+1];if(ch==='"'&&q&&nx==='"'){cell+='"';i++;continue}if(ch==='"'){q=!q;continue}if(ch===','&&!q){row.push(cell);cell='';continue}if((ch==='\n'||ch==='\r')&&!q){if(ch==='\r'&&nx==='\n')i++;row.push(cell);if(row.some(v=>v!==''))rows.push(row);row=[];cell='';continue}cell+=ch}row.push(cell);if(row.some(v=>v!==''))rows.push(row);return rows}
 function cpCsvObjects(txt){let rows=cpCsvRows(txt),head=rows.shift()||[];return rows.map(r=>Object.fromEntries(head.map((h,i)=>[h,r[i]||''])))}
 function cpPriceNum(s){let m=String(s||'').replace(',','.').match(/[-+]?\d*\.?\d+/);return m?Number(m[0]):0}

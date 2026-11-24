@@ -9,9 +9,9 @@
 <meta name="theme-color" content="#1a1a1a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="app.webmanifest?v=54">
-<link rel="stylesheet" href="style.css?v=54">
-<link rel="stylesheet" href="v4.css?v=54">
+<link rel="manifest" href="app.webmanifest?v=55">
+<link rel="stylesheet" href="style.css?v=55">
+<link rel="stylesheet" href="v4.css?v=55">
 <title>ORDINI_HD_ACCADEMIA</title>
 <style>
 #updateNotice{display:none;position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top));z-index:9999;background:linear-gradient(135deg,#e4007f,#b40065);color:#fff;border-radius:16px;padding:11px 12px;box-shadow:0 8px 26px #0004;align-items:center;gap:10px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif}
@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="updateNotice" role="status" aria-live="polite"><div class="uText"><div class="uTitle">Aggiornamento disponibile NOVITÀ</div><div class="uSub">L'app si sta aggiornando automaticamente.</div></div><button id="updateNow" type="button">Aggiorna</button></div>
-<div id="newsBackdrop" role="dialog" aria-modal="true" aria-labelledby="newsTitle"><div id="newsPopup"><div id="newsHead"><b id="newsTitle">Novita a catalogo</b><span>Il catalogo e stato aggiornato.</span></div><div id="newsBody"><p>Ci sono novita aggiornate a catalogo.</p><div id="newsList" class="newsList"></div><button id="newsClose" type="button">Ho capito</button></div></div></div>
+<div id="newsBackdrop" role="dialog" aria-modal="true" aria-labelledby="newsTitle"><div id="newsPopup"><div id="newsHead"><b id="newsTitle">Novita a catalogo</b><span>Il catalogo è stato aggiornato.</span><button id="newsDismiss" type="button" aria-label="Chiudi novità">×</button></div><div id="newsBody"><p>Ci sono novita aggiornate a catalogo.</p><div id="newsList" class="newsList"></div><button id="newsClose" type="button">Ho capito</button></div></div></div>
 <header class="topbar">
   <div class="brand"><b>ORDINI_HD_ACCADEMIA</b><span id="hello">Accademia Savona</span></div>
   <button id="profileBtn" class="cartBtn secondaryMini" type="button">Cliente</button>
@@ -44,7 +44,7 @@
 <section id="printArea" class="printArea"></section>
 <script>
 (function(){
-  const APP_VERSION='54';
+  const APP_VERSION='55';
   const updateKey='hd_app_version';
   const reloadKey='hd_auto_reload_'+APP_VERSION;
   const newsKey='hd_news_seen_'+APP_VERSION;
@@ -52,9 +52,30 @@
   const notice=document.getElementById('updateNotice');
   const news=document.getElementById('newsBackdrop');
   const closeNews=document.getElementById('newsClose');
-  function showNews(){if(localStorage.getItem(newsKey)==='1')return;news.classList.add('on')}
-  function hideNews(){localStorage.setItem(newsKey,'1');news.classList.remove('on')}
+  let scrollPosition=0;
+  window.syncOrderScrollLock=function(){
+    const root=document.documentElement;
+    const modalOpen=!!document.querySelector('#newsBackdrop.on,#overlay.on');
+    if(modalOpen===root.classList.contains('modal-open'))return;
+    if(modalOpen){
+      scrollPosition=window.scrollY;
+      document.body.style.setProperty('--modal-scroll-top',-scrollPosition+'px');
+      root.classList.add('modal-open');
+    }else{
+      root.classList.remove('modal-open');
+      document.body.style.removeProperty('--modal-scroll-top');
+      window.scrollTo({top:scrollPosition,behavior:'instant'});
+    }
+  };
+  function showNews(){if(localStorage.getItem(newsKey)==='1')return;news.classList.add('on');syncOrderScrollLock()}
+  function hideNews(){localStorage.setItem(newsKey,'1');news.classList.remove('on');syncOrderScrollLock()}
   closeNews.addEventListener('click',hideNews);
+  document.getElementById('newsDismiss').addEventListener('click',hideNews);
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(news.classList.contains('on'))hideNews();
+    else if(document.querySelector('#overlay.on'))closeAll();
+  });
   news.addEventListener('click',e=>{if(e.target===news)hideNews()});
   async function clearOldApp(){
     try{
@@ -91,8 +112,8 @@
   autoUpdate();
 })();
 </script>
-<script src="app.js?v=54"></script>
-<script src="catalog_patch.js?v=54"></script>
-<script src="danea_patch.js?v=54"></script>
+<script src="app.js?v=55"></script>
+<script src="catalog_patch.js?v=55"></script>
+<script src="danea_patch.js?v=55"></script>
 </body>
 </html>

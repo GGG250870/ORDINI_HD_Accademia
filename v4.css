@@ -41,8 +41,19 @@
 /* I pannelli devono ricevere i tocchi sopra le barre fisse del catalogo. */
 .overlay{z-index:40}
 .sheet{z-index:41;overscroll-behavior:contain}
-body:has(.overlay.on){overflow:hidden}
+html.modal-open{overflow:hidden;overscroll-behavior:none}
+html.modal-open body{position:fixed;top:var(--modal-scroll-top);left:0;right:0;overflow:hidden}
 @media (max-width:640px){
-  #newsPopup{max-height:calc(100dvh - 24px - env(safe-area-inset-bottom));overflow-y:auto;margin-bottom:env(safe-area-inset-bottom)}
+  #newsPopup{max-height:calc(100dvh - 24px - env(safe-area-inset-bottom));margin-bottom:env(safe-area-inset-bottom)}
   .foot>.avail{grid-column:1/-1}
+}
+
+#newsPopup{display:flex;flex-direction:column;max-height:calc(100dvh - 36px)}
+#newsHead{position:relative;flex:none;padding-right:66px}
+#newsBody{display:flex;flex-direction:column;min-height:0}
+#newsList{min-height:0;overflow-y:auto;overscroll-behavior:contain}
+#newsClose{flex:none}
+#newsDismiss{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;border-radius:12px;background:#fff;color:#a5005a;font-size:26px}
+@media(max-width:640px){
+  #newsPopup{max-height:calc(100dvh - 24px - env(safe-area-inset-bottom))}
 }
