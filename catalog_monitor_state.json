@@ -94,7 +94,6 @@
     "buffer-lucidante",
     "builder-souffle-soft-pink-baby-boomer-gel-costruttore",
     "calamita-5d",
-    "calamita-cat-eye",
     "calamita-strong-5-in-1",
     "callus-remover",
     "cappucci-fresa-sanding-100pz",
@@ -698,6 +697,7 @@
     "strong-acrigel-2-bianco-ottico",
     "strong-acrigel-3-rosa-baby",
     "strong-acrigel-4-bianco-naturale",
+    "strong-acrigel-5-bianco-latte",
     "strong-acrigel-6-rosa-latte",
     "strong-acrigel-7-pink-nude",
     "strong-acrigel-8-intense-pink",
@@ -781,6 +781,7 @@
   ],
   "removed_keys": [
     "aspiratore-professionale-da-tavolo-new",
+    "calamita-cat-eye",
     "calamita-cat-eye-double",
     "candela-per-massaggio-spa-te-bianco",
     "competition-clear-base-builder",
@@ -898,11 +899,11 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-24T14:48:37.978997+00:00",
+  "last_checked": "2026-11-26T13:49:01.497318+00:00",
   "last_added": [],
   "last_removed": [
-    "piastra-stamping-hdnailsr-17"
+    "calamita-cat-eye"
   ],
-  "last_version": 52,
+  "last_version": 59,
   "last_manual_restored": []
 }
