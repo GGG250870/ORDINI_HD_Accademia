@@ -177,7 +177,6 @@
     "gelac-burgundy-collection-1",
     "gelac-burgundy-collection-2",
     "gelac-burgundy-collection-3",
-    "gelac-burgundy-collection-4",
     "gelac-burgundy-collection-6",
     "gelac-burgundy-collection-7",
     "gelac-butter-me-up-collection-1",
@@ -678,7 +677,6 @@
     "soft-acrigel-glitter-4-costruttore-acrigel",
     "spatola",
     "spazzola-per-rimozione-polvere-limatura",
-    "spider-gel-black-gel-da-decorazione",
     "spider-gel-gold-gel-da-decorazione",
     "spider-gel-rosso-gel-da-decorazione",
     "spider-gel-silver-gel-da-decorazione",
@@ -708,7 +706,7 @@
     "tips-cuore",
     "tips-in-gel-forma-ballerina-da-salone",
     "tips-in-gel-forma-ballerina-extreme",
-    "tips-in-gel-forma-ballerina-lunga",
+    "tips-in-gel-forma-mandorla-a-punta",
     "tips-in-gel-forma-oval",
     "tips-in-gel-forma-stiletto",
     "tips-in-scatola-clear",
@@ -787,6 +785,7 @@
     "full-sculpt-dual-form-mandorla",
     "gel-paint-corallo-gel-colorato",
     "gelac-burgundy-collection-1",
+    "gelac-burgundy-collection-4",
     "gelac-burgundy-collection-5",
     "gelac-rouge-noir-collection-127",
     "glass-top-26-top-coat-semipermanente",
@@ -859,11 +858,13 @@
     "smalto-semipermanente-pastel-cat-eye-3",
     "smalto-semipermanente-pastel-cat-eye-4",
     "smalto-semipermanente-pastel-cat-eye-5",
+    "spider-gel-black-gel-da-decorazione",
     "spider-gel-white-gel-da-decorazione",
     "spingipelle-lama-a-punta",
     "strong-acrigel-5-bianco-latte",
     "super-paint-blu-9-gel-da-decorazione",
     "tip-dimostrative-rotonde",
+    "tips-in-gel-forma-ballerina-lunga",
     "tips-in-gel-forma-mandorla-a-punta",
     "top-coat-gelac-glitter-gloss-rose",
     "velvet-cat-eye-03"
@@ -898,18 +899,13 @@
       "brand": "HDNails"
     }
   ],
-  "last_checked": "2026-11-27T13:47:27.282966+00:00",
+  "last_checked": "2026-11-28T12:56:19.424523+00:00",
   "last_added": [],
   "last_removed": [
-    "dual-form-12-forme",
-    "silky-touch-flower-spray-idratante",
-    "silky-touch-pera-vaniglia-spray-idratante",
-    "silky-touch-sweet-cream-spray-idratante",
-    "smalto-semipermanente-gelac-color-039",
-    "smalto-semipermanente-gelac-dark-red-94",
-    "smalto-semipermanente-gelac-red-passion-214",
-    "velvet-cat-eye-03"
+    "gelac-burgundy-collection-4",
+    "spider-gel-black-gel-da-decorazione",
+    "tips-in-gel-forma-ballerina-lunga"
   ],
-  "last_version": 60,
+  "last_version": 61,
   "last_manual_restored": []
 }
